@@ -1,0 +1,31 @@
+{
+    "name": "rlabrovi/climbingcards",
+    "description": "Wordpress plugin for managing climbing crags, routes and journals",
+    "keywords": [ "wordpress", "plugin", "climbing" ],
+    "license": "MIT",
+    "type": "wordpress-plugin",
+    "homepage": "https://github.com/gardelin/climbingcard",
+    "authors": [
+        {
+            "name": "Roko Labrovic",
+            "email": "roko.labrovic@gmail.com",
+            "homepage": "https://github.com/gardelin",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "league/plates": "^3.3"
+    },
+    "autoload": {
+        "psr-4": { "ClimbingCard\\": "src/" },
+        "files": [
+            "src/helpers.php",
+            "src/Services/helpers.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}

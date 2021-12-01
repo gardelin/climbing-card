@@ -1,0 +1,25 @@
+@import 'variables';
+@import 'colors';
+
+.dot {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+
+    &.red-point {
+        background-color: $red-point;
+        box-shadow: 0 0 0 2px $red-point;
+    }
+
+    &.on-sight {
+        background-color: $on-sight;
+        box-shadow: 0 0 0 2px $on-sight;
+    }
+
+    &.flash {
+        background-color: $flash;
+        box-shadow: 0 0 0 2px $flash;
+    }
+}

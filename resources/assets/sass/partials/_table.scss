@@ -1,0 +1,266 @@
+.forme {
+    overflow: hidden;
+    display: none;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+    color: black;
+    cursor: pointer;
+}
+
+.del {
+    background-color: rgb(199, 73, 73) !important;
+    color: white !important;
+}
+
+.update {
+    color: white !important;
+    background-color: rgb(75, 192, 75) !important;
+}
+
+#uredi_form,
+#dodaj_form {
+    overflow: hidden;
+}
+.forme form {
+    background: #fefefe;
+    overflow: hidden;
+    width: 500px;
+    padding: 20px;
+    margin: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 1px solid #333;
+    -moz-box-shadow: 1px -1px 12px #333;
+    -webkit-box-shadow: 1px -1px 12px #333;
+    box-shadow: 1px -1px 12px #333;
+}
+.forme form input,
+.forme form select {
+    max-width: 100%;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #c5c5c5;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #666;
+}
+.forme form input.butt {
+    width: 100px;
+    background: #e6efee;
+    cursor: pointer;
+    font-weight: bold;
+}
+.forme form input.butt:hover {
+    background: #8ebdd9;
+    color: #eee;
+    border: #ddd;
+}
+
+.forme form h2 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+tr.pojedini_smjer td {
+    cursor: pointer;
+    background: #fff;
+}
+#ui-datepicker-div {
+    z-index: 9999 !important;
+}
+table.statistika {
+    width: 300px;
+    margin: 0px 20px 20px 0px;
+    -webkit-box-shadow: 2px 2px 6px #999;
+    -moz-box-shadow: 2px 2px 6px #999;
+    box-shadow: 2px 2px 6px #999;
+}
+table.po_ocjenama {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: 0px;
+}
+table.statistika .naslov {
+    text-align: center;
+    background: #8cbddb;
+    color: #333;
+    font-weight: bold;
+}
+table.statistika td {
+    background: #eee;
+    padding: 5px;
+    background: #e6efee;
+}
+a#dodaj_smjer_form,
+a#kreiraj_ekarton {
+    width: 160px;
+    height: 50px;
+    margin-left: 50px;
+    line-height: 50px;
+    display: block;
+    background: #e6efee;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: 2px solid #8ebdd9;
+    font-size: 20px;
+    text-decoration: none;
+    padding-left: 15px;
+    -webkit-box-shadow: 2px 2px 6px #999;
+    -moz-box-shadow: 2px 2px 6px #999;
+    box-shadow: 2px 2px 6px #999;
+}
+a#dodaj_smjer_form:hover,
+a#kreiraj_ekarton:hover {
+    border: 2px solid #e6efee;
+    background: #8ebdd9;
+    color: #fefefe;
+}
+.border {
+    border: 2px solid red !important;
+}
+.graph {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    clear: both;
+    font-family: georgia, serif;
+    font-size: 14px;
+}
+
+.graph .label {
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.graph-header h3 {
+    margin-bottom: 0px;
+}
+.graph-header {
+    text-align: center;
+}
+.graph-header p {
+    margin-top: 0px;
+}
+
+.graph .legend td,
+.graph .legend,
+.graph .legend tr {
+    padding: 0px;
+    margin: 0px;
+    border-collapse: collapse;
+}
+
+.graph .legend {
+    margin-left: 10px;
+}
+.graph .legend td {
+    padding-right: 5px;
+}
+.gore_lijevo {
+    float: left;
+    width: 350px;
+}
+.gore_sredina {
+    float: left;
+    width: 350px;
+    overflow: hidden;
+}
+.gore {
+    overflow: hidden;
+    padding-bottom: 10px;
+}
+.smjerovi_graf {
+    clear: both;
+    padding: 20px 0px;
+}
+.graph .legend .color-box {
+    width: 14px;
+    height: 10px;
+    overflow: hidden;
+}
+.tablescroll {
+}
+
+.tablescroll td,
+.tablescroll_wrapper,
+.tablescroll_head,
+.tablescroll_foot {
+    border: 1px solid #fff;
+}
+
+.tablescroll td {
+    padding: 3px 5px;
+}
+
+.tablescroll_wrapper {
+    border-left: 0;
+}
+
+.tablescroll_head {
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #eee;
+    border-left: 0;
+    border-top: 0;
+    margin-bottom: 3px;
+}
+
+.tablescroll thead td {
+    border-right: 0;
+    border-bottom: 0;
+}
+.legend_smjerovi span {
+    margin-right: 20px;
+}
+.legend_smjerovi span.on_sight {
+    border-left: 20px solid $on-sight;
+    padding-left: 5px;
+}
+.legend_smjerovi span.flash {
+    border-left: 20px solid $flash;
+    padding-left: 5px;
+}
+.legend_smjerovi span.red_point {
+    border-left: 20px solid $red-point;
+    padding-left: 5px;
+}
+
+.tablescroll tbody td {
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.tablescroll tbody tr.first td {
+    border-top: 0;
+}
+
+.tablescroll_foot {
+    font-weight: bold;
+    background-color: #eee;
+    border-left: 0;
+    border-top: 0;
+    margin-top: 3px;
+}
+
+.tablescroll tfoot td {
+    border-right: 0;
+    border-bottom: 0;
+}
+.id_podatak {
+    display: none !important;
+}
+
+#table_smjerovi {
+    width: 100%;
+    text-align: left;
+
+    td {
+        padding: 5px;
+    }
+}
