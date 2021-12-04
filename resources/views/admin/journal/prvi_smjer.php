@@ -57,8 +57,7 @@
 			<input type="text" name="dodaj_datum" id="dodaj_datum" value="" size="19" />
 		</fieldset>
 		<fieldset class="butts">
-			<input type="button" class="close butt" value="Odustani " />
-			<input type="button" class="butt" id="dodaj" value="Potvrdi " />
+			<input type="button" class="update butt" id="dodaj" value="Potvrdi " />
 		</fieldset>
 	</form>
 </div>

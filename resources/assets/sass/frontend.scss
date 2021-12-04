@@ -1,5 +1,7 @@
 @import 'variables';
 @import 'colors';
+@import '~accordion-js/dist/accordion.css';
+@import 'vendors/accordion';
 
 .dot {
     display: flex;
@@ -21,5 +23,32 @@
     &.flash {
         background-color: $flash;
         box-shadow: 0 0 0 2px $flash;
+    }
+}
+
+.last-climbed-routes {
+    .climbed-route {
+        .climbed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+
+            .climbed-data {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .dot {
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        .climbed-content {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }
