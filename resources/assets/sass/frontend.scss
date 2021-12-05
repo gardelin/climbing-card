@@ -52,3 +52,21 @@
         }
     }
 }
+
+.sidebar-widget {
+    .widget-container {
+        display: flex;
+        flex-direction: column;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #efefef;
+
+            &:last-of-type {
+                border: none;
+            }
+        }
+    }
+}

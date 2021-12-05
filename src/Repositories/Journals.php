@@ -61,6 +61,56 @@ class Journals
     }
 
     /**
+     * Get stats data
+     * 
+     * @return array
+     */
+    public function stats()
+    {
+        global $wpdb;
+
+        $tableName = JournalsTable::getTableName();
+        $sql = "
+        SELECT
+            COUNT(id_podatak) as total,
+            SUM(CASE WHEN nacin = 'on sight' then 1 else 0 end) AS total_on_sight,
+            SUM(CASE WHEN nacin = 'flash' then 1 else 0 end) AS total_flash,
+            SUM(CASE WHEN nacin = 'red point' then 1 else 0 end) AS total_red_point,
+            MAX(ocjena) as biggest_grade,
+            (SELECT MAX(ocjena) FROM " . $tableName . " WHERE nacin = 'on sight') as biggest_on_sight,
+            (SELECT MAX(ocjena) FROM " . $tableName . " WHERE nacin = 'red point') as biggest_red_point,
+            (SELECT MAX(ocjena) FROM " . $tableName . " WHERE nacin = 'flash') as biggest_flash
+        FROM " . $tableName;
+        $result = $wpdb->get_row($sql, ARRAY_A);
+
+        return $result;
+    }
+
+    /**
+     * Get stats data
+     * 
+     * @param int $limit
+     * 
+     * @return array
+     */
+    public function topUsersByNumberOfClimbedRoutes($limit)
+    {
+        global $wpdb;
+
+        $tableName = JournalsTable::getTableName();
+        $sql = "
+        SELECT 
+            COUNT(*) AS `total`, 
+            `username` 
+        FROM " . $tableName . " 
+        GROUP BY `userName` 
+        ORDER BY `total` DESC LIMIT " . esc_sql($limit);
+        $result = $wpdb->get_results($sql, ARRAY_A);
+
+        return $result;
+    }
+
+    /**
      * Copied from old plugin (novikarton)
      */
     function ekarton_karton_exist($korisnik)

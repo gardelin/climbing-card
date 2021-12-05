@@ -5,10 +5,10 @@ namespace ClimbingCard\Shortcodes;
 use ClimbingCard\Repositories\Journals;
 use function ClimbingCard\view;
 
-class LastClimbedRoutes
+class Stats
 {
     /**
-     * Render list of last n climbed routes
+     * Calculate climbing card statistics and display it as list
      *
      * @param  array  $attributes
      * @param  null  $content
@@ -18,10 +18,8 @@ class LastClimbedRoutes
      */
     public static function render($attributes = [], $content = null): string
     {
-        $number = isset($attributes['number']) ? (int) $attributes['number'] : 10;
+        $stats = Journals::getInstance()->stats();
 
-        $journals = Journals::getInstance()->all(['limit' => $number]);
-
-        return view('journal/last-climbed-routes', ['journals' => $journals], false);
+        return view('journal/stats', ['stats' => $stats], false);
     }
 }
