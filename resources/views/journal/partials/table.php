@@ -11,7 +11,15 @@
         </tr>
     </thead>
     <tbody>
-
+        <tr>
+            <td class="number">-</td>
+            <td class="route">-</td>
+            <td class="crag">-</td>
+            <td class="style">-</td>
+            <td class="grade">-</td>
+            <td class="comment">-</td>
+            <td class="date">-</td>
+        </tr>
     </tbody>
 </table>
 
