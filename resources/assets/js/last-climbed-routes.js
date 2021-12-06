@@ -4,7 +4,13 @@ import Accordion from 'accordion-js'
 
 class LastClimbedRoutes {
     constructor() {
-        let accordion = new Accordion('.climbed-routes-container')
+        let lastClimedRoutes = document.querySelector(
+            '.climbed-routes-container'
+        )
+
+        if (!lastClimedRoutes) return
+
+        let accordion = new Accordion(lastClimedRoutes)
     }
 }
 
