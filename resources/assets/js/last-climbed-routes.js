@@ -1,21 +1,21 @@
-import jQuery from 'jquery'
-window.$ = window.jQuery = jQuery
-import Accordion from 'accordion-js'
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
+import Accordion from 'accordion-js';
 
 class LastClimbedRoutes {
     constructor() {
         let lastClimedRoutes = document.querySelector(
-            '.climbed-routes-container'
-        )
+            '.climbed-routes-container',
+        );
 
-        if (!lastClimedRoutes) return
+        if (!lastClimedRoutes) return;
 
-        let accordion = new Accordion(lastClimedRoutes)
+        let accordion = new Accordion(lastClimedRoutes);
     }
 }
 
-export default LastClimbedRoutes
+export default LastClimbedRoutes;
 
 document.addEventListener('DOMContentLoaded', function () {
-    window.LastClimbedRoutes = new LastClimbedRoutes()
-})
+    window.LastClimbedRoutes = new LastClimbedRoutes();
+});

@@ -12,88 +12,81 @@
  *
  */
 
-(function($) {
+(function ($) {
+    $.fn.clearField = function (settings) {
+        /**
+         * Settings
+         *
+         */
 
-	$.fn.clearField = function(settings) {
+        settings = jQuery.extend(
+            {
+                blurClass: 'clearFieldBlurred',
+                activeClass: 'clearFieldActive',
+                attribute: 'rel',
+                value: '',
+            },
+            settings,
+        );
 
-		/**
-		 * Settings
-		 *
-		 */
+        /**
+         * loop each element
+         *
+         */
 
-		settings = jQuery.extend({
-			blurClass: 'clearFieldBlurred',
-			activeClass: 'clearFieldActive',
-			attribute: 'rel',
-			value: ''
-		}, settings);
+        return $(this).each(function () {
+            /**
+             * Set element
+             *
+             */
 
+            var el = $(this);
 
-		/**
-		 * loop each element
-		 *
-		 */
+            /**
+             * Get starting value
+             *
+             */
 
-		return $(this).each(function() {
+            settings.value = el.val();
 
-			/**
-			 * Set element
-			 *
-			 */
+            /**
+             * Add or get attribute
+             *
+             */
 
-			var el = $(this);
+            if (el.attr(settings.attribute) == undefined) {
+                el.attr(settings.attribute, el.val()).addClass(
+                    settings.blurClass,
+                );
+            } else {
+                settings.value = el.attr(settings.attribute);
+            }
 
+            /**
+             * Set focus action
+             *
+             */
 
-			/**
-			 * Get starting value
-			 *
-			 */
+            el.focus(function () {
+                if (el.val() == el.attr(settings.attribute)) {
+                    el.val('')
+                        .removeClass(settings.blurClass)
+                        .addClass(settings.activeClass);
+                }
+            });
 
-			settings.value = el.val();
+            /**
+             * Set blur action
+             *
+             */
 
-
-			/**
-			 * Add or get attribute
-			 *
-			 */
-
-			if(el.attr(settings.attribute) == undefined) {
-				el.attr(settings.attribute, el.val()).addClass(settings.blurClass);
-			} else {
-				settings.value = el.attr(settings.attribute);
-			}
-
-
-			/**
-			 * Set focus action
-			 *
-			 */
-
-			el.focus(function() {
-
-				if(el.val() == el.attr(settings.attribute)) {
-					el.val('').removeClass(settings.blurClass).addClass(settings.activeClass);
-				}
-
-			});
-
-
-			/**
-			 * Set blur action
-			 *
-			 */
-
-			el.blur(function() {
-
-				if(el.val() == '') {
-					el.val(el.attr(settings.attribute)).removeClass(settings.activeClass).addClass(settings.blurClass);
-				}
-
-			});
-
-
-		});
-
-	};
-
+            el.blur(function () {
+                if (el.val() == '') {
+                    el.val(el.attr(settings.attribute))
+                        .removeClass(settings.activeClass)
+                        .addClass(settings.blurClass);
+                }
+            });
+        });
+    };
 })(jQuery);

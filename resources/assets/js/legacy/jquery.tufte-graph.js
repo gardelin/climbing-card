@@ -1,17 +1,17 @@
-;(function (jQuery) {
+(function (jQuery) {
     //
     // Public interface
     //
 
     // The main event - creates a pretty graph. See index.html for documentation.
     jQuery.fn.tufteBar = function (options) {
-        var defaultCopy = jQuery.extend(true, {}, jQuery.fn.tufteBar.defaults)
-        var options = jQuery.extend(true, defaultCopy, options)
+        var defaultCopy = jQuery.extend(true, {}, jQuery.fn.tufteBar.defaults);
+        var options = jQuery.extend(true, defaultCopy, options);
 
         return this.each(function () {
-            draw(makePlot(jQuery(this), options), options)
-        })
-    }
+            draw(makePlot(jQuery(this), options), options);
+        });
+    };
 
     // Defaults are exposed publically so you can reuse bits that you find
     // handy (the colors, for instance)
@@ -19,40 +19,40 @@
         barWidth: 0.8,
         colors: ['#00a19a', '#f8b231', '#d51c54'],
         color: function (index, stackedIndex, options) {
-            return options.colors[stackedIndex % options.colors.length]
+            return options.colors[stackedIndex % options.colors.length];
         },
         barLabel: function (index, stackedIndex) {
-            return jQuery.tufteBar.formatNumber(totalValue(this[0]))
+            return jQuery.tufteBar.formatNumber(totalValue(this[0]));
         },
         axisLabel: function (index, stackedIndex) {
-            return index
+            return index;
         },
         legend: {
             color: function (index, options) {
-                return options.colors[index % options.colors.length]
+                return options.colors[index % options.colors.length];
             },
             label: function (index) {
-                return this
+                return this;
             },
         },
-    }
+    };
 
     jQuery.tufteBar = {
         // Add thousands separators to a number to make it look pretty.
         // 1000 -> 1,000
         formatNumber: function (nStr) {
             // http://www.mredkj.com/javascript/nfbasic.html
-            nStr += ''
-            x = nStr.split('.')
-            x1 = x[0]
-            x2 = x.length > 1 ? '.' + x[1] : ''
-            var rgx = /(\d+)(\d{3})/
+            nStr += '';
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
             while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, 'jQuery1' + ',' + 'jQuery2')
+                x1 = x1.replace(rgx, 'jQuery1' + ',' + 'jQuery2');
             }
-            return x1 + x2
+            return x1 + x2;
         },
-    }
+    };
 
     //
     // Private functions
@@ -65,70 +65,70 @@
         // the @arguments@ special variable looks like an array, but really isn't, so we
         // need to transform it in order to perform array function on it
         function toArray() {
-            var result = []
-            for (var i = 0; i < this.length; i++) result.push(this[i])
-            return result
+            var result = [];
+            for (var i = 0; i < this.length; i++) result.push(this[i]);
+            return result;
         }
 
         return jQuery.isFunction(option)
             ? option.apply(
                   element,
-                  toArray.apply(arguments).slice(2, arguments.length)
+                  toArray.apply(arguments).slice(2, arguments.length),
               )
-            : option
+            : option;
     }
 
     // Returns the total value of a bar, for labeling or plotting. Y values can either be
     // a single number (for a normal graph), or an array of numbers (for a stacked graph)
     function totalValue(value) {
-        if (value instanceof Array) return jQuery.sum(value)
-        else return value
+        if (value instanceof Array) return jQuery.sum(value);
+        else return value;
     }
 
     function draw(plot, options) {
-        var ctx = plot.ctx
-        var axis = plot.axis
+        var ctx = plot.ctx;
+        var axis = plot.axis;
 
         // Iterate over each bar
         jQuery(options.data).each(function (i) {
-            var element = this
-            var x = i + 0.5
-            var all_y = null
+            var element = this;
+            var x = i + 0.5;
+            var all_y = null;
 
             if (element[0] instanceof Array) {
                 // This is a stacked bar, so the data is all good to go
-                all_y = element[0]
+                all_y = element[0];
             } else {
                 // This is a normal bar, wrap in an array to make it a stacked bar with one data point
-                all_y = [element[0]]
+                all_y = [element[0]];
             }
 
             if (
                 jQuery(all_y).any(function () {
-                    return isNaN(+this)
+                    return isNaN(+this);
                 })
             ) {
-                throw 'Non-numeric value provided for y: ' + element[0]
+                throw 'Non-numeric value provided for y: ' + element[0];
             }
 
-            var lastY = 0
+            var lastY = 0;
 
             pixel_scaling_function = function (axis) {
-                var scale = axis.pixelLength / (axis.max - axis.min)
+                var scale = axis.pixelLength / (axis.max - axis.min);
                 return function (value) {
-                    return (value - axis.min) * scale
-                }
-            }
+                    return (value - axis.min) * scale;
+                };
+            };
 
             // These functions transform a value from plot coordinates to pixel coordinates
-            var t = {}
-            t.W = pixel_scaling_function(axis.x)
-            t.H = pixel_scaling_function(axis.y)
-            t.X = t.W
+            var t = {};
+            t.W = pixel_scaling_function(axis.x);
+            t.H = pixel_scaling_function(axis.y);
+            t.X = t.W;
             // Y needs to invert the result since 0 in plot coords is bottom left, but 0 in pixel coords is top left
             t.Y = function (y) {
-                return axis.y.pixelLength - t.H(y)
-            }
+                return axis.y.pixelLength - t.H(y);
+            };
 
             // Iterate over each data point for this bar and render a rectangle for each
             jQuery(all_y).each(function (stackedIndex) {
@@ -139,29 +139,29 @@
                         element,
                         i,
                         stackedIndex,
-                        options
-                    )
-                }
+                        options,
+                    );
+                };
 
-                var y = all_y[stackedIndex]
-                var halfBar = optionResolver(options.barWidth) / 2
+                var y = all_y[stackedIndex];
+                var halfBar = optionResolver(options.barWidth) / 2;
                 var left = x - halfBar,
                     width = halfBar * 2,
                     top = lastY + y,
-                    height = y
+                    height = y;
 
                 // Need to both fill and stroke the rect to make sure the whole area is covered
                 // You get nasty artifacts otherwise
-                var color = optionResolver(options.color)
-                var coords = [t.X(left), t.Y(top), t.W(width), t.H(height)]
+                var color = optionResolver(options.color);
+                var coords = [t.X(left), t.Y(top), t.W(width), t.H(height)];
 
                 ctx.rect(coords[0], coords[1], coords[2], coords[3]).attr({
                     stroke: color,
                     fill: color,
-                })
+                });
 
-                lastY = lastY + y
-            })
+                lastY = lastY + y;
+            });
 
             addLabel = function (klass, text, pos) {
                 html =
@@ -169,26 +169,26 @@
                     klass +
                     '">' +
                     text +
-                    '</div>'
-                jQuery(html).css(pos).appendTo(plot.target)
-            }
+                    '</div>';
+                jQuery(html).css(pos).appendTo(plot.target);
+            };
 
             var optionResolver = function (option) {
                 // Curry resolveOption for convenience
-                return resolveOption(option, element, i, options)
-            }
+                return resolveOption(option, element, i, options);
+            };
             addLabel('bar-label', optionResolver(options.barLabel), {
                 left: t.X(x - 0.5),
                 bottom: t.H(lastY),
                 width: t.W(1),
-            })
+            });
             addLabel('axis-label', optionResolver(options.axisLabel), {
                 left: t.X(x - 0.5),
                 top: t.Y(0),
                 width: t.W(1),
-            })
-        })
-        addLegend(plot, options)
+            });
+        });
+        addLegend(plot, options);
     }
 
     // If legend data has been provided, transform it into an
@@ -199,32 +199,32 @@
                 var optionResolver = (function (element) {
                     return function (option) {
                         // Curry resolveOption for convenience
-                        return resolveOption(option, element, i, options)
-                    }
-                })(this)
+                        return resolveOption(option, element, i, options);
+                    };
+                })(this);
 
                 var colorBox =
                     '<div class="color-box" style="background-color:' +
                     optionResolver(options.legend.color) +
-                    '"></div>'
-                var label = optionResolver(options.legend.label)
+                    '"></div>';
+                var label = optionResolver(options.legend.label);
 
                 return (
                     '<tr><td>' + colorBox + '</td><td>' + label + '</td></tr>'
-                )
-            })
+                );
+            });
 
             jQuery(
                 '<table class="legend">' +
                     elements.reverse().join('') +
-                    '</table>'
+                    '</table>',
             )
                 .css({
                     position: 'absolute',
                     top: '0px',
                     left: plot.width + 'px',
                 })
-                .appendTo(plot.target)
+                .appendTo(plot.target);
         }
     }
 
@@ -234,33 +234,33 @@
         var axis = {
             x: {},
             y: {},
-        }
+        };
 
-        axis.x.min = 0
-        axis.x.max = options.data.length
-        axis.y.min = 0
-        axis.y.max = 0
+        axis.x.min = 0;
+        axis.x.max = options.data.length;
+        axis.y.min = 0;
+        axis.y.max = 0;
 
         jQuery(options.data).each(function () {
-            var y = totalValue(this[0])
-            if (y < axis.y.min) throw 'Negative values not supported'
-            if (y > axis.y.max) axis.y.max = y
-        })
+            var y = totalValue(this[0]);
+            if (y < axis.y.min) throw 'Negative values not supported';
+            if (y > axis.y.max) axis.y.max = y;
+        });
 
-        if (axis.x.max <= 0) throw 'You must have at least one data point'
+        if (axis.x.max <= 0) throw 'You must have at least one data point';
         if (axis.y.max <= 0)
-            throw 'You must have at least one y-value greater than 0'
+            throw 'You must have at least one y-value greater than 0';
 
-        return axis
+        return axis;
     }
 
     // Creates the canvas object to draw on, and set up the axes
     function makePlot(target, options) {
-        var plot = {}
-        plot.target = target
-        plot.width = target.width()
-        plot.height = target.height()
-        target.html('').css('position', 'relative')
+        var plot = {};
+        plot.target = target;
+        plot.width = target.width();
+        plot.height = target.height();
+        target.html('').css('position', 'relative');
 
         if (plot.width <= 0 || plot.height <= 0) {
             throw (
@@ -268,16 +268,16 @@
                 plot.width +
                 ', height = ' +
                 plot.height
-            )
+            );
         }
 
         // the canvas
-        plot.ctx = Raphael(target[0].id, plot.width, plot.height)
+        plot.ctx = Raphael(target[0].id, plot.width, plot.height);
 
-        plot.axis = makeAxis(options)
-        plot.axis.x.pixelLength = plot.width
-        plot.axis.y.pixelLength = plot.height
+        plot.axis = makeAxis(options);
+        plot.axis.x.pixelLength = plot.width;
+        plot.axis.y.pixelLength = plot.height;
 
-        return plot
+        return plot;
     }
-})(jQuery)
+})(jQuery);

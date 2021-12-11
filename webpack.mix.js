@@ -1,13 +1,13 @@
-let mix = require('laravel-mix')
+let mix = require('laravel-mix');
 mix.webpackConfig({
     externals: {
         jquery: 'jQuery',
     },
-})
+});
 
 // Define the public and resources paths
-mix.setPublicPath('public/assets')
-mix.setResourceRoot('../')
+mix.setPublicPath('public/assets');
+mix.setResourceRoot('../');
 
 // Compile admin scripts and styles
 mix.js(
@@ -15,8 +15,8 @@ mix.js(
         'resources/assets/js/frontend.js',
         'resources/assets/js/legacy/jquery.tablesorter.js',
     ],
-    'public/assets/js'
-).sourceMaps()
+    'public/assets/js',
+).sourceMaps();
 
 // Compile legacy scripts from old plugin
 mix.js(
@@ -34,11 +34,11 @@ mix.js(
         'resources/assets/js/legacy/skripta.js',
         'resources/assets/js/legacy/cisti.js',
     ],
-    'public/assets/js/legacy.js'
-).sourceMaps()
+    'public/assets/js/legacy.js',
+).sourceMaps();
 
-mix.sass('resources/assets/sass/app.scss', 'public/assets/css').sourceMaps()
+mix.sass('resources/assets/sass/app.scss', 'public/assets/css').sourceMaps();
 mix.sass(
     'resources/assets/sass/frontend.scss',
-    'public/assets/css'
-).sourceMaps()
+    'public/assets/css',
+).sourceMaps();

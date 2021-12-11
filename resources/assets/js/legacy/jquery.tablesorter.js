@@ -3,11 +3,11 @@
         ? define(['jquery'], e)
         : 'object' == typeof module && 'object' == typeof module.exports
         ? (module.exports = e(require('jquery')))
-        : e(jQuery)
+        : e(jQuery);
 })(function (e) {
     return (
         (function (A) {
-            'use strict'
+            'use strict';
             var L = (A.tablesorter = {
                 version: '2.31.3',
                 parsers: [],
@@ -48,7 +48,7 @@
                     initWidgets: !0,
                     widgetClass: 'widget-{name}',
                     widgets: [],
-                    widgetOptions: { zebra: ['even', 'odd'] },
+                    widgetOptions: {zebra: ['even', 'odd']},
                     initialized: null,
                     tableClass: '',
                     cssAsc: '',
@@ -131,7 +131,7 @@
                     top: !0,
                     bottom: !1,
                 },
-                keyCodes: { enter: 13 },
+                keyCodes: {enter: 13},
                 dates: {},
                 instanceMethods: {},
                 setup: function (t, r) {
@@ -144,26 +144,26 @@
                         var e,
                             o = '',
                             s = A(t),
-                            a = A.metadata
-                        ;(t.hasInitialized = !1),
+                            a = A.metadata;
+                        (t.hasInitialized = !1),
                             (t.isProcessing = !0),
                             (t.config = r),
                             A.data(t, 'tablesorter', r),
                             L.debug(r, 'core') &&
                                 (console[console.group ? 'group' : 'log'](
-                                    'Initializing tablesorter v' + L.version
+                                    'Initializing tablesorter v' + L.version,
                                 ),
                                 A.data(t, 'startoveralltimer', new Date())),
                             (r.supportsDataObject =
                                 (((e = A.fn.jquery.split('.'))[0] = parseInt(
                                     e[0],
-                                    10
+                                    10,
                                 )),
                                 1 < e[0] ||
                                     (1 === e[0] && 4 <= parseInt(e[1], 10)))),
                             (r.emptyTo = r.emptyTo.toLowerCase()),
                             (r.stringTo = r.stringTo.toLowerCase()),
-                            (r.last = { sortList: [], clickedIndex: -1 }),
+                            (r.last = {sortList: [], clickedIndex: -1}),
                             /tablesorter\-/.test(s.attr('class')) ||
                                 (o =
                                     '' !== r.theme
@@ -184,7 +184,7 @@
                                         r.tableClass +
                                         o +
                                         ' ' +
-                                        r.namespace.slice(1)
+                                        r.namespace.slice(1),
                                 )
                                 .attr('role', 'grid')),
                             (r.$headers = s.find(r.selectorHeaders)),
@@ -235,7 +235,7 @@
                                         'sortBegin' +
                                             r.namespace +
                                             ' sortEnd' +
-                                            r.namespace
+                                            r.namespace,
                                     )
                                     .bind(
                                         'sortBegin' +
@@ -250,10 +250,10 @@
                                                         setTimeout(function () {
                                                             L.isProcessing(
                                                                 t,
-                                                                !0
-                                                            )
-                                                        }, 500))
-                                        }
+                                                                !0,
+                                                            );
+                                                        }, 500));
+                                        },
                                     ),
                             (t.hasInitialized = !0),
                             (t.isProcessing = !1),
@@ -261,25 +261,25 @@
                                 (console.log(
                                     'Overall initialization time:' +
                                         L.benchmark(
-                                            A.data(t, 'startoveralltimer')
-                                        )
+                                            A.data(t, 'startoveralltimer'),
+                                        ),
                                 ),
                                 L.debug(r, 'core') &&
                                     console.groupEnd &&
                                     console.groupEnd()),
                             s.triggerHandler('tablesorter-initialized', t),
                             'function' == typeof r.initialized &&
-                                r.initialized(t)
+                                r.initialized(t);
                     } else
                         L.debug(r, 'core') &&
                             (t.hasInitialized
                                 ? console.warn(
-                                      'Stopping initialization. Tablesorter has already been initialized'
+                                      'Stopping initialization. Tablesorter has already been initialized',
                                   )
                                 : console.error(
                                       'Stopping initialization! No table, thead or tbody',
-                                      t
-                                  ))
+                                      t,
+                                  ));
                 },
                 bindMethods: function (r) {
                     var e = r.$table,
@@ -287,85 +287,88 @@
                         o =
                             'sortReset update updateRows updateAll updateHeaders addRows updateCell updateComplete sorton appendCache updateCache applyWidgetId applyWidgets refreshWidgets destroy mouseup mouseleave '
                                 .split(' ')
-                                .join(t + ' ')
+                                .join(t + ' ');
                     e.unbind(o.replace(L.regex.spaces, ' '))
                         .bind('sortReset' + t, function (e, t) {
                             e.stopPropagation(),
                                 L.sortReset(this.config, function (e) {
                                     e.isApplyingWidgets
                                         ? setTimeout(function () {
-                                              L.applyWidget(e, '', t)
+                                              L.applyWidget(e, '', t);
                                           }, 100)
-                                        : L.applyWidget(e, '', t)
-                                })
+                                        : L.applyWidget(e, '', t);
+                                });
                         })
                         .bind('updateAll' + t, function (e, t, r) {
-                            e.stopPropagation(), L.updateAll(this.config, t, r)
+                            e.stopPropagation(), L.updateAll(this.config, t, r);
                         })
                         .bind(
                             'update' + t + ' updateRows' + t,
                             function (e, t, r) {
-                                e.stopPropagation(), L.update(this.config, t, r)
-                            }
+                                e.stopPropagation(),
+                                    L.update(this.config, t, r);
+                            },
                         )
                         .bind('updateHeaders' + t, function (e, t) {
-                            e.stopPropagation(), L.updateHeaders(this.config, t)
+                            e.stopPropagation(),
+                                L.updateHeaders(this.config, t);
                         })
                         .bind('updateCell' + t, function (e, t, r, o) {
                             e.stopPropagation(),
-                                L.updateCell(this.config, t, r, o)
+                                L.updateCell(this.config, t, r, o);
                         })
                         .bind('addRows' + t, function (e, t, r, o) {
-                            e.stopPropagation(), L.addRows(this.config, t, r, o)
+                            e.stopPropagation(),
+                                L.addRows(this.config, t, r, o);
                         })
                         .bind('updateComplete' + t, function () {
-                            this.isUpdating = !1
+                            this.isUpdating = !1;
                         })
                         .bind('sorton' + t, function (e, t, r, o) {
-                            e.stopPropagation(), L.sortOn(this.config, t, r, o)
+                            e.stopPropagation(), L.sortOn(this.config, t, r, o);
                         })
                         .bind('appendCache' + t, function (e, t, r) {
                             e.stopPropagation(),
                                 L.appendCache(this.config, r),
-                                A.isFunction(t) && t(this)
+                                A.isFunction(t) && t(this);
                         })
                         .bind('updateCache' + t, function (e, t, r) {
                             e.stopPropagation(),
-                                L.updateCache(this.config, t, r)
+                                L.updateCache(this.config, t, r);
                         })
                         .bind('applyWidgetId' + t, function (e, t) {
-                            e.stopPropagation(), L.applyWidgetId(this, t)
+                            e.stopPropagation(), L.applyWidgetId(this, t);
                         })
                         .bind('applyWidgets' + t, function (e, t) {
-                            e.stopPropagation(), L.applyWidget(this, !1, t)
+                            e.stopPropagation(), L.applyWidget(this, !1, t);
                         })
                         .bind('refreshWidgets' + t, function (e, t, r) {
-                            e.stopPropagation(), L.refreshWidgets(this, t, r)
+                            e.stopPropagation(), L.refreshWidgets(this, t, r);
                         })
                         .bind('removeWidget' + t, function (e, t, r) {
-                            e.stopPropagation(), L.removeWidget(this, t, r)
+                            e.stopPropagation(), L.removeWidget(this, t, r);
                         })
                         .bind('destroy' + t, function (e, t, r) {
-                            e.stopPropagation(), L.destroy(this, t, r)
+                            e.stopPropagation(), L.destroy(this, t, r);
                         })
                         .bind('resetToLoadState' + t, function (e) {
-                            e.stopPropagation(), L.removeWidget(this, !0, !1)
-                            var t = A.extend(!0, {}, r.originalSettings)
-                            ;((r = A.extend(
+                            e.stopPropagation(), L.removeWidget(this, !0, !1);
+                            var t = A.extend(!0, {}, r.originalSettings);
+                            ((r = A.extend(
                                 !0,
                                 {},
                                 L.defaults,
-                                t
+                                t,
                             )).originalSettings = t),
                                 (this.hasInitialized = !1),
-                                L.setup(this, r)
-                        })
+                                L.setup(this, r);
+                        });
                 },
                 bindEvents: function (e, t, r) {
                     var o,
                         i = (e = A(e)[0]).config,
                         s = i.namespace,
-                        d = null
+                        d = null;
                     !0 !== r &&
                         (t.addClass(s.slice(1) + '_extra_headers'),
                         (o = L.getClosest(t, 'table')).length &&
@@ -392,14 +395,14 @@
                                     o,
                                     s,
                                     a = A(e.target),
-                                    n = ' ' + e.type + ' '
+                                    n = ' ' + e.type + ' ';
                                 if (
                                     !(
                                         (1 !== (e.which || e.button) &&
                                             !n.match(
                                                 ' ' +
                                                     i.pointerClick +
-                                                    ' | sort | keyup '
+                                                    ' | sort | keyup ',
                                             )) ||
                                         (' keyup ' === n &&
                                             e.which !== L.keyCodes.enter) ||
@@ -417,20 +420,20 @@
                                                 '1' ===
                                                     (s =
                                                         a.jquery.split(
-                                                            '.'
+                                                            '.',
                                                         ))[0] &&
                                                 s[1] < 4 &&
                                                 e.preventDefault()
                                             )
-                                        )
+                                        );
                                     if (
                                         ((d = null),
                                         (r = L.getClosest(
                                             A(this),
-                                            '.' + L.css.header
+                                            '.' + L.css.header,
                                         )),
                                         L.regex.formElements.test(
-                                            e.target.nodeName
+                                            e.target.nodeName,
                                         ) ||
                                             a.hasClass(i.cssNoSort) ||
                                             0 <
@@ -439,7 +442,7 @@
                                             r.hasClass('sorter-false') ||
                                             0 < a.parents('button').length)
                                     )
-                                        return !i.cancelSelection
+                                        return !i.cancelSelection;
                                     i.delayInit &&
                                         L.isEmptyObject(i.cache) &&
                                         L.buildCache(i),
@@ -450,7 +453,7 @@
                                                 i.last.clickedIndex
                                             ][0]) &&
                                             !o.sortDisabled &&
-                                            L.initSort(i, o, e)
+                                            L.initSort(i, o, e);
                                 }
                             }),
                         i.cancelSelection &&
@@ -460,17 +463,19 @@
                                 .css({
                                     'user-select': 'none',
                                     MozUserSelect: 'none',
-                                })
+                                });
                 },
                 buildHeaders: function (d) {
-                    var e, l, t, r
+                    var e, l, t, r;
                     for (
                         d.headerList = [],
                             d.headerContent = [],
                             d.sortVars = [],
                             L.debug(d, 'core') && (t = new Date()),
                             d.columns = L.computeColumnIndex(
-                                d.$table.children('thead, tfoot').children('tr')
+                                d.$table
+                                    .children('thead, tfoot')
+                                    .children('tr'),
                             ),
                             l = d.cssIcon
                                 ? '<i class="' +
@@ -488,27 +493,27 @@
                                             s,
                                             a,
                                             n,
-                                            i = A(e)
+                                            i = A(e);
                                         if (
                                             !L.getClosest(i, 'tr').hasClass(
-                                                d.cssIgnoreRow
+                                                d.cssIgnoreRow,
                                             )
                                         )
                                             return (
                                                 /(th|td)/i.test(e.nodeName) ||
                                                     ((n = L.getClosest(
                                                         i,
-                                                        'th, td'
+                                                        'th, td',
                                                     )),
                                                     i.attr(
                                                         'data-column',
-                                                        n.attr('data-column')
+                                                        n.attr('data-column'),
                                                     )),
                                                 (r = L.getColumnData(
                                                     d.table,
                                                     d.headers,
                                                     t,
-                                                    !0
+                                                    !0,
                                                 )),
                                                 (d.headerContent[t] = i.html()),
                                                 '' === d.headerTemplate ||
@@ -518,22 +523,23 @@
                                                         .replace(
                                                             L.regex
                                                                 .templateContent,
-                                                            i.html()
+                                                            i.html(),
                                                         )
                                                         .replace(
                                                             L.regex
                                                                 .templateIcon,
                                                             i.find(
-                                                                '.' + L.css.icon
+                                                                '.' +
+                                                                    L.css.icon,
                                                             ).length
                                                                 ? ''
-                                                                : l
+                                                                : l,
                                                         )),
                                                     d.onRenderTemplate &&
                                                         (o =
                                                             d.onRenderTemplate.apply(
                                                                 i,
-                                                                [t, a]
+                                                                [t, a],
                                                             )) &&
                                                         'string' == typeof o &&
                                                         (a = o),
@@ -542,7 +548,7 @@
                                                             L.css.headerIn +
                                                             '">' +
                                                             a +
-                                                            '</div>'
+                                                            '</div>',
                                                     )),
                                                 d.onRenderHeader &&
                                                     d.onRenderHeader.apply(i, [
@@ -552,15 +558,15 @@
                                                     ]),
                                                 (s = parseInt(
                                                     i.attr('data-column'),
-                                                    10
+                                                    10,
                                                 )),
                                                 (e.column = s),
                                                 (n = L.getOrder(
                                                     L.getData(
                                                         i,
                                                         r,
-                                                        'sortInitialOrder'
-                                                    ) || d.sortInitialOrder
+                                                        'sortInitialOrder',
+                                                    ) || d.sortInitialOrder,
                                                 )),
                                                 (d.sortVars[s] = {
                                                     count: -1,
@@ -579,7 +585,7 @@
                                                         L.getData(
                                                             i,
                                                             r,
-                                                            'lockedOrder'
+                                                            'lockedOrder',
                                                         ) || !1) &&
                                                     !1 !== n &&
                                                     ((d.sortVars[
@@ -593,21 +599,21 @@
                                                 i.addClass(
                                                     L.css.header +
                                                         ' ' +
-                                                        d.cssHeader
+                                                        d.cssHeader,
                                                 ),
                                                 L.getClosest(i, 'tr')
                                                     .addClass(
                                                         L.css.headerRow +
                                                             ' ' +
-                                                            d.cssHeaderRow
+                                                            d.cssHeaderRow,
                                                     )
                                                     .attr('role', 'row'),
                                                 d.tabIndex &&
                                                     i.attr('tabindex', 0),
                                                 e
-                                            )
-                                    }
-                                )
+                                            );
+                                    },
+                                ),
                             ),
                             d.$headerIndexed = [],
                             r = 0;
@@ -616,23 +622,23 @@
                     )
                         L.isEmptyObject(d.sortVars[r]) && (d.sortVars[r] = {}),
                             (e = d.$headers.filter(
-                                '[data-column="' + r + '"]'
+                                '[data-column="' + r + '"]',
                             )),
                             (d.$headerIndexed[r] = e.length
                                 ? e.not('.sorter-false').length
                                     ? e.not('.sorter-false').filter(':last')
                                     : e.filter(':last')
-                                : A())
+                                : A());
                     d.$table
                         .find(d.selectorHeaders)
-                        .attr({ scope: 'col', role: 'columnheader' }),
+                        .attr({scope: 'col', role: 'columnheader'}),
                         L.updateHeader(d),
                         L.debug(d, 'core') &&
                             (console.log('Built headers:' + L.benchmark(t)),
-                            console.log(d.$headers))
+                            console.log(d.$headers));
                 },
                 addInstanceMethods: function (e) {
-                    A.extend(L.instanceMethods, e)
+                    A.extend(L.instanceMethods, e);
                 },
                 setupParsers: function (e, t) {
                     var r,
@@ -652,25 +658,25 @@
                         m = e.table,
                         b = 0,
                         y = L.debug(e, 'core'),
-                        w = {}
+                        w = {};
                     if (
                         ((e.$tbodies = e.$table.children(
-                            'tbody:not(.' + e.cssInfoBlock + ')'
+                            'tbody:not(.' + e.cssInfoBlock + ')',
                         )),
                         0 === (h = (f = void 0 === t ? e.$tbodies : t).length))
                     )
                         return y
                             ? console.warn(
-                                  'Warning: *Empty table!* Not building a parser cache'
+                                  'Warning: *Empty table!* Not building a parser cache',
                               )
-                            : ''
+                            : '';
                     for (
                         y &&
                             ((u = new Date()),
                             console[console.group ? 'group' : 'log'](
-                                'Detecting parsers for each column'
+                                'Detecting parsers for each column',
                             )),
-                            o = { extractors: [], parsers: [] };
+                            o = {extractors: [], parsers: []};
                         b < h;
 
                     ) {
@@ -681,10 +687,10 @@
                                     d.length &&
                                     ((l = L.getColumnData(m, e.headers, n)),
                                     (p = L.getParserById(
-                                        L.getData(d, l, 'extractor')
+                                        L.getData(d, l, 'extractor'),
                                     )),
                                     (g = L.getParserById(
-                                        L.getData(d, l, 'sorter')
+                                        L.getData(d, l, 'sorter'),
                                     )),
                                     (c = 'false' === L.getData(d, l, 'parser')),
                                     (e.empties[n] = (
@@ -716,42 +722,42 @@
                                     for (n += s, a += s; 0 < s + 1; )
                                         (o.parsers[n - s] = g),
                                             (o.extractors[n - s] = p),
-                                            s--
-                                n++
+                                            s--;
+                                n++;
                             }
-                        b += o.parsers.length ? h : 1
+                        b += o.parsers.length ? h : 1;
                     }
                     y &&
                         (L.isEmptyObject(w)
                             ? console.warn('  No parsers detected!')
                             : console[console.table ? 'table' : 'log'](w),
                         console.log(
-                            'Completed detecting parsers' + L.benchmark(u)
+                            'Completed detecting parsers' + L.benchmark(u),
                         ),
                         console.groupEnd && console.groupEnd()),
                         (e.parsers = o.parsers),
-                        (e.extractors = o.extractors)
+                        (e.extractors = o.extractors);
                 },
                 addParser: function (e) {
                     var t,
                         r = L.parsers.length,
-                        o = !0
+                        o = !0;
                     for (t = 0; t < r; t++)
                         L.parsers[t].id.toLowerCase() === e.id.toLowerCase() &&
-                            (o = !1)
-                    o && (L.parsers[L.parsers.length] = e)
+                            (o = !1);
+                    o && (L.parsers[L.parsers.length] = e);
                 },
                 getParserById: function (e) {
-                    if ('false' == e) return !1
+                    if ('false' == e) return !1;
                     var t,
-                        r = L.parsers.length
+                        r = L.parsers.length;
                     for (t = 0; t < r; t++)
                         if (
                             L.parsers[t].id.toLowerCase() ===
                             e.toString().toLowerCase()
                         )
-                            return L.parsers[t]
-                    return !1
+                            return L.parsers[t];
+                    return !1;
                 },
                 detectParserForColumn: function (e, t, r, o) {
                     for (
@@ -779,9 +785,9 @@
                                           o +
                                           ': "' +
                                           l +
-                                          '"'
+                                          '"',
                                   ))
-                            : (g = !1)
+                            : (g = !1);
                     for (; 0 <= --i; )
                         if (
                             (s = L.parsers[i]) &&
@@ -789,14 +795,14 @@
                             s.is &&
                             s.is(l, e.table, d, a)
                         )
-                            return s
-                    return L.getParserById('text')
+                            return s;
+                    return L.getParserById('text');
                 },
                 getElementText: function (e, t, r) {
-                    if (!t) return ''
+                    if (!t) return '';
                     var o,
                         s = e.textExtraction || '',
-                        a = t.jquery ? t : A(t)
+                        a = t.jquery ? t : A(t);
                     return 'string' == typeof s
                         ? 'basic' === s &&
                           void 0 !== (o = a.attr(e.textAttribute))
@@ -807,13 +813,13 @@
                         : 'function' ==
                           typeof (o = L.getColumnData(e.table, s, r))
                         ? A.trim(o(a[0], e.table, r))
-                        : A.trim(a[0].textContent || a.text())
+                        : A.trim(a[0].textContent || a.text());
                 },
                 getParsedText: function (e, t, r, o) {
-                    void 0 === o && (o = L.getElementText(e, t, r))
+                    void 0 === o && (o = L.getElementText(e, t, r));
                     var s = '' + o,
                         a = e.parsers[r],
-                        n = e.extractors[r]
+                        n = e.extractors[r];
                     return (
                         a &&
                             (n &&
@@ -827,7 +833,7 @@
                                 'string' == typeof s &&
                                 (s = s.toLowerCase())),
                         s
-                    )
+                    );
                 },
                 buildCache: function (e, t, r) {
                     var o,
@@ -854,10 +860,10 @@
                         I,
                         D = e.table,
                         R = e.parsers,
-                        T = L.debug(e, 'core')
+                        T = L.debug(e, 'core');
                     if (
                         ((e.$tbodies = e.$table.children(
-                            'tbody:not(.' + e.cssInfoBlock + ')'
+                            'tbody:not(.' + e.cssInfoBlock + ')',
                         )),
                         (l = void 0 === r ? e.$tbodies : r),
                         (e.cache = {}),
@@ -866,9 +872,9 @@
                     )
                         return T
                             ? console.warn(
-                                  'Warning: *Empty table!* Not building a cache'
+                                  'Warning: *Empty table!* Not building a cache',
                               )
-                            : ''
+                            : '';
                     for (
                         T && (f = new Date()),
                             e.showProcessing && L.isProcessing(D, !0),
@@ -878,17 +884,17 @@
                     ) {
                         for (
                             y = [],
-                                o = e.cache[d] = { normalized: [] },
+                                o = e.cache[d] = {normalized: []},
                                 h = (l[d] && l[d].rows.length) || 0,
                                 n = 0;
                             n < h;
                             ++n
                         )
                             if (
-                                ((m = { child: [], raw: [] }),
+                                ((m = {child: [], raw: []}),
                                 (g = []),
                                 !(c = A(l[d].rows[n])).hasClass(
-                                    e.selectorRemove.slice(1)
+                                    e.selectorRemove.slice(1),
                                 ))
                             )
                                 if (c.hasClass(e.cssChildRow) && 0 !== n)
@@ -902,7 +908,7 @@
                                                 c
                                                     .prev()
                                                     .addClass(
-                                                        L.css.cssHasChild
+                                                        L.css.cssHasChild,
                                                     ),
                                             p = c.children('th, td'),
                                             $ = b.child.length,
@@ -917,11 +923,11 @@
                                             ((b.child[$][i] = L.getParsedText(
                                                 e,
                                                 u,
-                                                i
+                                                i,
                                             )),
                                             0 < (w = p[i].colSpan - 1) &&
                                                 ((x += w), (C += w))),
-                                            x++
+                                            x++;
                                 else {
                                     for (
                                         m.$row = c,
@@ -944,7 +950,7 @@
                                                         i +
                                                         '; cell containing: "' +
                                                         A(u).text() +
-                                                        '"; does it have a header?'
+                                                        '"; does it have a header?',
                                                 ),
                                             (s = L.getElementText(e, u, x)),
                                             (m.raw[x] = s),
@@ -957,7 +963,7 @@
                                                     ).toLowerCase() &&
                                                 (y[x] = Math.max(
                                                     Math.abs(a) || 0,
-                                                    y[x] || 0
+                                                    y[x] || 0,
                                                 )),
                                             0 < (w = u.colSpan - 1))
                                         ) {
@@ -970,20 +976,20 @@
                                                               L.getElementText(
                                                                   e,
                                                                   u,
-                                                                  x + I
+                                                                  x + I,
                                                               )) ||
                                                           ''),
                                                     (m.raw[x + I] = a),
                                                     (g[x + I] = a),
-                                                    I++
-                                            ;(x += w), (C += w)
+                                                    I++;
+                                            (x += w), (C += w);
                                         }
-                                        x++
+                                        x++;
                                     }
-                                    ;(g[e.columns] = m),
-                                        (o.normalized[o.normalized.length] = g)
+                                    (g[e.columns] = m),
+                                        (o.normalized[o.normalized.length] = g);
                                 }
-                        ;(o.colMax = y), (e.totalRows += o.normalized.length)
+                        (o.colMax = y), (e.totalRows += o.normalized.length);
                     }
                     if ((e.showProcessing && L.isProcessing(D), T)) {
                         for (
@@ -996,7 +1002,7 @@
                                         ' rows in log) and ' +
                                         e.columns +
                                         ' columns' +
-                                        L.benchmark(f)
+                                        L.benchmark(f),
                                 ),
                                 s = {},
                                 i = 0;
@@ -1007,11 +1013,11 @@
                                 s['row: ' + x] || (s['row: ' + x] = {}),
                                     (s['row: ' + x][
                                         e.$headerIndexed[i].text()
-                                    ] = e.cache[0].normalized[x][i])
+                                    ] = e.cache[0].normalized[x][i]);
                         console[console.table ? 'table' : 'log'](s),
-                            console.groupEnd && console.groupEnd()
+                            console.groupEnd && console.groupEnd();
                     }
-                    A.isFunction(t) && t(D)
+                    A.isFunction(t) && t(D);
                 },
                 getColumnText: function (e, t, r, o) {
                     var s,
@@ -1026,8 +1032,8 @@
                         u,
                         f = 'function' == typeof r,
                         h = 'all' === t,
-                        m = { raw: [], parsed: [], $cell: [] },
-                        b = (e = A(e)[0]).config
+                        m = {raw: [], parsed: [], $cell: []},
+                        b = (e = A(e)[0]).config;
                     if (!L.isEmptyObject(b)) {
                         for (d = b.$tbodies.length, s = 0; s < d; s++)
                             for (
@@ -1056,13 +1062,13 @@
                                         !1 !== u &&
                                             ((m.parsed[m.parsed.length] = g),
                                             (m.raw[m.raw.length] = c),
-                                            (m.$cell[m.$cell.length] = p)))
-                        return m
+                                            (m.$cell[m.$cell.length] = p)));
+                        return m;
                     }
                     L.debug(b, 'core') &&
                         console.warn(
-                            'No cache found - aborting getColumnText function!'
-                        )
+                            'No cache found - aborting getColumnText function!',
+                        );
                 },
                 setHeadersCss: function (a) {
                     function e(e, t) {
@@ -1071,7 +1077,7 @@
                             .attr('aria-sort', l[t])
                             .find('.' + L.css.icon)
                             .removeClass(d[2])
-                            .addClass(d[t])
+                            .addClass(d[t]);
                     }
                     var t,
                         r,
@@ -1096,7 +1102,7 @@
                             .attr('aria-sort', 'none')
                             .find('.' + L.css.icon)
                             .removeClass(d.join(' '))
-                            .end()
+                            .end();
                     for (
                         g
                             .not('.sorter-false')
@@ -1119,7 +1125,7 @@
                                             r = a.$headers.eq(e),
                                             o = parseInt(
                                                 r.attr('data-column'),
-                                                10
+                                                10,
                                             ),
                                             s =
                                                 o +
@@ -1134,35 +1140,35 @@
                                                 -1 <
                                                     L.isValueInArray(
                                                         o,
-                                                        a.sortList
-                                                    ))
-                                    return t
+                                                        a.sortList,
+                                                    ));
+                                    return t;
                                 }))
                                     .not('.sorter-false')
                                     .filter(
                                         '[data-column="' +
                                             o[t][0] +
                                             '"]' +
-                                            (1 === s ? ':last' : '')
+                                            (1 === s ? ':last' : ''),
                                     )).length
                             )
                                 for (r = 0; r < g.length; r++)
-                                    g[r].sortDisabled || e(g.eq(r), o[t][1])
+                                    g[r].sortDisabled || e(g.eq(r), o[t][1]);
                             c.length &&
                                 e(
                                     c.filter('[data-column="' + o[t][0] + '"]'),
-                                    o[t][1]
-                                )
+                                    o[t][1],
+                                );
                         }
                     for (s = a.$headers.length, t = 0; t < s; t++)
-                        L.setColumnAriaLabel(a, a.$headers.eq(t))
+                        L.setColumnAriaLabel(a, a.$headers.eq(t));
                 },
                 getClosest: function (e, t) {
                     return A.fn.closest
                         ? e.closest(t)
                         : e.is(t)
                         ? e
-                        : e.parents(t).filter(':first')
+                        : e.parents(t).filter(':first');
                 },
                 setColumnAriaLabel: function (e, t, r) {
                     if (t.length) {
@@ -1173,7 +1179,7 @@
                                 : t.hasClass(L.css.sortDesc)
                                 ? 'sortDesc'
                                 : 'sortNone',
-                            n = A.trim(t.text()) + ': ' + L.language[a]
+                            n = A.trim(t.text()) + ': ' + L.language[a];
                         t.hasClass('sorter-false') || !1 === r
                             ? (n += L.language.sortDisabled)
                             : ((a = (s.count + 1) % s.order.length),
@@ -1189,7 +1195,7 @@
                             t.attr('aria-label', n),
                             s.sortedBy
                                 ? t.attr('data-sortedBy', s.sortedBy)
-                                : t.removeAttr('data-sortedBy')
+                                : t.removeAttr('data-sortedBy');
                     }
                 },
                 updateHeader: function (e) {
@@ -1198,21 +1204,21 @@
                         o,
                         s,
                         a = e.table,
-                        n = e.$headers.length
+                        n = e.$headers.length;
                     for (t = 0; t < n; t++)
                         (o = e.$headers.eq(t)),
                             (s = L.getColumnData(a, e.headers, t, !0)),
                             (r =
                                 'false' === L.getData(o, s, 'sorter') ||
                                 'false' === L.getData(o, s, 'parser')),
-                            L.setColumnSort(e, o, r)
+                            L.setColumnSort(e, o, r);
                 },
                 setColumnSort: function (e, t, r) {
-                    var o = e.table.id
-                    ;(t[0].sortDisabled = r),
+                    var o = e.table.id;
+                    (t[0].sortDisabled = r),
                         t[r ? 'addClass' : 'removeClass']('sorter-false').attr(
                             'aria-disabled',
-                            '' + r
+                            '' + r,
                         ),
                         e.tabIndex &&
                             (r
@@ -1221,7 +1227,7 @@
                         o &&
                             (r
                                 ? t.removeAttr('aria-controls')
-                                : t.attr('aria-controls', o))
+                                : t.attr('aria-controls', o));
                 },
                 updateHeaderSortCount: function (e, t) {
                     var r,
@@ -1233,7 +1239,7 @@
                         d,
                         l,
                         c = t || e.sortList,
-                        g = c.length
+                        g = c.length;
                     for (e.sortList = [], a = 0; a < g; a++)
                         if (
                             ((d = c[a]), (r = parseInt(d[0], 10)) < e.columns)
@@ -1256,65 +1262,65 @@
                             ) {
                                 case '1':
                                 case 'd':
-                                    o = 1
-                                    break
+                                    o = 1;
+                                    break;
                                 case 's':
-                                    o = n || 0
-                                    break
+                                    o = n || 0;
+                                    break;
                                 case 'o':
                                     o =
                                         0 === (i = l[(n || 0) % l.length])
                                             ? 1
                                             : 1 === i
                                             ? 0
-                                            : 2
-                                    break
+                                            : 2;
+                                    break;
                                 case 'n':
-                                    o = l[++e.sortVars[r].count % l.length]
-                                    break
+                                    o = l[++e.sortVars[r].count % l.length];
+                                    break;
                                 default:
-                                    o = 0
+                                    o = 0;
                             }
-                            ;(n = 0 === a ? o : n),
+                            (n = 0 === a ? o : n),
                                 (s = [r, parseInt(o, 10) || 0]),
                                 (e.sortList[e.sortList.length] = s),
                                 (o = A.inArray(s[1], l)),
                                 (e.sortVars[r].count =
-                                    0 <= o ? o : s[1] % l.length)
+                                    0 <= o ? o : s[1] % l.length);
                         }
                 },
                 updateAll: function (e, t, r) {
-                    var o = e.table
-                    ;(o.isUpdating = !0),
+                    var o = e.table;
+                    (o.isUpdating = !0),
                         L.refreshWidgets(o, !0, !0),
                         L.buildHeaders(e),
                         L.bindEvents(o, e.$headers, !0),
                         L.bindMethods(e),
-                        L.commonUpdate(e, t, r)
+                        L.commonUpdate(e, t, r);
                 },
                 update: function (e, t, r) {
-                    ;(e.table.isUpdating = !0),
+                    (e.table.isUpdating = !0),
                         L.updateHeader(e),
-                        L.commonUpdate(e, t, r)
+                        L.commonUpdate(e, t, r);
                 },
                 updateHeaders: function (e, t) {
-                    ;(e.table.isUpdating = !0),
+                    (e.table.isUpdating = !0),
                         L.buildHeaders(e),
                         L.bindEvents(e.table, e.$headers, !0),
-                        L.resortComplete(e, t)
+                        L.resortComplete(e, t);
                 },
                 updateCell: function (e, t, r, o) {
                     if (A(t).closest('tr').hasClass(e.cssChildRow))
                         console.warn(
-                            'Tablesorter Warning! "updateCell" for child row content has been disabled, use "update" instead'
-                        )
+                            'Tablesorter Warning! "updateCell" for child row content has been disabled, use "update" instead',
+                        );
                     else {
                         if (L.isEmptyObject(e.cache))
                             return (
                                 L.updateHeader(e), void L.commonUpdate(e, r, o)
-                            )
-                        ;(e.table.isUpdating = !0),
-                            e.$table.find(e.selectorRemove).remove()
+                            );
+                        (e.table.isUpdating = !0),
+                            e.$table.find(e.selectorRemove).remove();
                         var s,
                             a,
                             n,
@@ -1325,7 +1331,7 @@
                             g = A(t),
                             p = c.index(L.getClosest(g, 'tbody')),
                             u = e.cache[p],
-                            f = L.getClosest(g, 'tr')
+                            f = L.getClosest(g, 'tr');
                         if (((t = g[0]), c.length && 0 <= p)) {
                             if (
                                 ((n = c
@@ -1339,9 +1345,9 @@
                                 for (s = !1, a = i = 0; a < l; a++)
                                     s || f[0].cells[a] === t
                                         ? (s = !0)
-                                        : (i += f[0].cells[a].colSpan)
-                            else i = g.index()
-                            ;(s = L.getElementText(e, t, i)),
+                                        : (i += f[0].cells[a].colSpan);
+                            else i = g.index();
+                            (s = L.getElementText(e, t, i)),
                                 (d[e.columns].raw[i] = s),
                                 (s = L.getParsedText(e, t, i, s)),
                                 (d[i] = s),
@@ -1349,17 +1355,17 @@
                                     (e.parsers[i].type || '').toLowerCase() &&
                                     (u.colMax[i] = Math.max(
                                         Math.abs(s) || 0,
-                                        u.colMax[i] || 0
+                                        u.colMax[i] || 0,
                                     )),
                                 !1 !== (s = 'undefined' !== r ? r : e.resort)
                                     ? L.checkResort(e, s, o)
-                                    : L.resortComplete(e, o)
+                                    : L.resortComplete(e, o);
                         } else
                             L.debug(e, 'core') &&
                                 console.error(
-                                    'updateCell aborted, tbody missing or not within the indicated table'
+                                    'updateCell aborted, tbody missing or not within the indicated table',
                                 ),
-                                (e.table.isUpdating = !1)
+                                (e.table.isUpdating = !1);
                     }
                 },
                 addRows: function (e, t, r, o) {
@@ -1380,8 +1386,8 @@
                             'string' == typeof t &&
                             1 === e.$tbodies.length &&
                             /<tr/.test(t || ''),
-                        y = e.table
-                    if (b) (t = A(t)), e.$tbodies.append(t)
+                        y = e.table;
+                    if (b) (t = A(t)), e.$tbodies.append(t);
                     else if (
                         !(
                             t &&
@@ -1392,17 +1398,17 @@
                         return (
                             L.debug(e, 'core') &&
                                 console.error(
-                                    'addRows method requires (1) a jQuery selector reference to rows that have already been added to the table, or (2) row HTML string to be added to a table with only one tbody'
+                                    'addRows method requires (1) a jQuery selector reference to rows that have already been added to the table, or (2) row HTML string to be added to a table with only one tbody',
                                 ),
                             !1
-                        )
+                        );
                     if (((y.isUpdating = !0), L.isEmptyObject(e.cache)))
-                        L.updateHeader(e), L.commonUpdate(e, r, o)
+                        L.updateHeader(e), L.commonUpdate(e, r, o);
                     else {
                         for (
                             d = t.filter('tr').attr('role', 'row').length,
                                 n = e.$tbodies.index(
-                                    t.parents('tbody').filter(':first')
+                                    t.parents('tbody').filter(':first'),
                                 ),
                                 (e.parsers && e.parsers.length) ||
                                     L.setupParsers(e),
@@ -1436,18 +1442,18 @@
                                         ).toLowerCase() &&
                                         (e.cache[n].colMax[p] = Math.max(
                                             Math.abs(a) || 0,
-                                            e.cache[n].colMax[p] || 0
+                                            e.cache[n].colMax[p] || 0,
                                         )),
                                     0 < (m = h.colSpan - 1) && (p += m),
-                                    p++
-                            ;(f[e.columns] = u), (e.cache[n].normalized[g] = f)
+                                    p++;
+                            (f[e.columns] = u), (e.cache[n].normalized[g] = f);
                         }
-                        L.checkResort(e, r, o)
+                        L.checkResort(e, r, o);
                     }
                 },
                 updateCache: function (e, t, r) {
-                    ;(e.parsers && e.parsers.length) || L.setupParsers(e, r),
-                        L.buildCache(e, t, r)
+                    (e.parsers && e.parsers.length) || L.setupParsers(e, r),
+                        L.buildCache(e, t, r);
                 },
                 appendCache: function (e, t) {
                     var r,
@@ -1460,13 +1466,13 @@
                         l = e.table,
                         c = e.$tbodies,
                         g = [],
-                        p = e.cache
+                        p = e.cache;
                     if (L.isEmptyObject(p))
                         return e.appender
                             ? e.appender(l, g)
                             : l.isUpdating
                             ? e.$table.triggerHandler('updateComplete', l)
-                            : ''
+                            : '';
                     for (
                         L.debug(e, 'core') && (d = new Date()), i = 0;
                         i < c.length;
@@ -1485,27 +1491,27 @@
                                         (!e.pager ||
                                             e.pager.removeRows ||
                                             e.pager.ajax)) ||
-                                        a.append(r[n][e.columns].$row)
-                            L.processTbody(l, a, !1)
+                                        a.append(r[n][e.columns].$row);
+                            L.processTbody(l, a, !1);
                         }
                     e.appender && e.appender(l, g),
                         L.debug(e, 'core') &&
                             console.log('Rebuilt table' + L.benchmark(d)),
                         t || e.appender || L.applyWidget(l),
                         l.isUpdating &&
-                            e.$table.triggerHandler('updateComplete', l)
+                            e.$table.triggerHandler('updateComplete', l);
                 },
                 commonUpdate: function (e, t, r) {
                     e.$table.find(e.selectorRemove).remove(),
                         L.setupParsers(e),
                         L.buildCache(e),
-                        L.checkResort(e, t, r)
+                        L.checkResort(e, t, r);
                 },
                 initSort: function (t, e, r) {
                     if (t.table.isUpdating)
                         return setTimeout(function () {
-                            L.initSort(t, e, r)
-                        }, 50)
+                            L.initSort(t, e, r);
+                        }, 50);
                     var o,
                         s,
                         a,
@@ -1519,7 +1525,7 @@
                         u = L.getClosest(A(e), 'th, td'),
                         f = parseInt(u.attr('data-column'), 10),
                         h = 'mouseup' === r.type ? 'user' : r.type,
-                        m = t.sortVars[f].order
+                        m = t.sortVars[f].order;
                     if (
                         ((u = u[0]),
                         t.$table.triggerHandler('sortStart', g),
@@ -1532,11 +1538,11 @@
                                 f !==
                                     (d = parseInt(l.attr('data-column'), 10)) &&
                                     (c || l.hasClass(L.css.sortNone)) &&
-                                    (t.sortVars[d].count = -1)
+                                    (t.sortVars[d].count = -1);
                     if (c) {
                         if (
                             (A.each(t.sortVars, function (e) {
-                                t.sortVars[e].sortedBy = ''
+                                t.sortVars[e].sortedBy = '';
                             }),
                             (t.sortList = []),
                             (t.last.sortList = []),
@@ -1546,7 +1552,7 @@
                                 o[s][0] !== f &&
                                     ((t.sortList[t.sortList.length] = o[s]),
                                     (t.sortVars[o[s][0]].sortedBy =
-                                        'sortForce'))
+                                        'sortForce'));
                         if (
                             (n = m[t.sortVars[f].count]) < 2 &&
                             ((t.sortList[t.sortList.length] = [f, n]),
@@ -1556,7 +1562,7 @@
                             for (s = 1; s < u.colSpan; s++)
                                 (t.sortList[t.sortList.length] = [f + s, n]),
                                     (t.sortVars[f + s].count = A.inArray(n, m)),
-                                    (t.sortVars[f + s].sortedBy = h)
+                                    (t.sortVars[f + s].sortedBy = h);
                     } else if (
                         ((t.sortList = A.extend([], t.last.sortList)),
                         0 <= L.isValueInArray(f, t.sortList))
@@ -1570,7 +1576,7 @@
                                 ((d[1] = m[t.sortVars[f].count]),
                                 2 === d[1] &&
                                     (t.sortList.splice(s, 1),
-                                    (t.sortVars[f].count = -1)))
+                                    (t.sortVars[f].count = -1)));
                     else if (
                         ((n = m[t.sortVars[f].count]),
                         (t.sortVars[f].sortedBy = h),
@@ -1581,7 +1587,7 @@
                         for (s = 1; s < u.colSpan; s++)
                             (t.sortList[t.sortList.length] = [f + s, n]),
                                 (t.sortVars[f + s].count = A.inArray(n, m)),
-                                (t.sortVars[f + s].sortedBy = h)
+                                (t.sortVars[f + s].sortedBy = h);
                     if (
                         ((t.last.sortList = A.extend([], t.sortList)),
                         t.sortList.length &&
@@ -1598,28 +1604,28 @@
                             ) {
                                 if (
                                     (i = ('' + (n = o[s][1])).match(
-                                        /^(a|d|s|o|n)/
+                                        /^(a|d|s|o|n)/,
                                     ))
                                 )
                                     switch (((d = t.sortList[0][1]), i[0])) {
                                         case 'd':
-                                            n = 1
-                                            break
+                                            n = 1;
+                                            break;
                                         case 's':
-                                            n = d
-                                            break
+                                            n = d;
+                                            break;
                                         case 'o':
-                                            n = 0 === d ? 1 : 0
-                                            break
+                                            n = 0 === d ? 1 : 0;
+                                            break;
                                         case 'n':
-                                            n = (d + 1) % m.length
-                                            break
+                                            n = (d + 1) % m.length;
+                                            break;
                                         default:
-                                            n = 0
+                                            n = 0;
                                     }
-                                ;(t.sortList[t.sortList.length] = [o[s][0], n]),
+                                (t.sortList[t.sortList.length] = [o[s][0], n]),
                                     (t.sortVars[o[s][0]].sortedBy =
-                                        'sortAppend')
+                                        'sortAppend');
                             }
                     t.$table.triggerHandler('sortBegin', g),
                         setTimeout(function () {
@@ -1627,8 +1633,8 @@
                                 L.multisort(t),
                                 L.appendCache(t),
                                 t.$table.triggerHandler('sortBeforeEnd', g),
-                                t.$table.triggerHandler('sortEnd', g)
-                        }, 1)
+                                t.$table.triggerHandler('sortEnd', g);
+                        }, 1);
                 },
                 multisort: function (l) {
                     var e,
@@ -1641,7 +1647,7 @@
                         f = l.textSorter || '',
                         h = l.sortList,
                         m = h.length,
-                        o = l.$tbodies.length
+                        o = l.$tbodies.length;
                     if (!l.serverSideSorting && !L.isEmptyObject(l.cache)) {
                         if (
                             (L.debug(l, 'core') && (t = new Date()),
@@ -1650,11 +1656,11 @@
                             for (c = l.columns; c--; )
                                 'function' ==
                                     typeof (r = L.getColumnData(g, f, c)) &&
-                                    (p[c] = r)
+                                    (p[c] = r);
                         for (e = 0; e < o; e++)
                             (c = l.cache[e].colMax),
                                 l.cache[e].normalized.sort(function (e, t) {
-                                    var r, o, s, a, n, i, d
+                                    var r, o, s, a, n, i, d;
                                     for (r = 0; r < m; r++) {
                                         if (
                                             ((s = h[r][0]),
@@ -1667,11 +1673,11 @@
                                             return (
                                                 e[l.columns].order -
                                                 t[l.columns].order
-                                            )
+                                            );
                                         if (
                                             (n =
                                                 (o = /n/i.test(
-                                                    L.getSortType(l.parsers, s)
+                                                    L.getSortType(l.parsers, s),
                                                 )) && l.strings[s]
                                                     ? ((o =
                                                           'boolean' ==
@@ -1698,7 +1704,7 @@
                                                                 t[s],
                                                                 u,
                                                                 c[s],
-                                                                g
+                                                                g,
                                                             )
                                                           : L[
                                                                 'sortNumeric' +
@@ -1711,7 +1717,7 @@
                                                                 o,
                                                                 c[s],
                                                                 s,
-                                                                l
+                                                                l,
                                                             ))
                                                     : ((i = u ? e : t),
                                                       (d = u ? t : e),
@@ -1721,7 +1727,7 @@
                                                                 d[s],
                                                                 u,
                                                                 s,
-                                                                g
+                                                                g,
                                                             )
                                                           : 'function' ==
                                                             typeof p[s]
@@ -1730,7 +1736,7 @@
                                                                 d[s],
                                                                 u,
                                                                 s,
-                                                                g
+                                                                g,
                                                             )
                                                           : L[
                                                                 'sortNatural' +
@@ -1741,28 +1747,30 @@
                                                                 e[s] || '',
                                                                 t[s] || '',
                                                                 s,
-                                                                l
+                                                                l,
                                                             )))
                                         )
-                                            return n
+                                            return n;
                                     }
                                     return (
                                         e[l.columns].order - t[l.columns].order
-                                    )
-                                })
+                                    );
+                                });
                         L.debug(l, 'core') &&
                             console.log(
-                                'Applying sort ' + h.toString() + L.benchmark(t)
-                            )
+                                'Applying sort ' +
+                                    h.toString() +
+                                    L.benchmark(t),
+                            );
                     }
                 },
                 resortComplete: function (e, t) {
                     e.table.isUpdating &&
                         e.$table.triggerHandler('updateComplete', e.table),
-                        A.isFunction(t) && t(e.table)
+                        A.isFunction(t) && t(e.table);
                 },
                 checkResort: function (e, t, r) {
-                    var o = A.isArray(t) ? t : e.sortList
+                    var o = A.isArray(t) ? t : e.sortList;
                     !1 === (void 0 === t ? e.resort : t) ||
                     e.serverSideSorting ||
                     e.table.isProcessing
@@ -1772,24 +1780,25 @@
                               e,
                               o,
                               function () {
-                                  L.resortComplete(e, r)
+                                  L.resortComplete(e, r);
                               },
-                              !0
+                              !0,
                           )
                         : L.sortReset(e, function () {
-                              L.resortComplete(e, r), L.applyWidget(e.table, !1)
-                          })
+                              L.resortComplete(e, r),
+                                  L.applyWidget(e.table, !1);
+                          });
                 },
                 sortOn: function (e, t, r, o) {
                     var s,
-                        a = e.table
+                        a = e.table;
                     for (
                         e.$table.triggerHandler('sortStart', a), s = 0;
                         s < e.columns;
                         s++
                     )
                         e.sortVars[s].sortedBy =
-                            -1 < L.isValueInArray(s, t) ? 'sorton' : ''
+                            -1 < L.isValueInArray(s, t) ? 'sorton' : '';
                     L.updateHeaderSortCount(e, t),
                         L.setHeadersCss(e),
                         e.delayInit &&
@@ -1801,41 +1810,41 @@
                         e.$table.triggerHandler('sortBeforeEnd', a),
                         e.$table.triggerHandler('sortEnd', a),
                         L.applyWidget(a),
-                        A.isFunction(r) && r(a)
+                        A.isFunction(r) && r(a);
                 },
                 sortReset: function (e, t) {
-                    var r
+                    var r;
                     for (e.sortList = [], r = 0; r < e.columns; r++)
                         (e.sortVars[r].count = -1),
-                            (e.sortVars[r].sortedBy = '')
+                            (e.sortVars[r].sortedBy = '');
                     L.setHeadersCss(e),
                         L.multisort(e),
                         L.appendCache(e),
-                        A.isFunction(t) && t(e.table)
+                        A.isFunction(t) && t(e.table);
                 },
                 getSortType: function (e, t) {
-                    return (e && e[t] && e[t].type) || ''
+                    return (e && e[t] && e[t].type) || '';
                 },
                 getOrder: function (e) {
-                    return /^d/i.test(e) || 1 === e
+                    return /^d/i.test(e) || 1 === e;
                 },
                 sortNatural: function (e, t) {
-                    if (e === t) return 0
-                    ;(e = (e || '').toString()), (t = (t || '').toString())
+                    if (e === t) return 0;
+                    (e = (e || '').toString()), (t = (t || '').toString());
                     var r,
                         o,
                         s,
                         a,
                         n,
                         i,
-                        d = L.regex
+                        d = L.regex;
                     if (d.hex.test(t)) {
                         if (
                             (r = parseInt(e.match(d.hex), 16)) <
                             (o = parseInt(t.match(d.hex), 16))
                         )
-                            return -1
-                        if (o < r) return 1
+                            return -1;
+                        if (o < r) return 1;
                     }
                     for (
                         r = e
@@ -1860,19 +1869,19 @@
                                 : parseFloat(o[n]) || 0),
                             isNaN(s) !== isNaN(a))
                         )
-                            return isNaN(s) ? 1 : -1
+                            return isNaN(s) ? 1 : -1;
                         if (
                             (typeof s != typeof a && ((s += ''), (a += '')),
                             s < a)
                         )
-                            return -1
-                        if (a < s) return 1
+                            return -1;
+                        if (a < s) return 1;
                     }
-                    return 0
+                    return 0;
                 },
                 sortNaturalAsc: function (e, t, r, o) {
-                    if (e === t) return 0
-                    var s = L.string[o.empties[r] || o.emptyTo]
+                    if (e === t) return 0;
+                    var s = L.string[o.empties[r] || o.emptyTo];
                     return '' === e && 0 !== s
                         ? 'boolean' == typeof s
                             ? s
@@ -1885,11 +1894,11 @@
                                 ? 1
                                 : -1
                             : s || 1
-                        : L.sortNatural(e, t)
+                        : L.sortNatural(e, t);
                 },
                 sortNaturalDesc: function (e, t, r, o) {
-                    if (e === t) return 0
-                    var s = L.string[o.empties[r] || o.emptyTo]
+                    if (e === t) return 0;
+                    var s = L.string[o.empties[r] || o.emptyTo];
                     return '' === e && 0 !== s
                         ? 'boolean' == typeof s
                             ? s
@@ -1902,24 +1911,24 @@
                                 ? 1
                                 : -1
                             : -s || -1
-                        : L.sortNatural(t, e)
+                        : L.sortNatural(t, e);
                 },
                 sortText: function (e, t) {
-                    return t < e ? 1 : e < t ? -1 : 0
+                    return t < e ? 1 : e < t ? -1 : 0;
                 },
                 getTextValue: function (e, t, r) {
                     if (r) {
                         var o,
                             s = e ? e.length : 0,
-                            a = r + t
-                        for (o = 0; o < s; o++) a += e.charCodeAt(o)
-                        return t * a
+                            a = r + t;
+                        for (o = 0; o < s; o++) a += e.charCodeAt(o);
+                        return t * a;
                     }
-                    return 0
+                    return 0;
                 },
                 sortNumericAsc: function (e, t, r, o, s, a) {
-                    if (e === t) return 0
-                    var n = L.string[a.empties[s] || a.emptyTo]
+                    if (e === t) return 0;
+                    var n = L.string[a.empties[s] || a.emptyTo];
                     return '' === e && 0 !== n
                         ? 'boolean' == typeof n
                             ? n
@@ -1934,11 +1943,11 @@
                             : n || 1
                         : (isNaN(e) && (e = L.getTextValue(e, r, o)),
                           isNaN(t) && (t = L.getTextValue(t, r, o)),
-                          e - t)
+                          e - t);
                 },
                 sortNumericDesc: function (e, t, r, o, s, a) {
-                    if (e === t) return 0
-                    var n = L.string[a.empties[s] || a.emptyTo]
+                    if (e === t) return 0;
+                    var n = L.string[a.empties[s] || a.emptyTo];
                     return '' === e && 0 !== n
                         ? 'boolean' == typeof n
                             ? n
@@ -1953,18 +1962,18 @@
                             : -n || -1
                         : (isNaN(e) && (e = L.getTextValue(e, r, o)),
                           isNaN(t) && (t = L.getTextValue(t, r, o)),
-                          t - e)
+                          t - e);
                 },
                 sortNumeric: function (e, t) {
-                    return e - t
+                    return e - t;
                 },
                 addWidget: function (e) {
                     e.id &&
                         !L.isEmptyObject(L.getWidgetById(e.id)) &&
                         console.warn(
-                            '"' + e.id + '" widget was loaded more than once!'
+                            '"' + e.id + '" widget was loaded more than once!',
                         ),
-                        (L.widgets[L.widgets.length] = e)
+                        (L.widgets[L.widgets.length] = e);
                 },
                 hasWidget: function (e, t) {
                     return (
@@ -1972,26 +1981,26 @@
                             e[0].config &&
                             e[0].config.widgetInit[t]) ||
                         !1
-                    )
+                    );
                 },
                 getWidgetById: function (e) {
                     var t,
                         r,
-                        o = L.widgets.length
+                        o = L.widgets.length;
                     for (t = 0; t < o; t++)
                         if (
                             (r = L.widgets[t]) &&
                             r.id &&
                             r.id.toLowerCase() === e.toLowerCase()
                         )
-                            return r
+                            return r;
                 },
                 applyWidgetOptions: function (e) {
                     var t,
                         r,
                         o,
                         s = e.config,
-                        a = s.widgets.length
+                        a = s.widgets.length;
                     if (a)
                         for (t = 0; t < a; t++)
                             (r = L.getWidgetById(s.widgets[t])) &&
@@ -2000,13 +2009,13 @@
                                 (s.widgetOptions = A.extend(
                                     !0,
                                     o,
-                                    s.widgetOptions
+                                    s.widgetOptions,
                                 )),
                                 A.extend(
                                     !0,
                                     L.defaults.widgetOptions,
-                                    r.options
-                                ))
+                                    r.options,
+                                ));
                 },
                 addWidgetFromClass: function (e) {
                     var t,
@@ -2016,18 +2025,18 @@
                             '^' +
                             o.widgetClass.replace(
                                 L.regex.templateName,
-                                '(\\S+)+'
+                                '(\\S+)+',
                             ) +
                             '$',
                         a = new RegExp(s, 'g'),
-                        n = (e.className || '').split(L.regex.spaces)
+                        n = (e.className || '').split(L.regex.spaces);
                     if (n.length)
                         for (t = n.length, r = 0; r < t; r++)
                             n[r].match(a) &&
                                 (o.widgets[o.widgets.length] = n[r].replace(
                                     a,
-                                    '$1'
-                                ))
+                                    '$1',
+                                ));
                 },
                 applyWidgetId: function (e, t, r) {
                     var o,
@@ -2036,7 +2045,7 @@
                         n = (e = A(e)[0]).config,
                         i = n.widgetOptions,
                         d = L.debug(n, 'core'),
-                        l = L.getWidgetById(t)
+                        l = L.getWidgetById(t);
                     l &&
                         ((a = l.id),
                         (o = !1),
@@ -2050,7 +2059,7 @@
                                 ((o = !0),
                                 d &&
                                     console[console.group ? 'group' : 'log'](
-                                        'Initializing ' + a + ' widget'
+                                        'Initializing ' + a + ' widget',
                                     ),
                                 l.init(e, l, n, i))),
                         r ||
@@ -2058,7 +2067,7 @@
                             ((o = !0),
                             d &&
                                 console[console.group ? 'group' : 'log'](
-                                    'Updating ' + a + ' widget'
+                                    'Updating ' + a + ' widget',
                                 ),
                             l.format(e, n, i, !1)),
                         d &&
@@ -2068,9 +2077,9 @@
                                     (r ? 'initializing ' : 'applying ') +
                                     a +
                                     ' widget' +
-                                    L.benchmark(s)
+                                    L.benchmark(s),
                             ),
-                            console.groupEnd && console.groupEnd()))
+                            console.groupEnd && console.groupEnd()));
                 },
                 applyWidget: function (e, t, r) {
                     var o,
@@ -2080,7 +2089,7 @@
                         i,
                         d = (e = A(e)[0]).config,
                         l = L.debug(d, 'core'),
-                        c = []
+                        c = [];
                     if (
                         !1 === t ||
                         !e.hasInitialized ||
@@ -2097,8 +2106,10 @@
                                     d.widgets = A.grep(
                                         d.widgets,
                                         function (e, t) {
-                                            return A.inArray(e, d.widgets) === t
-                                        }
+                                            return (
+                                                A.inArray(e, d.widgets) === t
+                                            );
+                                        },
                                     ),
                                     s = (a = d.widgets || []).length,
                                     o = 0;
@@ -2112,15 +2123,15 @@
                                       console.warn(
                                           '"' +
                                               a[o] +
-                                              '" was enabled, but the widget code has not been loaded!'
-                                      )
+                                              '" was enabled, but the widget code has not been loaded!',
+                                      );
                             for (
                                 c.sort(function (e, t) {
                                     return e.priority < t.priority
                                         ? -1
                                         : e.priority === t.priority
                                         ? 0
-                                        : 1
+                                        : 1;
                                 }),
                                     s = c.length,
                                     l &&
@@ -2131,7 +2142,7 @@
                                                 (t
                                                     ? 'initializing'
                                                     : 'applying') +
-                                                ' widgets'
+                                                ' widgets',
                                         ),
                                     o = 0;
                                 o < s;
@@ -2139,11 +2150,11 @@
                             )
                                 (n = c[o]) &&
                                     n.id &&
-                                    L.applyWidgetId(e, n.id, t)
-                            l && console.groupEnd && console.groupEnd()
+                                    L.applyWidgetId(e, n.id, t);
+                            l && console.groupEnd && console.groupEnd();
                         }
                         d.timerReady = setTimeout(function () {
-                            ;(e.isApplyingWidgets = !1),
+                            (e.isApplyingWidgets = !1),
                                 A.data(e, 'lastWidgetApplication', new Date()),
                                 d.$table.triggerHandler('tablesorter-ready'),
                                 t || 'function' != typeof r || r(e),
@@ -2157,9 +2168,9 @@
                                             n +
                                             ' widget' +
                                             (1 !== n ? 's' : '') +
-                                            L.benchmark(i)
-                                    ))
-                        }, 10)
+                                            L.benchmark(i),
+                                    ));
+                        }, 10);
                     }
                 },
                 removeWidget: function (e, t, r) {
@@ -2167,14 +2178,14 @@
                         s,
                         a,
                         n,
-                        i = (e = A(e)[0]).config
+                        i = (e = A(e)[0]).config;
                     if (!0 === t)
                         for (t = [], n = L.widgets.length, a = 0; a < n; a++)
-                            (s = L.widgets[a]) && s.id && (t[t.length] = s.id)
+                            (s = L.widgets[a]) && s.id && (t[t.length] = s.id);
                     else
                         t = (A.isArray(t) ? t.join(',') : t || '')
                             .toLowerCase()
-                            .split(/[\s,]+/)
+                            .split(/[\s,]+/);
                     for (n = t.length, o = 0; o < n; o++)
                         (s = L.getWidgetById(t[o])),
                             0 <= (a = A.inArray(t[o], i.widgets)) &&
@@ -2187,38 +2198,38 @@
                                         (r ? 'Refreshing' : 'Removing') +
                                             ' "' +
                                             t[o] +
-                                            '" widget'
+                                            '" widget',
                                     ),
                                 s.remove(e, i, i.widgetOptions, r),
-                                (i.widgetInit[t[o]] = !1))
-                    i.$table.triggerHandler('widgetRemoveEnd', e)
+                                (i.widgetInit[t[o]] = !1));
+                    i.$table.triggerHandler('widgetRemoveEnd', e);
                 },
                 refreshWidgets: function (e, t, r) {
                     function o(e) {
-                        A(e).triggerHandler('refreshComplete')
+                        A(e).triggerHandler('refreshComplete');
                     }
                     var s,
                         a,
                         n = (e = A(e)[0]).config.widgets,
                         i = L.widgets,
                         d = i.length,
-                        l = []
+                        l = [];
                     for (s = 0; s < d; s++)
                         (a = i[s]) &&
                             a.id &&
                             (t || A.inArray(a.id, n) < 0) &&
-                            (l[l.length] = a.id)
+                            (l[l.length] = a.id);
                     L.removeWidget(e, l.join(','), !0),
                         !0 !== r
                             ? (L.applyWidget(e, t || !1, o),
                               t && L.applyWidget(e, !1, o))
-                            : o(e)
+                            : o(e);
                 },
                 benchmark: function (e) {
-                    return ' (' + (new Date().getTime() - e.getTime()) + ' ms)'
+                    return ' (' + (new Date().getTime() - e.getTime()) + ' ms)';
                 },
                 log: function () {
-                    console.log(arguments)
+                    console.log(arguments);
                 },
                 debug: function (e, t) {
                     return (
@@ -2226,17 +2237,17 @@
                         (!0 === e.debug ||
                             ('string' == typeof e.debug &&
                                 -1 < e.debug.indexOf(t)))
-                    )
+                    );
                 },
                 isEmptyObject: function (e) {
-                    for (var t in e) return !1
-                    return !0
+                    for (var t in e) return !1;
+                    return !0;
                 },
                 isValueInArray: function (e, t) {
                     var r,
-                        o = (t && t.length) || 0
-                    for (r = 0; r < o; r++) if (t[r][0] === e) return r
-                    return -1
+                        o = (t && t.length) || 0;
+                    for (r = 0; r < o; r++) if (t[r][0] === e) return r;
+                    return -1;
                 },
                 formatFloat: function (e, t) {
                     return 'string' != typeof e || '' === e
@@ -2253,18 +2264,18 @@
                           L.regex.digitNegativeTest.test(e) &&
                               (e = e.replace(
                                   L.regex.digitNegativeReplace,
-                                  '-$1'
+                                  '-$1',
                               )),
                           (r = parseFloat(e)),
-                          isNaN(r) ? A.trim(e) : r)
-                    var r
+                          isNaN(r) ? A.trim(e) : r);
+                    var r;
                 },
                 isDigit: function (e) {
                     return isNaN(e)
                         ? L.regex.digitTest.test(
-                              e.toString().replace(L.regex.digitReplace, '')
+                              e.toString().replace(L.regex.digitReplace, ''),
                           )
-                        : '' !== e
+                        : '' !== e;
                 },
                 computeColumnIndex: function (e, t) {
                     var r,
@@ -2279,7 +2290,7 @@
                         g,
                         p = (t && t.columns) || 0,
                         u = [],
-                        f = new Array(p)
+                        f = new Array(p);
                     for (r = 0; r < e.length; r++)
                         for (i = e[r].cells, o = 0; o < i.length; o++) {
                             for (
@@ -2292,8 +2303,8 @@
                                 s++
                             )
                                 if (void 0 === u[d][s]) {
-                                    g = s
-                                    break
+                                    g = s;
+                                    break;
                                 }
                             for (
                                 (p && n.cellIndex === g) ||
@@ -2311,24 +2322,24 @@
                                     a < g + c;
                                     a++
                                 )
-                                    f[a] = 'x'
+                                    f[a] = 'x';
                         }
-                    return L.checkColumnCount(e, u, f.length), f.length
+                    return L.checkColumnCount(e, u, f.length), f.length;
                 },
                 checkColumnCount: function (e, t, r) {
                     var o,
                         s,
                         a = !0,
-                        n = []
+                        n = [];
                     for (o = 0; o < t.length; o++)
                         if (t[o] && ((s = t[o].length), t[o].length !== r)) {
-                            a = !1
-                            break
+                            a = !1;
+                            break;
                         }
                     a ||
                         (e.each(function (e, t) {
-                            var r = t.parentElement.nodeName
-                            n.indexOf(r) < 0 && n.push(r)
+                            var r = t.parentElement.nodeName;
+                            n.indexOf(r) < 0 && n.push(r);
                         }),
                         console.error(
                             'Invalid or incorrect number of columns in the ' +
@@ -2337,8 +2348,8 @@
                                 r +
                                 ', but found ' +
                                 s +
-                                ' columns'
-                        ))
+                                ' columns',
+                        ));
                 },
                 fixColumnWidth: function (e) {
                     var t,
@@ -2347,7 +2358,7 @@
                         s,
                         a,
                         n = (e = A(e)[0]).config,
-                        i = n.$table.children('colgroup')
+                        i = n.$table.children('colgroup');
                     if (
                         (i.length && i.hasClass(L.css.colgroup) && i.remove(),
                         n.widthFixed &&
@@ -2366,15 +2377,15 @@
                             (r =
                                 parseInt((o.eq(a).width() / t) * 1e3, 10) / 10 +
                                 '%'),
-                                i.append(A('<col>').css('width', r))
-                        n.$table.prepend(i)
+                                i.append(A('<col>').css('width', r));
+                        n.$table.prepend(i);
                     }
                 },
                 getData: function (e, t, r) {
                     var o,
                         s,
                         a = '',
-                        n = A(e)
+                        n = A(e);
                     return n.length
                         ? ((o = !!A.metadata && n.metadata()),
                           (s = ' ' + (n.attr('class') || '')),
@@ -2389,30 +2400,30 @@
                                 s.match(' ' + r + '-') &&
                                 (a =
                                     s.match(
-                                        new RegExp('\\s' + r + '-([\\w-]+)')
+                                        new RegExp('\\s' + r + '-([\\w-]+)'),
                                     )[1] || ''),
                           A.trim(a))
-                        : ''
+                        : '';
                 },
                 getColumnData: function (e, t, r, o, s) {
-                    if ('object' != typeof t || null === t) return t
+                    if ('object' != typeof t || null === t) return t;
                     var a,
                         n = (e = A(e)[0]).config,
                         i = s || n.$headers,
                         d =
                             (n.$headerIndexed && n.$headerIndexed[r]) ||
-                            i.find('[data-column="' + r + '"]:last')
-                    if (void 0 !== t[r]) return o ? t[r] : t[i.index(d)]
+                            i.find('[data-column="' + r + '"]:last');
+                    if (void 0 !== t[r]) return o ? t[r] : t[i.index(d)];
                     for (a in t)
                         if (
                             'string' == typeof a &&
                             d.filter(a).add(d.find(a)).length
                         )
-                            return t[a]
+                            return t[a];
                 },
                 isProcessing: function (e, t, r) {
                     var o = (e = A(e))[0].config,
-                        s = r || e.find('.' + L.css.header)
+                        s = r || e.find('.' + L.css.header);
                     t
                         ? (void 0 !== r &&
                               0 < o.sortList.length &&
@@ -2422,37 +2433,37 @@
                                       0 <=
                                           L.isValueInArray(
                                               parseFloat(
-                                                  A(this).attr('data-column')
+                                                  A(this).attr('data-column'),
                                               ),
-                                              o.sortList
+                                              o.sortList,
                                           )
-                                  )
+                                  );
                               })),
                           e
                               .add(s)
                               .addClass(
-                                  L.css.processing + ' ' + o.cssProcessing
+                                  L.css.processing + ' ' + o.cssProcessing,
                               ))
                         : e
                               .add(s)
                               .removeClass(
-                                  L.css.processing + ' ' + o.cssProcessing
-                              )
+                                  L.css.processing + ' ' + o.cssProcessing,
+                              );
                 },
                 processTbody: function (e, t, r) {
                     if (((e = A(e)[0]), r))
                         return (
                             (e.isProcessing = !0),
                             t.before(
-                                '<colgroup class="tablesorter-savemyplace"/>'
+                                '<colgroup class="tablesorter-savemyplace"/>',
                             ),
                             A.fn.detach ? t.detach() : t.remove()
-                        )
-                    var o = A(e).find('colgroup.tablesorter-savemyplace')
-                    t.insertAfter(o), o.remove(), (e.isProcessing = !1)
+                        );
+                    var o = A(e).find('colgroup.tablesorter-savemyplace');
+                    t.insertAfter(o), o.remove(), (e.isProcessing = !1);
                 },
                 clearTableBody: function (e) {
-                    A(e)[0].config.$tbodies.children().detach()
+                    A(e)[0].config.$tbodies.children().detach();
                 },
                 characterEquivalents: {
                     a: 'áàâãäąå',
@@ -2473,22 +2484,22 @@
                 replaceAccents: function (e) {
                     var t,
                         r = '[',
-                        o = L.characterEquivalents
+                        o = L.characterEquivalents;
                     if (!L.characterRegex) {
                         for (t in ((L.characterRegexArray = {}), o))
                             'string' == typeof t &&
                                 ((r += o[t]),
                                 (L.characterRegexArray[t] = new RegExp(
                                     '[' + o[t] + ']',
-                                    'g'
-                                )))
-                        L.characterRegex = new RegExp(r + ']')
+                                    'g',
+                                )));
+                        L.characterRegex = new RegExp(r + ']');
                     }
                     if (L.characterRegex.test(e))
                         for (t in o)
                             'string' == typeof t &&
-                                (e = e.replace(L.characterRegexArray[t], t))
-                    return e
+                                (e = e.replace(L.characterRegexArray[t], t));
+                    return e;
                 },
                 validateOptions: function (e) {
                     var t,
@@ -2497,17 +2508,17 @@
                         s,
                         a =
                             'headers sortForce sortList sortAppend widgets'.split(
-                                ' '
+                                ' ',
                             ),
-                        n = e.originalSettings
+                        n = e.originalSettings;
                     if (n) {
                         for (t in (L.debug(e, 'core') && (s = new Date()), n))
                             if ('undefined' === (o = typeof L.defaults[t]))
                                 console.warn(
                                     'Tablesorter Warning! "table.config.' +
                                         t +
-                                        '" option not recognized'
-                                )
+                                        '" option not recognized',
+                                );
                             else if ('object' === o)
                                 for (r in n[t])
                                     (o =
@@ -2520,12 +2531,12 @@
                                                     t +
                                                     '.' +
                                                     r +
-                                                    '" option not recognized'
-                                            )
+                                                    '" option not recognized',
+                                            );
                         L.debug(e, 'core') &&
                             console.log(
-                                'validate options time:' + L.benchmark(s)
-                            )
+                                'validate options time:' + L.benchmark(s),
+                            );
                     }
                 },
                 restoreHeaders: function (e) {
@@ -2533,14 +2544,14 @@
                         r,
                         o = A(e)[0].config,
                         s = o.$table.find(o.selectorHeaders),
-                        a = s.length
+                        a = s.length;
                     for (t = 0; t < a; t++)
                         (r = s.eq(t)).find('.' + L.css.headerIn).length &&
-                            r.html(o.headerContent[t])
+                            r.html(o.headerContent[t]);
                 },
                 destroy: function (e, t, r) {
                     if ((e = A(e)[0]).hasInitialized) {
-                        L.removeWidget(e, !0, !1)
+                        L.removeWidget(e, !0, !1);
                         var o,
                             s = A(e),
                             a = e.config,
@@ -2548,9 +2559,9 @@
                             i = n
                                 .find('tr.' + L.css.headerRow)
                                 .removeClass(
-                                    L.css.headerRow + ' ' + a.cssHeaderRow
+                                    L.css.headerRow + ' ' + a.cssHeaderRow,
                                 ),
-                            d = s.find('tfoot:first > tr').children('th, td')
+                            d = s.find('tfoot:first > tr').children('th, td');
                         !1 === t &&
                             0 <= A.inArray('uitheme', a.widgets) &&
                             (s.triggerHandler('applyWidgetId', ['uitheme']),
@@ -2575,7 +2586,7 @@
                                         L.css.sortAsc,
                                         L.css.sortDesc,
                                         L.css.sortNone,
-                                    ].join(' ')
+                                    ].join(' '),
                                 )
                                 .removeAttr('data-column')
                                 .removeAttr('aria-label')
@@ -2584,7 +2595,7 @@
                                 'mousedown mouseup keypress '
                                     .split(' ')
                                     .join(a.namespace + ' ')
-                                    .replace(L.regex.spaces, ' ')
+                                    .replace(L.regex.spaces, ' '),
                             ),
                             L.restoreHeaders(e),
                             s.toggleClass(
@@ -2593,27 +2604,27 @@
                                     a.tableClass +
                                     ' tablesorter-' +
                                     a.theme,
-                                !1 === t
+                                !1 === t,
                             ),
                             s.removeClass(a.namespace.slice(1)),
                             (e.hasInitialized = !1),
                             delete e.config.cache,
                             'function' == typeof r && r(e),
                             L.debug(a, 'core') &&
-                                console.log('tablesorter has been removed')
+                                console.log('tablesorter has been removed');
                     }
                 },
-            })
-            ;(A.fn.tablesorter = function (t) {
+            });
+            (A.fn.tablesorter = function (t) {
                 return this.each(function () {
-                    var e = A.extend(!0, {}, L.defaults, t, L.instanceMethods)
-                    ;(e.originalSettings = t),
+                    var e = A.extend(!0, {}, L.defaults, t, L.instanceMethods);
+                    (e.originalSettings = t),
                         !this.hasInitialized &&
                         L.buildTable &&
                         'TABLE' !== this.nodeName
                             ? L.buildTable(this, e)
-                            : L.setup(this, e)
-                })
+                            : L.setup(this, e);
+                });
             }),
                 (window.console && window.console.log) ||
                     ((L.logs = []),
@@ -2626,39 +2637,39 @@
                                 var e =
                                     1 < arguments.length
                                         ? arguments
-                                        : arguments[0]
+                                        : arguments[0];
                                 L.logs[L.logs.length] = {
                                     date: Date.now(),
                                     log: e,
-                                }
+                                };
                             })),
                 L.addParser({
                     id: 'no-parser',
                     is: function () {
-                        return !1
+                        return !1;
                     },
                     format: function () {
-                        return ''
+                        return '';
                     },
                     type: 'text',
                 }),
                 L.addParser({
                     id: 'text',
                     is: function () {
-                        return !0
+                        return !0;
                     },
                     format: function (e, t) {
-                        var r = t.config
+                        var r = t.config;
                         return (
                             e &&
                                 ((e = A.trim(
-                                    r.ignoreCase ? e.toLocaleLowerCase() : e
+                                    r.ignoreCase ? e.toLocaleLowerCase() : e,
                                 )),
                                 (e = r.sortLocaleCompare
                                     ? L.replaceAccents(e)
                                     : e)),
                             e
-                        )
+                        );
                     },
                     type: 'text',
                 }),
@@ -2666,22 +2677,22 @@
                 L.addParser({
                     id: 'digit',
                     is: function (e) {
-                        return L.isDigit(e)
+                        return L.isDigit(e);
                     },
                     format: function (e, t) {
                         var r = L.formatFloat(
                             (e || '').replace(L.regex.nondigit, ''),
-                            t
-                        )
+                            t,
+                        );
                         return e && 'number' == typeof r
                             ? r
                             : e
                             ? A.trim(
                                   e && t.config.ignoreCase
                                       ? e.toLocaleLowerCase()
-                                      : e
+                                      : e,
                               )
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
@@ -2694,25 +2705,25 @@
                         return (
                             (e = (e || '').replace(
                                 L.regex.currencyReplace,
-                                ''
+                                '',
                             )),
                             L.regex.currencyTest.test(e)
-                        )
+                        );
                     },
                     format: function (e, t) {
                         var r = L.formatFloat(
                             (e || '').replace(L.regex.nondigit, ''),
-                            t
-                        )
+                            t,
+                        );
                         return e && 'number' == typeof r
                             ? r
                             : e
                             ? A.trim(
                                   e && t.config.ignoreCase
                                       ? e.toLocaleLowerCase()
-                                      : e
+                                      : e,
                               )
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
@@ -2721,12 +2732,12 @@
                 L.addParser({
                     id: 'url',
                     is: function (e) {
-                        return L.regex.urlProtocolTest.test(e)
+                        return L.regex.urlProtocolTest.test(e);
                     },
                     format: function (e) {
                         return e
                             ? A.trim(e.replace(L.regex.urlProtocolReplace, ''))
-                            : e
+                            : e;
                     },
                     type: 'text',
                 }),
@@ -2735,13 +2746,13 @@
                 L.addParser({
                     id: 'isoDate',
                     is: function (e) {
-                        return L.regex.isoDate.test(e)
+                        return L.regex.isoDate.test(e);
                     },
                     format: function (e) {
-                        var t = e ? new Date(e.replace(L.regex.dash, '/')) : e
+                        var t = e ? new Date(e.replace(L.regex.dash, '/')) : e;
                         return t instanceof Date && isFinite(t)
                             ? t.getTime()
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
@@ -2750,26 +2761,26 @@
                 L.addParser({
                     id: 'percent',
                     is: function (e) {
-                        return L.regex.percentTest.test(e) && e.length < 15
+                        return L.regex.percentTest.test(e) && e.length < 15;
                     },
                     format: function (e, t) {
                         return e
                             ? L.formatFloat(e.replace(L.regex.percent, ''), t)
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
                 L.addParser({
                     id: 'image',
                     is: function (e, t, r, o) {
-                        return 0 < o.find('img').length
+                        return 0 < o.find('img').length;
                     },
                     format: function (e, t, r) {
                         return (
                             A(r)
                                 .find('img')
                                 .attr(t.config.imgAttr || 'alt') || e
-                        )
+                        );
                     },
                     parsed: !0,
                     type: 'text',
@@ -2784,15 +2795,15 @@
                         return (
                             L.regex.usLongDateTest1.test(e) ||
                             L.regex.usLongDateTest2.test(e)
-                        )
+                        );
                     },
                     format: function (e) {
                         var t = e
                             ? new Date(e.replace(L.regex.dateReplace, '$1 $2'))
-                            : e
+                            : e;
                         return t instanceof Date && isFinite(t)
                             ? t.getTime()
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
@@ -2804,7 +2815,7 @@
                 (L.regex.shortDateYMD =
                     /(\d{4})[\/\s](\d{1,2})[\/\s](\d{1,2})/),
                 (L.convertFormat = function (e, t) {
-                    ;(e = (e || '')
+                    (e = (e || '')
                         .replace(L.regex.spaces, ' ')
                         .replace(L.regex.shortDateReplace, '/')),
                         'mmddyyyy' === t
@@ -2812,9 +2823,9 @@
                             : 'ddmmyyyy' === t
                             ? (e = e.replace(L.regex.shortDateXXY, '$3/$2/$1'))
                             : 'yyyymmdd' === t &&
-                              (e = e.replace(L.regex.shortDateYMD, '$1/$2/$3'))
-                    var r = new Date(e)
-                    return r instanceof Date && isFinite(r) ? r.getTime() : ''
+                              (e = e.replace(L.regex.shortDateYMD, '$1/$2/$3'));
+                    var r = new Date(e);
+                    return r instanceof Date && isFinite(r) ? r.getTime() : '';
                 }),
                 L.addParser({
                     id: 'shortDate',
@@ -2824,7 +2835,7 @@
                                 .replace(L.regex.spaces, ' ')
                                 .replace(L.regex.shortDateReplace, '/')),
                             L.regex.shortDateTest.test(e)
-                        )
+                        );
                     },
                     format: function (e, t, r, o) {
                         if (e) {
@@ -2835,15 +2846,15 @@
                                     L.getData(
                                         a,
                                         L.getColumnData(t, s.headers, o),
-                                        'dateFormat'
+                                        'dateFormat',
                                     ) ||
-                                    s.dateFormat
+                                    s.dateFormat;
                             return (
                                 a.length && a.data('dateFormat', n),
                                 L.convertFormat(e, n) || e
-                            )
+                            );
                         }
-                        return e
+                        return e;
                     },
                     type: 'numeric',
                 }),
@@ -2854,7 +2865,7 @@
                 L.addParser({
                     id: 'time',
                     is: function (e) {
-                        return L.regex.timeTest.test(e)
+                        return L.regex.timeTest.test(e);
                     },
                     format: function (e) {
                         var t = (e || '').match(L.regex.timeMatch),
@@ -2865,10 +2876,10 @@
                                       '2000/01/01 ' +
                                           o.replace(
                                               L.regex.dateReplace,
-                                              '$1 $2'
-                                          )
+                                              '$1 $2',
+                                          ),
                                   )
-                                : o
+                                : o;
                         return s instanceof Date && isFinite(s)
                             ? (
                                   r instanceof Date && isFinite(r)
@@ -2877,21 +2888,21 @@
                               )
                                 ? parseFloat(s.getTime() + '.' + r.getTime())
                                 : s.getTime()
-                            : e
+                            : e;
                     },
                     type: 'numeric',
                 }),
                 L.addParser({
                     id: 'metadata',
                     is: function () {
-                        return !1
+                        return !1;
                     },
                     format: function (e, t, r) {
                         var o = t.config,
                             s = o.parserMetadataName
                                 ? o.parserMetadataName
-                                : 'sortValue'
-                        return A(r).metadata()[s]
+                                : 'sortValue';
+                        return A(r).metadata()[s];
                     },
                     type: 'numeric',
                 }),
@@ -2909,9 +2920,9 @@
                             c = new RegExp(t.cssChildRow, 'i'),
                             g = t.$tbodies.add(
                                 A(t.namespace + '_extra_table').children(
-                                    'tbody:not(.' + t.cssInfoBlock + ')'
-                                )
-                            )
+                                    'tbody:not(.' + t.cssInfoBlock + ')',
+                                ),
+                            );
                         for (i = 0; i < g.length; i++)
                             for (
                                 a = 0,
@@ -2928,23 +2939,23 @@
                                     (n = a % 2 == 0),
                                     s
                                         .removeClass(r.zebra[n ? 1 : 0])
-                                        .addClass(r.zebra[n ? 0 : 1])
+                                        .addClass(r.zebra[n ? 0 : 1]);
                     },
                     remove: function (e, t, r, o) {
                         if (!o) {
                             var s,
                                 a,
                                 n = t.$tbodies,
-                                i = (r.zebra || ['even', 'odd']).join(' ')
+                                i = (r.zebra || ['even', 'odd']).join(' ');
                             for (s = 0; s < n.length; s++)
                                 (a = L.processTbody(e, n.eq(s), !0))
                                     .children()
                                     .removeClass(i),
-                                    L.processTbody(e, a, !1)
+                                    L.processTbody(e, a, !1);
                         }
                     },
-                })
+                });
         })(e),
         e.tablesorter
-    )
-})
+    );
+});
