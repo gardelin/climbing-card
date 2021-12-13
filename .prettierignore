@@ -1,4 +1,5 @@
-node_modules
-public
-vendor
+node_modules/
+public/
+vendor/
+package-lock.json
 todo.txt
