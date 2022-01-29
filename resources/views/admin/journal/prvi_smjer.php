@@ -54,7 +54,7 @@
 				<option>9c</option>
 			</select>
 			<input type="text" name="dodaj_komentar" id="dodaj_komentar" class="clearField" value="Komentar" size="19" />
-			<input type="text" name="dodaj_datum" id="dodaj_datum" value="" size="19" />
+			<input type="date" name="dodaj_datum" id="dodaj_datum" value="" size="19" />
 		</fieldset>
 		<fieldset class="butts">
 			<input type="button" class="update butt" id="dodaj" value="Potvrdi " />

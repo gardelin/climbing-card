@@ -17,10 +17,10 @@ $siteurl = get_option('siteurl');
     if ($ekarton_karton_exist == 1) {
         view('admin/journal/admin_view');
     } else {
-        view('admin/journal/prvi_smjer');
+        view('admin/journal/prvi_smjer', ['korisnik' => $korisnik]);
     }
 
     ?>
     <!-- enqueuing script here because including it via webpack wasn't working -->
-    <script type='text/javascript' src='<?php echo $siteurl; ?>/wp-content/plugins/climbing-card/resources/assets/js/legacy/raphael.js'></script>
+    <script type='text/javascript' src='<?php echo $siteurl; ?>/wp-content/plugins/climbing-card/public/assets/js/legacy/raphael.js'></script>
 </div>
