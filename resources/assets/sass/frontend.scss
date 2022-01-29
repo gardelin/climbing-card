@@ -49,6 +49,17 @@
         .climbed-content {
             display: flex;
             flex-direction: column;
+
+            span {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #eee;
+                padding: 10px 0;
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
         }
     }
 }
@@ -103,6 +114,35 @@
 
         .journal:nth-child(even) {
             background-color: #fafafa;
+        }
+    }
+}
+
+.club-stats-counters {
+    .widget-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        .stats-counter {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #eee;
+            border-radius: 3px;
+            padding: 10px 20px;
+            flex-basis: 23%;
+            flex-grow: 1;
+            height: 200px;
+
+            p {
+                font-size: 1.6rem;
+                font-weight: normal;
+                text-align: center;
+            }
         }
     }
 }

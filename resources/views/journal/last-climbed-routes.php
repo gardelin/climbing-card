@@ -1,7 +1,7 @@
 <?php defined('ABSPATH') || exit; ?>
 
 <div class="last-climbed-routes">
-    <h4><?php _e('Penjački karton', 'climbingcard'); ?></h4>
+    <h4 class="last-climbed-routes-title"><?php _e('Penjački karton', 'climbingcard'); ?></h4>
     <div class="climbed-routes-container">
         <?php foreach ($journals as $journal) : ?>
             <div class="climbed-route ac">

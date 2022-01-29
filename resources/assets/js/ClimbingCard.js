@@ -1,7 +1,7 @@
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
-class ClimbingCard {
+export default class ClimbingCard {
     constructor() {
         this.form = document.getElementById('climbing-card-form');
 
@@ -83,9 +83,3 @@ class ClimbingCard {
             });
     };
 }
-
-export default ClimbingCard;
-
-document.addEventListener('DOMContentLoaded', function () {
-    window.ClimbingCard = new ClimbingCard();
-});

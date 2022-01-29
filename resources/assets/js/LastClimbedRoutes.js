@@ -2,7 +2,7 @@ import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 import Accordion from 'accordion-js';
 
-class LastClimbedRoutes {
+export default class LastClimbedRoutes {
     constructor() {
         let lastClimedRoutes = document.querySelector(
             '.climbed-routes-container',
@@ -13,9 +13,3 @@ class LastClimbedRoutes {
         let accordion = new Accordion(lastClimedRoutes);
     }
 }
-
-export default LastClimbedRoutes;
-
-document.addEventListener('DOMContentLoaded', function () {
-    window.LastClimbedRoutes = new LastClimbedRoutes();
-});
