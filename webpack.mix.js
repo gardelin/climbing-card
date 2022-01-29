@@ -16,7 +16,7 @@ mix.js(
         'resources/assets/js/legacy/jquery.tablesorter.js',
     ],
     'public/assets/js',
-).sourceMaps();
+);
 
 // Compile legacy scripts from old plugin
 mix.js(
@@ -35,10 +35,11 @@ mix.js(
         'resources/assets/js/legacy/cisti.js',
     ],
     'public/assets/js/legacy.js',
-).sourceMaps();
+);
 
-mix.sass('resources/assets/sass/app.scss', 'public/assets/css').sourceMaps();
-mix.sass(
-    'resources/assets/sass/frontend.scss',
-    'public/assets/css',
-).sourceMaps();
+mix.sass('resources/assets/sass/app.scss', 'public/assets/css');
+mix.sass('resources/assets/sass/frontend.scss', 'public/assets/css');
+
+if (mix.inProduction()) {
+    mix.version().sourceMaps();
+}
