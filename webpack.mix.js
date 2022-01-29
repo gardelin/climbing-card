@@ -29,6 +29,9 @@ mix.js(
         'resources/assets/js/legacy/jquery.tablesorter.js',
         'resources/assets/js/legacy/jquery.ui.js',
         'resources/assets/js/legacy/ajaxsbmt.js',
+        // Raphael is commented because it's not working when
+        // bundeled with webpack
+        // instead just copying it separately
         // 'resources/assets/js/legacy/raphael.js',
         'resources/assets/js/legacy/jquery.tufte-graph.js',
         'resources/assets/js/legacy/skripta.js',
@@ -39,6 +42,11 @@ mix.js(
 
 mix.sass('resources/assets/sass/app.scss', 'public/assets/css');
 mix.sass('resources/assets/sass/frontend.scss', 'public/assets/css');
+
+mix.copy(
+    'resources/assets/js/legacy/raphael.js',
+    'public/assets/js/legacy/raphael.js',
+);
 
 if (mix.inProduction()) {
     mix.version().sourceMaps();
