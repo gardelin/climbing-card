@@ -8,17 +8,16 @@
     },
     "devDependencies": {
         "cross-env": "^7.0.3",
+        "gulp": "^4.0.2",
+        "gulp-zip": "^5.1.0",
         "laravel-mix": "^6.0.13",
         "prettier": "2.4.1",
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.8",
-        "sass-loader": "^11.0.1",
-        "vue-loader": "^15.9.8",
-        "vue-template-compiler": "^2.6.14"
+        "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "accordion-js": "^3.1.1",
-        "tailwindcss": "^2.2.17"
+        "accordion-js": "^3.1.1"
     },
     "private": true,
     "scripts": {
