@@ -1,7 +1,6 @@
 <?php defined('ABSPATH') || exit; ?>
 
 <div class="sidebar-widget club-stats">
-    <h4 class="club-stats-title"><?php _e('Statistika kluba', 'climbingcard'); ?></h4>
     <div class="widget-container">
         <div><?php printf(__("Ukupno smjerova: <strong>%d</strong>", 'climbingcard'), $stats['total']); ?></div>
         <div><?php printf(__("Ukupno on sight: <strong>%d</strong>", 'climbingcard'), $stats['total_on_sight']); ?></div>
