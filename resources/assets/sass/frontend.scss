@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 @import 'colors';
 @import '~accordion-js/dist/accordion.css';
 @import 'vendors/accordion';
@@ -137,6 +138,10 @@
             flex-basis: 23%;
             flex-grow: 1;
             height: 200px;
+
+            @include respond-to('small') {
+                flex-basis: 45%;
+            }
 
             p {
                 font-size: 1.6rem;
