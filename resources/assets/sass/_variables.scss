@@ -1,3 +1,9 @@
 $red-point: #d51c54;
 $flash: #f8b231;
 $on-sight: #00a19a;
+
+$breakpoints: (
+    'small': 767px,
+    'medium': 992px,
+    'large': 1200px,
+) !default;
