@@ -30,7 +30,8 @@ class Assets
         if (strpos($currentScreen->base, 'climbingcard') === false)
             return;
 
-        wp_enqueue_script('climbingcard-legacy', plugins_url('public/assets/js/legacy.js', CLIMBING_CARD_FILE), ['jquery'], CLIMBING_CARD_VERSION);
+        wp_enqueue_script('climbingcard-legacy', plugins_url('public/assets/js/legacy.js', CLIMBING_CARD_FILE), ['jquery'], CLIMBING_CARD_VERSION, true);
+        wp_enqueue_script('climbingcard-admin-js', plugins_url('public/assets/js/admin.js', CLIMBING_CARD_FILE), [], CLIMBING_CARD_VERSION, true);
 
         wp_localize_script(
             'climbingcard-js',

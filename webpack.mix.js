@@ -40,6 +40,8 @@ mix.js(
     'public/assets/js/legacy.js',
 );
 
+mix.js('resources/assets/js/admin.js', 'public/assets/js').vue();
+
 mix.sass('resources/assets/sass/app.scss', 'public/assets/css');
 mix.sass('resources/assets/sass/frontend.scss', 'public/assets/css');
 
@@ -48,6 +50,8 @@ mix.copy(
     'public/assets/js/legacy/raphael.js',
 );
 
+mix.sourceMaps();
+
 if (mix.inProduction()) {
-    mix.version().sourceMaps();
+    mix.version();
 }

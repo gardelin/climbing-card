@@ -1,5 +1,3 @@
-import jQuery from 'jquery';
-window.$ = window.jQuery = jQuery;
 import Accordion from 'accordion-js';
 
 export default class LastClimbedRoutes {

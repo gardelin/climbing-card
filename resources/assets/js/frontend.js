@@ -1,6 +1,6 @@
 import ClimbingCard from './ClimbingCard';
 import LastClimbedRoutes from './LastClimbedRoutes';
-import Counter from './Counter';
+import Counter from './Utils/Counter';
 
 document.addEventListener('DOMContentLoaded', function () {
     window.ClimbingCard = new ClimbingCard();

@@ -8,7 +8,7 @@ $korisnik = $current_user->user_login;
 $siteurl = get_option('siteurl');
 
 ?>
-
+<div id="app"></div>
 <div class='wrap'>
     <?php echo '<h2>Ekarton ' . $current_user->user_firstname . ' ' . $current_user->user_lastname . "</h2>";
 
