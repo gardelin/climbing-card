@@ -32,7 +32,7 @@ class PageTemplates
         add_filter('template_include', array($this, 'viewProjectTemplate'));
 
         // Add your templates to this array.
-        $this->templates = array('journal/index.php' => __('Climbing Carts', 'climbing-card'));
+        $this->templates = array('crag/index.php' => __('Climbing Carts', 'climbing-card'));
     }
 
     /**

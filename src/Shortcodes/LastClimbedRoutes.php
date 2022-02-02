@@ -2,7 +2,7 @@
 
 namespace ClimbingCard\Shortcodes;
 
-use ClimbingCard\Repositories\Journals;
+use ClimbingCard\Repositories\Cards;
 use function ClimbingCard\view;
 
 class LastClimbedRoutes
@@ -20,8 +20,13 @@ class LastClimbedRoutes
     {
         $number = isset($attributes['number']) ? (int) $attributes['number'] : 10;
 
-        $journals = Journals::getInstance()->all(['limit' => $number]);
+        $cards = Cards::getInstance()->all(['limit' => $number]);
 
-        return view('journal/last-climbed-routes', ['journals' => $journals], false);
+        foreach ($cards as $card) {
+            $user = get_userdata($card->user_id);
+            $card->user_fullname = trim($user->first_name . " " . $user->last_name);
+        }
+
+        return view('cards/last-climbed-routes', ['cards' => $cards], false);
     }
 }

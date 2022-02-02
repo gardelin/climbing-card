@@ -10,7 +10,7 @@ Route::adminPage(
 		'climbingcard'
 	),
 	'climbingcard',
-	'Admin\JournalsController@index',
+	'Admin\CardsController@index',
 	['position' => 40, 'capability' => 'read']
 );
 

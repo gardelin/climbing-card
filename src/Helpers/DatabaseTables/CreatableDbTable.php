@@ -12,7 +12,7 @@ interface CreatableDbTable
     public function setup();
 
     /**
-     * Raturns fully qualified table name.
+     * Returns fully qualified table name.
      *
      * @return string
      */

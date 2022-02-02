@@ -141,7 +141,7 @@ jQuery(document).ready(function () {
     jQuery('input.del').click(function () {
         var id_podatak = jQuery('input#id_podatak').val();
         jQuery.ajax({
-            url: '/wp-content/plugins/climbing-card/resources/views/admin/journal/delete.php',
+            url: '/wp-content/plugins/climbing-card/resources/views/admin/crags/delete.php',
             type: 'POST',
             data: 'id_podatak=' + id_podatak,
             success: function () {

@@ -10,7 +10,7 @@ export default class ClimbingCard {
         this.select = this.form
             ? this.form.querySelector('select[name="users"]')
             : null;
-        this.table = document.getElementById('journals-table');
+        this.table = document.getElementById('crags-table');
         $(this.table).tablesorter();
 
         this.filter = document.getElementById('table-filter');
@@ -46,7 +46,7 @@ export default class ClimbingCard {
         if (!this.select.value) return;
 
         let apiData = climbingCardWordpressData;
-        let url = apiData.rest_url + '/journals/' + this.select.value;
+        let url = apiData.rest_url + '/crags/' + this.select.value;
         let that = this;
 
         fetch(url, {
@@ -60,18 +60,18 @@ export default class ClimbingCard {
                 let tbody = that.table.querySelector('tbody');
                 tbody.innerHTML = '';
 
-                data.data.journals.forEach((journal, index) => {
+                data.data.crags.forEach((crag, index) => {
                     let row = that.rowTemplate.cloneNode(true);
                     let columns = row.content.querySelectorAll('td');
-                    let style = journal.nacin.replace(' ', '-');
+                    let style = crag.nacin.replace(' ', '-');
 
                     columns[0].textContent = index + 1;
-                    columns[1].textContent = journal.smjer;
-                    columns[2].textContent = journal.penjaliste;
-                    columns[3].innerHTML = `<span class="dot ${style}" title="${journal.nacin}"></span>`;
-                    columns[4].textContent = journal.ocjena;
-                    columns[5].textContent = journal.komentar;
-                    columns[6].textContent = journal.datum;
+                    columns[1].textContent = crag.smjer;
+                    columns[2].textContent = crag.penjaliste;
+                    columns[3].innerHTML = `<span class="dot ${style}" title="${crag.nacin}"></span>`;
+                    columns[4].textContent = crag.ocjena;
+                    columns[5].textContent = crag.komentar;
+                    columns[6].textContent = crag.datum;
 
                     tbody.appendChild(row.content);
                 });
