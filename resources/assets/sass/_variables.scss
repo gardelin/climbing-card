@@ -2,8 +2,25 @@ $red-point: #d51c54;
 $flash: #f8b231;
 $on-sight: #00a19a;
 
+$red: #cf291d;
+$gray: #bfbfbf;
+$gray-bright: #f5f5f5;
+$gray-dark: #a5a5a5;
+$black: #1d1d1d;
+
 $breakpoints: (
     'small': 767px,
     'medium': 992px,
     'large': 1200px,
 ) !default;
+
+:root {
+    --cc-red: #{$red};
+    --cc-gray-bright: #{$gray-bright};
+    --cc-gray-dark: #{$gray-dark};
+    --cc-gray: #{$gray};
+    --cc-black: #{$black};
+    --cc-red-point: #{$red-point};
+    --cc-flash: #{$flash};
+    --cc-on-sight: #{$on-sight};
+}

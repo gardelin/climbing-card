@@ -16,10 +16,8 @@ class CardsController extends ApiController
             return;
         }
 
-        $user = get_userdata($userId);
+        $cards = (new Cards)->getByUserId($userId);
 
-        $crags = (new Cards)->getByUsername($user->user_login);
-
-        return self::apiResponse(['crags' => $crags]);
+        return self::apiResponse(['cards' => $cards]);
     }
 }

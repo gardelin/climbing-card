@@ -96,59 +96,21 @@ function views_path($path = '')
 }
 
 /**
- * Clears permalink cache because of issues if a
- * funnel page has the same slug as another page
+ * Check if we are currently on a op-protect admin page
  *
- * @return void
+ * @return bool
  */
-function clear_permalink_cache()
+function is_admin_screen()
 {
-    flush_rewrite_rules(true);
-}
+    $screen = get_current_screen();
+    $allowed = [
+        'climbingcard',
+    ];
 
-/**
- * Convert a string to snake case.
- *
- * @param  string  $value
- * @param  string  $delimiter
- * @return string
- */
-function snake_case($value, $delimiter = '_')
-{
-    if (!ctype_lower($value)) {
-        $value = preg_replace('/\s+/u', '', ucwords($value));
-        $value = mb_strtolower(preg_replace('/(.)(?=[A-Z])/u', '$1' . $delimiter, $value), 'UTF-8');
+    foreach ($allowed as $page) {
+        if (strpos($screen->id, $page) !== false)
+            return true;
     }
 
-    return $value;
-}
-
-/**
- * Convert all array keys recursively to snake case
- *
- * @param  array $array
- * @return array
- */
-function array_keys_to_snake_case(array $array): array
-{
-    foreach (array_keys($array) as $key) {
-        $value = &$array[$key];
-        unset($array[$key]);
-
-        // Transform the key
-        $transformedKey = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', ltrim($key, '!')));
-
-        // Also handle recursive keys
-        if (is_array($value)) {
-            $value = array_keys_to_snake_case($value);
-        }
-
-        // Add the new key
-        $array[$transformedKey] = $value;
-
-        // And unset the value
-        unset($value);
-    }
-
-    return $array;
+    return false;
 }

@@ -1,0 +1,22 @@
+@import '~bootstrap/dist/css/bootstrap-grid';
+@import '~normalize.css/normalize';
+@import '../sass/vendors/icons';
+@import 'variables';
+
+html {
+    font-size: 62.5%;
+}
+
+.climbing-card-admin-app {
+    background-color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+
+    #wpcontent {
+        padding-left: 0;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+}

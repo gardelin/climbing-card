@@ -88,13 +88,14 @@ class Cards
      * @param int $id user id
      * @return Collection
      */
-    public function getByUsername($name)
+    public function getByUserId($id)
     {
         global $wpdb;
+
         $results = new Collection;
         $tableName = CardsTable::getTableName();
 
-        $entries = $wpdb->get_results("SELECT * FROM $tableName WHERE username =  '" . esc_sql($name) . "' ORDER BY ocjena DESC", ARRAY_A);
+        $entries = $wpdb->get_results("SELECT * FROM $tableName WHERE user_id =  '" . esc_sql($id) . "' ORDER BY climbed_at DESC", ARRAY_A);
 
         foreach ($entries as $entry) {
             $item = new Card($entry);
