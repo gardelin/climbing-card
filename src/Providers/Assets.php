@@ -59,7 +59,7 @@ class Assets
         );
 
         wp_enqueue_style('climbingcard-admin-css', plugins_url('public/assets/css/admin.css', CLIMBING_CARD_FILE), [], CLIMBING_CARD_VERSION);
-        wp_enqueue_style('climbingcard-google-font', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap', false);
+        wp_enqueue_style('climbingcard-google-font', 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap', false);
     }
 
     /**
