@@ -114,3 +114,23 @@ function is_admin_screen()
 
     return false;
 }
+
+/**
+ * Check if user have access to climbing cards.
+ * 
+ * @return bool
+ */
+function can_access_card()
+{
+    return current_user_can('manage_options');
+}
+
+/**
+ * Check if user is admin. 
+ * 
+ * @return bool
+ */
+function is_admin()
+{
+    return current_user_can('administrator');
+}
