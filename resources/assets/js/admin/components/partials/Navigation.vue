@@ -16,7 +16,6 @@ export default {
 <style scoped lang="scss">
     ul {
         display: flex;
-        border-bottom: 1px solid var(--cc-gray-bright);
         background-color: #fff;
         margin: 0;
 

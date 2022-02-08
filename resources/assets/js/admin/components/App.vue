@@ -1,13 +1,15 @@
 
 <template>
     <div id="climbing-card">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <Navigation /> 
+        <section class="border-bottom-gray-bright">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <Navigation /> 
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
         <router-view />
     </div>
 </template>

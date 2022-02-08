@@ -35,6 +35,23 @@ class Card extends DataObject implements RepositoryAccess
     ];
 
     /**
+     * Rows that can be updated in database.
+     * 
+     * @type array
+     */
+    public static function canBeUpdated()
+    {
+        return [
+            'route',
+            'grade',
+            'crag',
+            'style',
+            'climbed_at',
+            'updated_at',
+        ];
+    }
+
+    /**
      * Return model repository.
      *
      * @return Cards

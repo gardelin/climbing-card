@@ -9,12 +9,11 @@
                 <th class="style">Nacin</th>
                 <th class="comment">Komentar</th>
                 <th class="climbed_at">Datum</th>
-                <th class="updated_at">Datum Upisa</th>
                 <th class="actions">Akcije</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="item" v-for="card in cards" :key="card.id">
+            <tr class="item" v-for="card in $store.state.cards" :key="card.id">
                 <td class="id">
                     <span>{{card.id}}</span>
                 </td>
@@ -27,11 +26,17 @@
                     <span v-else>{{card.crag}}</span>
                 </td>
                 <td class="grade">
-                    <input v-if="card.editmode" v-model="card.grade"/>
+                    <select v-if="card.editmode" v-model="card.grade">
+                        <option v-for="grade in grades" :key="grade">{{ grade }}</option>
+                    </select>
                     <span v-else>{{card.grade}}</span>
                 </td>
                 <td class="style">
-                    <input v-if="card.editmode" v-model="card.style"/>
+                    <select v-if="card.editmode" v-model="card.style">
+                        <option value="red point">Red Point</option>
+                        <option value="flash">Flash</option>
+                        <option value="on sight">On Sight</option>
+                    </select>
                     <span v-else :class="card.style.replace(' ','')">{{card.style}}</span>
                 </td>
                 <td class="comment">
@@ -42,20 +47,10 @@
                     <input v-if="card.editmode" type="date" v-model="card.climbed_at"/>
                     <span v-else>{{card.climbed_at}}</span>
                 </td>
-                <td class="updated_at">
-                    {{ card.updated_at }}
-                </td>
                 <td class="actions">
-                    <div class="threedots"></div>
-                    <div class="dropdown">
-                        <span v-if="!card.editmode">
-                            <i class="icon-pencil" @click="_edit(card)"></i>
-                        </span>
-                        <span v-else>
-                            <i class="icon-ok" @click="_save(card)"></i>
-                        </span>
-                        <i class="icon-trash-empty" @click="_delete(card)"></i>
-                    </div>
+                    <i v-if="!card.editmode" class="icon-pencil" @click="_edit(card)"></i>
+                    <i v-else class="icon-ok" @click="_update(card)"></i>
+                    <i class="icon-trash-empty" @click="_delete(card)"></i>
                 </td>
             </tr>
         </tbody>
@@ -63,29 +58,46 @@
 </template>
 
 <script>
+import Utils from '../../../utils/Utils';
+
 export default {
     name: 'Cards',
-    props: ['class'],
     data() {
         return {
             cards: [],
+            grades: Utils.grades(true),
         }
     },
     mounted() {
         fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`)
             .then(response => response.json())
-            .then(data => { this.cards = data.data.cards; })
+            .then(data => { 
+                // this.cards = data.data.cards; 
+                this.$store.commit("setCards", this.$store.state.cards = data.data.cards);
+            })
             .catch(error => console.log(error))
     },
     methods: {
         _edit(card) {
             card.editmode = true;
         },
-        _save(card){
+        _update(card) {
+            fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
+                    method: "PUT",
+                    credentials: 'same-origin',
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                        "X-WP-Nonce": window.climbingcards.nonce,
+                    },
+                    body: JSON.stringify(card),
+                })
+                .then(response => response.json())
+                .then(data => { console.log(data) })
+                .catch(error => console.log(error))
             card.editmode = false;
         },
         _delete(card) {
-            this.cards.splice(card, 1);
+            this.$store.state.cards.splice(card, 1);
         },
         _datetimeToHuman(datetime) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -123,8 +135,11 @@ export default {
 
             th {
                 font-weight: 500;
-                color: var(--cc-black); 
+                color: var(--cc-gray); 
                 border-bottom: 1px solid var(--cc-gray-bright);
+                font-size: 1.3rem;
+                font-weight: 500;
+                padding: 10px;
             }
 
             th:first-child {
@@ -140,7 +155,8 @@ export default {
         td {
             padding: 15px 0 15px 15px;
             font-size: 1.4rem;
-            color: var(--cc-black);
+            font-weight: 300;
+            color: var(--cc-gray);
             border-bottom: 1px solid var(--cc-gray-bright);
         }
 

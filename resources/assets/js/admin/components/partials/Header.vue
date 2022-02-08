@@ -18,7 +18,6 @@ export default {
 <style scoped lang="scss">
     .header {
         padding: 2rem 0;
-        border-bottom: 1px solid var(--cc-gray-bright);
 
         .title {
             color: var(--cc-black);
@@ -28,7 +27,8 @@ export default {
         }
 
         .description {
-            color: var(--cc-black);
+            color: var(--cc-gray);
+            font-weight: 300;
             margin: 1.5rem 0 0 0;
         }
     }

@@ -58,6 +58,34 @@ class Cards
     }
 
     /**
+     * Update DB entry.
+     *
+     * @param  array $data
+     * @return Card|false
+     */
+    public function update(array $data)
+    {
+        global $wpdb;
+
+        $only = Card::canBeUpdated();
+        $dataToUpdate = array_filter($data, function ($v) use ($only) {
+            return in_array($v, $only);
+        }, ARRAY_FILTER_USE_KEY);
+
+        $dataToUpdate['updated_at'] = gmdate('Y-m-d H:i:s');
+
+        $updated = $wpdb->update(CardsTable::getTableName(), $dataToUpdate, ['id' => $data['id']]);
+
+        if (false === $updated) {
+            return false;
+        }
+
+        $row = $wpdb->get_row("SELECT * FROM " . CardsTable::getTableName() . " WHERE id = " . $data['id'], ARRAY_A);
+
+        return new Card($row);
+    }
+
+    /**
      * Get all crags
      *
      * @return Collection
