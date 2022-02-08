@@ -46,15 +46,29 @@ class Cards
      * Add entry to DB table
      * 
      * @param array $data
-     * @return int|false
+     * @return Card|false
      */
-    public function insert($data)
+    public function create($data): Card
     {
         global $wpdb;
 
+        $only = Card::canBeUpdated();
+        $data = array_filter($data, function ($v) use ($only) {
+            return in_array($v, $only);
+        }, ARRAY_FILTER_USE_KEY);
+
+        $data['created_at'] = gmdate('Y-m-d H:i:s');
+        $data['updated_at'] = gmdate('Y-m-d H:i:s');
+        $data['user_id'] = get_current_user_id();
+
         $inserted = $wpdb->insert(CardsTable::getTableName(), $data);
 
-        return $inserted;
+        if (!$inserted)
+            return false;
+
+        $row = $wpdb->get_row("SELECT * FROM " . CardsTable::getTableName() . " WHERE id = " . $wpdb->insert_id, ARRAY_A);
+
+        return new Card($row);
     }
 
     /**
@@ -63,7 +77,7 @@ class Cards
      * @param  array $data
      * @return Card|false
      */
-    public function update(array $data)
+    public function update(array $data): Card
     {
         global $wpdb;
 

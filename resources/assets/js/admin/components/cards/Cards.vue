@@ -49,7 +49,7 @@
                 </td>
                 <td class="actions">
                     <i v-if="!card.editmode" class="icon-pencil" @click="_edit(card)"></i>
-                    <i v-else class="icon-ok" @click="_update(card)"></i>
+                    <i v-else class="icon-ok" @click="_save(card)"></i>
                     <i class="icon-trash-empty" @click="_delete(card)"></i>
                 </td>
             </tr>
@@ -81,10 +81,11 @@ export default {
         _edit(card) {
             card.editmode = true;
         },
-        _update(card) {
+        _save(card) {
+            let update = card.id ? true : false;
+
             fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                    method: "PUT",
-                    credentials: 'same-origin',
+                    method: update ? 'PUT' : 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=UTF-8',
                         "X-WP-Nonce": window.climbingcards.nonce,
@@ -92,9 +93,16 @@ export default {
                     body: JSON.stringify(card),
                 })
                 .then(response => response.json())
-                .then(data => { console.log(data) })
+                .then(data => {
+                    if (data.data.updated) {
+                        card.editmode = false;
+                    } else if (data.data.created) {
+                        card.id = data.data.card.id;
+                        card.editmode = false;
+                    }
+                })
                 .catch(error => console.log(error))
-            card.editmode = false;
+            
         },
         _delete(card) {
             this.$store.state.cards.splice(card, 1);
