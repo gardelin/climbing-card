@@ -60,4 +60,23 @@ class CardsController extends ApiController
             'card' => $card->toArray(),
         ]);
     }
+
+    /**
+     * Delete DB entry.
+     * 
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
+     */
+    public static function delete(WP_REST_Request $request)
+    {
+        $id = $request->get_param('id');
+        $deleted = Cards::getInstance()->delete($id);
+
+        if (!$deleted)
+            return self::apiErrorResponse(_e('Couldn\'t delete card'));
+
+        return self::apiResponse([
+            'deleted' => true,
+        ]);
+    }
 }

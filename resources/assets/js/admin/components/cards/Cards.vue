@@ -20,16 +20,19 @@
                 <td class="route">
                     <input v-if="card.editmode" v-model="card.route"/>
                     <span v-else>{{card.route}}</span>
+                    <span v-if="card.errors.route" class="error">{{card.errors.route}}</span>
                 </td>
                 <td class="crag">
                     <input v-if="card.editmode" v-model="card.crag"/>
                     <span v-else>{{card.crag}}</span>
+                    <span v-if="card.errors.crag" class="error">{{card.errors.crag}}</span>
                 </td>
                 <td class="grade">
                     <select v-if="card.editmode" v-model="card.grade">
                         <option v-for="grade in grades" :key="grade">{{ grade }}</option>
                     </select>
                     <span v-else>{{card.grade}}</span>
+                    <span v-if="card.errors.grade" class="error">{{card.errors.grade}}</span>
                 </td>
                 <td class="style">
                     <select v-if="card.editmode" v-model="card.style">
@@ -46,6 +49,7 @@
                 <td class="climbed_at">
                     <input v-if="card.editmode" type="date" v-model="card.climbed_at"/>
                     <span v-else>{{card.climbed_at}}</span>
+                    <span v-if="card.errors.climbed_at" class="error">{{card.errors.climbed_at}}</span>
                 </td>
                 <td class="actions">
                     <i v-if="!card.editmode" class="icon-pencil" @click="_edit(card)"></i>
@@ -72,41 +76,86 @@ export default {
         fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`)
             .then(response => response.json())
             .then(data => { 
-                // this.cards = data.data.cards; 
-                this.$store.commit("setCards", this.$store.state.cards = data.data.cards);
+                let cards = data.data.cards.map((card) => {
+                    card.errors = {};
+
+                    return card;
+                })
+                this.$store.commit("setCards", this.$store.state.cards = cards);
             })
             .catch(error => console.log(error))
     },
     methods: {
+        /**
+         * Set edit mode so user can edit card.
+         * 
+         * @return {Void}
+         */
         _edit(card) {
             card.editmode = true;
         },
+
+        /**
+         * Store new card to database
+         * 
+         * @return {Void}
+         */
         _save(card) {
+            if (!this._isValid(card)) {
+                return;
+            }
+
             let update = card.id ? true : false;
 
             fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                    method: update ? 'PUT' : 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        "X-WP-Nonce": window.climbingcards.nonce,
-                    },
-                    body: JSON.stringify(card),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.data.updated) {
-                        card.editmode = false;
-                    } else if (data.data.created) {
-                        card.id = data.data.card.id;
-                        card.editmode = false;
-                    }
-                })
-                .catch(error => console.log(error))
-            
+                method: update ? 'PUT' : 'POST',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "X-WP-Nonce": window.climbingcards.nonce,
+                },
+                body: JSON.stringify(card),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.data.updated) {
+                    card.editmode = false;
+                } else if (data.data.created) {
+                    card.id = data.data.card.id;
+                    card.editmode = false;
+                }
+            })
+            .catch(error => console.log(error));
         },
+
+        /**
+         * Delete card entry.
+         * 
+         * @return {Void}
+         */
         _delete(card) {
-            this.$store.state.cards.splice(card, 1);
+            let index = this.$store.state.cards.indexOf(card);
+
+            fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    "X-WP-Nonce": window.climbingcards.nonce,
+                },
+                body: JSON.stringify(card),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.data.deleted)
+                    this.$store.state.cards.splice(index, 1);
+            })
+            .catch(error => console.log(error));
         },
+
+        /**
+         * Convert mysql datetime so it's readable for human.
+         * 
+         * @return {String}
+         */
         _datetimeToHuman(datetime) {
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             const parsed = Date.parse(datetime);
@@ -114,6 +163,36 @@ export default {
             const localized = date.toLocalizedDateString('hr-HR', options);
 
             return localized;
+        },
+
+        /**
+         * Validate card inputs.
+         * 
+         * @return {Void}
+         */
+        _isValid(card) {
+            card.errors = {
+                route: null,
+                crag: null,
+                grade: null,
+                climbed_at: null,
+            }
+
+            if (!card.route)
+                card.errors.route = 'Route required!';
+            if (!card.crag)
+                card.errors.crag = 'Crag required!';
+            if (!card.grade)
+                card.errors.grade = 'Grade required!';
+            if (!card.climbed_at)
+                card.errors.climbed_at = 'Date required!';
+
+            for (let error in card.errors) {
+                if (card.errors[error])
+                    return false;
+            }
+            
+            return true;
         }
     }
 }
@@ -168,6 +247,11 @@ export default {
             border-bottom: 1px solid var(--cc-gray-bright);
         }
 
+        td {
+            vertical-align: top;
+        }
+
+        select,
         textarea,
         input {
             height: 30px;
@@ -182,7 +266,7 @@ export default {
 
         .grade,
         .id {
-            width: 40px;
+            width: 100px;
         }
 
         .style {
@@ -223,6 +307,12 @@ export default {
                 background-color: rgba($flash, 0.1);
                 color: darken($flash, 10%);
             }
+        }
+
+        .error {
+            display: block;
+            color: $red;
+            margin-top: 10px;
         }
     }
 </style>

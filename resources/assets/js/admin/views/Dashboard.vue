@@ -38,6 +38,7 @@ export default {
                 style: 'red point',
                 climbed_at: '',
                 editmode: true,
+                errors: {}
             });
         }
     }

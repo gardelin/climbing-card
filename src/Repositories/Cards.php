@@ -100,6 +100,21 @@ class Cards
     }
 
     /**
+     * Delete DB entries.
+     *
+     * @return bool
+     */
+    public function delete($id)
+    {
+        global $wpdb;
+
+        // Delete the row
+        $result = (bool) $wpdb->delete(CardsTable::getTableName(), ['id' => $id], ['%d']);
+
+        return $result;
+    }
+
+    /**
      * Get all crags
      *
      * @return Collection
