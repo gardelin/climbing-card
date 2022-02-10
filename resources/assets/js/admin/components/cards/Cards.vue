@@ -135,6 +135,9 @@ export default {
         _delete(card) {
             let index = this.$store.state.cards.indexOf(card);
 
+            if (!card.id)
+                return this.$store.state.cards.splice(index, 1);
+
             fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
                 method: 'DELETE',
                 headers: {
