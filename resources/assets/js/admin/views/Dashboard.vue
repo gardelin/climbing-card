@@ -36,7 +36,7 @@ export default {
                 grade: '',
                 comment: '',
                 style: 'red point',
-                climbed_at: '',
+                climbed_at: new Date().toISOString().substring(0,10),
                 editmode: true,
                 errors: {}
             });
