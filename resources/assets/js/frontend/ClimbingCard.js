@@ -7,9 +7,7 @@ export default class ClimbingCard {
 
         if (!this.form) return;
 
-        this.select = this.form
-            ? this.form.querySelector('select[name="users"]')
-            : null;
+        this.select = this.form ? this.form.querySelector('select[name="users"]') : null;
         this.table = document.getElementById('crags-table');
         $(this.table).tablesorter();
 
@@ -23,8 +21,7 @@ export default class ClimbingCard {
                 $(this.table)
                     .find('tbody tr')
                     .filter(function () {
-                        if ($(this).text().toLowerCase().indexOf(value) > -1)
-                            return $(this).show();
+                        if ($(this).text().toLowerCase().indexOf(value) > -1) return $(this).show();
 
                         return $(this).hide();
                     });

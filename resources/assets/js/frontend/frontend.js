@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 }
             },
-            {threshold: [0.5], root: document},
+            { threshold: [0.5], root: document },
         );
 
         observer.observe(document.querySelector('.club-stats-counters'));

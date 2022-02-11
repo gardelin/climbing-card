@@ -12,7 +12,7 @@ mix.options({
 // Define the public and resources paths
 mix.setPublicPath('public/assets');
 mix.setResourceRoot('../');
-mix.options({processCssUrls: false});
+mix.options({ processCssUrls: false });
 
 // Compile admin scripts and styles
 mix.js(['resources/assets/js/frontend/frontend.js'], 'public/assets/js');

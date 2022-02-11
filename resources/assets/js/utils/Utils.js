@@ -11,19 +11,7 @@ export default class Utils {
         let letters = ['a', 'a+', 'b', 'b+', 'c', 'c+'];
         let grades = [];
 
-        if (slashGrades)
-            letters = [
-                'a',
-                'a/a+',
-                'a+',
-                'a+/b',
-                'b',
-                'b/b+',
-                'b+',
-                'b+/c',
-                'c',
-                'c+',
-            ];
+        if (slashGrades) letters = ['a', 'a/a+', 'a+', 'a+/b', 'b', 'b/b+', 'b+', 'b+/c', 'c', 'c+'];
 
         numbers.forEach((number, index) => {
             letters.forEach(letter => {

@@ -6,13 +6,10 @@
 </template>
 
 <script>
-export default {
-   name: 'Header',
-   props: [
-       'title',
-       'description',
-   ]
-}
+    export default {
+        name: 'Header',
+        props: ['title', 'description'],
+    };
 </script>
 
 <style scoped lang="scss">

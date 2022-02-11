@@ -11,8 +11,7 @@ export default class Counter {
     constructor(element, options) {
         this.element = element;
 
-        if (!this.element)
-            throw 'Counter: Provide HTMLObject as first parameter!';
+        if (!this.element) throw 'Counter: Provide HTMLObject as first parameter!';
 
         let defaultOptions = {
             type: 'numeric',
@@ -20,7 +19,7 @@ export default class Counter {
             end: 1000,
             duration: 3000,
         };
-        this.options = {...defaultOptions, ...options};
+        this.options = { ...defaultOptions, ...options };
 
         if (this.options.type === 'numeric') {
             this.animateNumber();

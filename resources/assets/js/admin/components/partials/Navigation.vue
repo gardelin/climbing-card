@@ -8,9 +8,9 @@
 </template>
 
 <script>
-export default {
-   name: 'Navigation' 
-}
+    export default {
+        name: 'Navigation',
+    };
 </script>
 
 <style scoped lang="scss">
@@ -30,11 +30,11 @@ export default {
                 padding: 15px 20px;
                 text-decoration: none;
                 transition: color 500ms ease-in-out;
-                color: #444
+                color: #444;
             }
 
             a::after {
-                content: "";
+                content: '';
                 position: absolute;
                 bottom: -2px;
                 left: 0;
@@ -46,7 +46,7 @@ export default {
         }
 
         li:first-child a {
-            padding-left:0;
+            padding-left: 0;
         }
 
         li:hover a {
