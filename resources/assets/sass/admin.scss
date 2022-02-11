@@ -12,6 +12,8 @@ html {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
 
+    @import 'admin/table.scss';
+
     #wpcontent {
         padding-left: 0;
     }

@@ -1,11 +1,10 @@
-
 <template>
     <div id="climbing-card">
         <section class="border-bottom-gray-bright">
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <Navigation /> 
+                        <Navigation />
                     </div>
                 </div>
             </div>
@@ -15,12 +14,11 @@
 </template>
 
 <script>
-import Navigation from './partials/Navigation.vue'
-export default {
-    name: 'App',
-    components: { Navigation },
-}
+    import Navigation from './partials/Navigation.vue';
+    export default {
+        name: 'App',
+        components: {Navigation},
+    };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
