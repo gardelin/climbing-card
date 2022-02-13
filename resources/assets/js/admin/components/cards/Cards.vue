@@ -53,10 +53,10 @@
                     <span v-else>{{ card.climbed_at }}</span>
                     <span v-if="card.errors.climbed_at" class="error">{{ card.errors.climbed_at }}</span>
                 </td>
-                <td class="actions">
-                    <i v-if="!card.editmode" class="icon-pencil" @click="_edit(card)"></i>
-                    <i v-else class="icon-ok" @click="_save(card)"></i>
-                    <i class="icon-trash-empty" @click="_delete(card)"></i>
+                <td class="actions" data-name="Actions">
+                    <Edit2 v-if="!card.editmode" @click="_edit(card)" />
+                    <Save v-else @click="_save(card)" />
+                    <Trash2 @click="_delete(card)" />
                 </td>
             </tr>
         </tbody>
@@ -67,10 +67,12 @@
     import Utils from '../../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
+    import { Edit2, Trash2, Save } from 'lucide-vue-next';
 
     export default {
         name: 'Cards',
         data() {
+        components: { Edit2, Trash2, Save },
             return {
                 grades: Utils.grades(true),
             };
