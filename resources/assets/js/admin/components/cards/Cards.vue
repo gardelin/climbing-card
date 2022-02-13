@@ -18,17 +18,18 @@
                     <span>{{ card.id }}</span>
                 </td>
                 <td class="route" data-name="Route">
-                    <input v-if="card.editmode" v-model="card.route" />
+                    <input v-if="card.editmode" v-model="card.route" placeholder="Route Name" />
                     <span v-else>{{ card.route }}</span>
                     <span v-if="card.errors.route" class="error">{{ card.errors.route }}</span>
                 </td>
                 <td class="crag" data-name="Crag">
-                    <input v-if="card.editmode" v-model="card.crag" />
+                    <input v-if="card.editmode" v-model="card.crag" placeholder="Crag - Sector" />
                     <span v-else>{{ card.crag }}</span>
                     <span v-if="card.errors.crag" class="error">{{ card.errors.crag }}</span>
                 </td>
                 <td class="grade" data-name="Grade">
                     <select v-if="card.editmode" v-model="card.grade">
+                        <option value="" disabled selected>Select Grade</option>
                         <option v-for="grade in grades" :key="grade">
                             {{ grade }}
                         </option>
