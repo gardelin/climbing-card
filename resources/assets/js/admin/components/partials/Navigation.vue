@@ -1,8 +1,12 @@
 <template>
     <nav>
         <ul>
-            <li><router-link :to="{ name: 'dashboard', params: {} }">Dashboard</router-link></li>
-            <li><router-link :to="{ name: 'settings' }">Settings</router-link></li>
+            <li>
+                <router-link :to="{ name: 'dashboard', params: {} }">{{ $gettext('Cards') }}</router-link>
+            </li>
+            <li>
+                <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
+            </li>
         </ul>
     </nav>
 </template>

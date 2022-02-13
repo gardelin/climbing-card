@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import router from './router';
 import store from './store';
+import language from './language';
 import App from './components/App';
 
 class Admin {
@@ -11,6 +12,8 @@ class Admin {
 
         this.app.use(router);
         this.app.use(store);
+        this.app.use(language);
+
         this.app.mount('#app');
     }
 }

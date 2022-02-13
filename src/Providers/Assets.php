@@ -55,6 +55,8 @@ class Assets
                 'rest_url' => get_rest_url() . 'climbingcard/v1/',
                 'nonce' => wp_create_nonce('wp_rest'),
                 'logged_user_id' => get_current_user_id(),
+                'page_language' => get_locale(),
+                'user_language' => get_user_locale(),
             ]
         );
 

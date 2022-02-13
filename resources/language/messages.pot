@@ -1,0 +1,52 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: resources/assets/js/admin/views/Dashboard.vue:10
+msgid "Add"
+msgstr ""
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:5
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Cards"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:10
+msgid "Comment"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:7
+msgid "Crag"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:11
+msgid "Date"
+msgstr ""
+
+#: resources/assets/js/admin/views/Dashboard.vue:14
+msgid "Export"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:8
+msgid "Grade"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:5
+msgid "ID"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:6
+msgid "Route"
+msgstr ""
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:8
+msgid "Settings"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:9
+msgid "Style"
+msgstr ""
+
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "View, edit or add your climbed routes."
+msgstr ""

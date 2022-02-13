@@ -9,6 +9,12 @@
     export default {
         name: 'Header',
         props: ['title', 'description'],
+        data() {
+            return {
+                title: this.title,
+                description: this.description,
+            };
+        },
     };
 </script>
 

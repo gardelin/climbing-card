@@ -2,14 +2,14 @@
     <table class="cards">
         <thead>
             <tr>
-                <th class="id">ID</th>
-                <th class="route">Smjer</th>
-                <th class="crag">Penjaliste</th>
-                <th class="grade">Ocjena</th>
-                <th class="style">Nacin</th>
-                <th class="comment">Komentar</th>
-                <th class="climbed_at">Datum</th>
-                <th class="actions">Akcije</th>
+                <th class="id">{{ $gettext('ID') }}</th>
+                <th class="route">{{ $gettext('Route') }}</th>
+                <th class="crag">{{ $gettext('Crag') }}</th>
+                <th class="grade">{{ $gettext('Grade') }}</th>
+                <th class="style">{{ $gettext('Style') }}</th>
+                <th class="comment">{{ $gettext('Comment') }}</th>
+                <th class="climbed_at">{{ $gettext('Date') }}</th>
+                <th class="actions"></th>
             </tr>
         </thead>
         <tbody>

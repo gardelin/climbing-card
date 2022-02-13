@@ -28,6 +28,7 @@
         "normalize.css": "^8.0.1",
         "vue": "^3.2.29",
         "vue-router": "^4.0.12",
+        "vue3-gettext": "^2.0.0-beta.2",
         "vuex": "^4.0.2"
     },
     "private": true,
@@ -38,6 +39,8 @@
         "watch-poll": "npm run watch -- --watch-poll",
         "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
         "prod": "npm run production",
-        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "gettext:extract": "vue-gettext-extract",
+        "gettext:compile": "vue-gettext-compile"
     }
 }

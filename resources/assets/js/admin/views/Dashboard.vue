@@ -3,15 +3,15 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <Header title="Cards" description="View your team’s trades and transactions." />
+                    <Header :title="$gettext('Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
-                        <div class="btn" @click.prevent="appendCard(newCardTemplate())">
-                            <Plus :size="16" />
-                            Add
-                        </div>
                         <div class="btn" @click.prevent="exportToCsv()">
                             <Download :size="16" />
-                            export
+                            {{ $gettext('Export CSV') }}
+                        </div>
+                        <div class="btn" @click.prevent="appendCard(newCardTemplate())">
+                            <Plus :size="16" />
+                            {{ $gettext('Add') }}
                         </div>
                     </div>
                 </div>
