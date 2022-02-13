@@ -3,10 +3,19 @@ $flash: #f8b231;
 $on-sight: #00a19a;
 
 $red: #cf291d;
-$gray: #6a707c;
-$gray-bright: #f5f5f5;
-$gray-dark: #a5a5a5;
-$black: #111723;
+$black: #101828;
+
+$gray-25: #fcfcfd;
+$gray-50: #f9fafb;
+$gray-100: #f2f4f7;
+$gray-200: #eaecf0;
+$gray-300: #d0d5dd;
+$gray-400: #98a2b3;
+$gray-500: #667085;
+$gray-600: #475467;
+$gray-700: #344054;
+$gray-800: #1d2939;
+$gray-900: #101828;
 
 $breakpoints: (
     'small': 767px,
@@ -16,11 +25,21 @@ $breakpoints: (
 
 :root {
     --cc-red: #{$red};
-    --cc-gray-bright: #{$gray-bright};
-    --cc-gray-dark: #{$gray-dark};
-    --cc-gray: #{$gray};
     --cc-black: #{$black};
     --cc-red-point: #{$red-point};
     --cc-flash: #{$flash};
     --cc-on-sight: #{$on-sight};
+    --bs-gutter-x: 30px;
+
+    --cc-gray-25: #{$gray-25};
+    --cc-gray-50: #{$gray-50};
+    --cc-gray-100: #{$gray-100};
+    --cc-gray-200: #{$gray-200};
+    --cc-gray-300: #{$gray-300};
+    --cc-gray-400: #{$gray-400};
+    --cc-gray-500: #{$gray-500};
+    --cc-gray-600: #{$gray-600};
+    --cc-gray-700: #{$gray-700};
+    --cc-gray-800: #{$gray-800};
+    --cc-gray-900: #{$gray-900};
 }
