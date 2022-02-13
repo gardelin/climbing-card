@@ -54,9 +54,9 @@
                     <span v-if="card.errors.climbed_at" class="error">{{ card.errors.climbed_at }}</span>
                 </td>
                 <td class="actions" data-name="Actions">
-                    <Edit2 :size="20" v-if="!card.editmode" @click="_edit(card)" />
-                    <Save :size="20" v-else @click="_save(card)" />
-                    <Trash2 :size="20" @click="_delete(card)" />
+                    <Edit2 :size="18" v-if="!card.editmode" @click="_edit(card)" />
+                    <Save :size="18" v-else @click="_save(card)" />
+                    <Trash2 :size="18" @click="_delete(card)" />
                 </td>
             </tr>
         </tbody>
