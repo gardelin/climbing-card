@@ -1,6 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap-grid';
 @import '~normalize.css/normalize';
-@import '../sass/vendors/icons';
 @import 'variables';
 @import 'colors';
 @import 'mixins';
@@ -18,7 +17,9 @@ html {
     font-family: 'Inter', sans-serif;
     font-size: 1.4rem;
 
-    @import 'admin/table.scss';
+    @import 'ui/table.scss';
+    @import 'ui/form.scss';
+    @import 'ui/button.scss';
 
     #wpcontent {
         padding-left: 0;
@@ -32,21 +33,5 @@ html {
         display: flex;
         align-items: center;
         justify-content: space-between;
-    }
-
-    .cc-btn {
-        padding: 10px 20px;
-        background-color: #fff;
-        border: 2px solid var(--cc-gray-100);
-        border-radius: 4px;
-        transition: color, background-color 100ms ease-in-out;
-        color: var(--cc-black);
-        cursor: pointer;
-
-        &:hover {
-            background-color: var(--cc-black);
-            color: #fff;
-            border: 2px solid var(--cc-black);
-        }
     }
 }

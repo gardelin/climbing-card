@@ -1,0 +1,14 @@
+select,
+textarea,
+input {
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--cc-gray-300);
+    width: 100%;
+    box-shadow: var(--cc-box-shadow-sx);
+    color: var(--cc-gray-900);
+
+    :focus {
+        border: 1px solid var(--cc-red);
+    }
+}
