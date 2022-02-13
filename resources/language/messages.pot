@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 
-#: resources/assets/js/admin/views/Dashboard.vue:10
+#: resources/assets/js/admin/views/Dashboard.vue:14
 msgid "Add"
 msgstr ""
 
@@ -19,24 +19,44 @@ msgstr ""
 msgid "Crag"
 msgstr ""
 
+#: resources/assets/js/admin/components/cards/Cards.vue:197
+msgid "Crag required!"
+msgstr ""
+
 #: resources/assets/js/admin/components/cards/Cards.vue:11
 msgid "Date"
 msgstr ""
 
-#: resources/assets/js/admin/views/Dashboard.vue:14
-msgid "Export"
+#: resources/assets/js/admin/components/cards/Cards.vue:199
+msgid "Date required!"
+msgstr ""
+
+#: resources/assets/js/admin/views/Dashboard.vue:10
+msgid "Export CSV"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:8
 msgid "Grade"
 msgstr ""
 
+#: resources/assets/js/admin/components/cards/Cards.vue:198
+msgid "Grade required!"
+msgstr ""
+
 #: resources/assets/js/admin/components/cards/Cards.vue:5
 msgid "ID"
 msgstr ""
 
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Manage your climbed routes."
+msgstr ""
+
 #: resources/assets/js/admin/components/cards/Cards.vue:6
 msgid "Route"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:196
+msgid "Route required!"
 msgstr ""
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
@@ -45,8 +65,4 @@ msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:9
 msgid "Style"
-msgstr ""
-
-#: resources/assets/js/admin/views/Dashboard.vue:6
-msgid "View, edit or add your climbed routes."
 msgstr ""

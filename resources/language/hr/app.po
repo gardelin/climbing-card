@@ -10,7 +10,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: resources/assets/js/admin/views/Dashboard.vue:10
+#: resources/assets/js/admin/views/Dashboard.vue:14
 msgid "Add"
 msgstr "Dodaj"
 
@@ -27,11 +27,19 @@ msgstr "Komentar"
 msgid "Crag"
 msgstr "Penjalište"
 
+#: resources/assets/js/admin/components/cards/Cards.vue:197
+msgid "Crag required!"
+msgstr "Unesite Penjalište"
+
 #: resources/assets/js/admin/components/cards/Cards.vue:11
 msgid "Date"
 msgstr "Datum"
 
-#: resources/assets/js/admin/views/Dashboard.vue:14
+#: resources/assets/js/admin/components/cards/Cards.vue:199
+msgid "Date required!"
+msgstr "Unesite Datum!"
+
+#: resources/assets/js/admin/views/Dashboard.vue:10
 msgid "Export CSV"
 msgstr "Izvezi CSV"
 
@@ -39,13 +47,25 @@ msgstr "Izvezi CSV"
 msgid "Grade"
 msgstr "Ocjena"
 
+#: resources/assets/js/admin/components/cards/Cards.vue:198
+msgid "Grade required!"
+msgstr "Unesite Ocjenu!"
+
 #: resources/assets/js/admin/components/cards/Cards.vue:5
 msgid "ID"
 msgstr ""
 
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Manage your climbed routes."
+msgstr "Ažuriraj svoje popete smjerove"
+
 #: resources/assets/js/admin/components/cards/Cards.vue:6
 msgid "Route"
 msgstr "Smjer"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:196
+msgid "Route required!"
+msgstr "Unesite Smjer"
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
 msgid "Settings"
@@ -54,7 +74,3 @@ msgstr "Postavke"
 #: resources/assets/js/admin/components/cards/Cards.vue:9
 msgid "Style"
 msgstr "Način"
-
-#: resources/assets/js/admin/views/Dashboard.vue:6
-msgid "Manage your climbed routes."
-msgstr "Ažuriraj svoje popete smjerove"

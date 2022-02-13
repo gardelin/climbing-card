@@ -69,6 +69,9 @@
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
     import { Edit2, Trash2, Save } from 'lucide-vue-next';
+    import language from '../../language';
+
+    const { $gettext } = language;
 
     export default {
         name: 'Cards',
@@ -193,10 +196,10 @@
                     climbed_at: null,
                 };
 
-                if (!card.route) card.errors.route = 'Route required!';
-                if (!card.crag) card.errors.crag = 'Crag required!';
-                if (!card.grade) card.errors.grade = 'Grade required!';
-                if (!card.climbed_at) card.errors.climbed_at = 'Date required!';
+                if (!card.route) card.errors.route = $gettext('Route required!');
+                if (!card.crag) card.errors.crag = $gettext('Crag required!');
+                if (!card.grade) card.errors.grade = $gettext('Grade required!');
+                if (!card.climbed_at) card.errors.climbed_at = $gettext('Date required!');
 
                 for (let error in card.errors) {
                     if (card.errors[error]) return false;
