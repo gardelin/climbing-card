@@ -122,7 +122,7 @@ function is_admin_screen()
  */
 function can_access_card()
 {
-    return current_user_can('manage_options');
+    return (current_user_can('manage_options') || current_user_can('read'));
 }
 
 /**
