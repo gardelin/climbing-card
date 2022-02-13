@@ -12,3 +12,13 @@ input {
         border: 1px solid var(--cc-red);
     }
 }
+
+input[type='checkbox'] {
+    width: 1.6rem;
+    height: 1.6rem;
+
+    &:checked:before {
+        height: 1.6rem;
+        width: 1.6rem;
+    }
+}

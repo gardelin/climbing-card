@@ -2,7 +2,9 @@
     <table class="cards">
         <thead>
             <tr>
-                <th class="id">{{ $gettext('ID') }}</th>
+                <th class="export">
+                    <input type="checkbox" v-model="selectAll" @change="_selectAll()" />
+                </th>
                 <th class="route">{{ $gettext('Route') }}</th>
                 <th class="crag">{{ $gettext('Crag') }}</th>
                 <th class="grade">{{ $gettext('Grade') }}</th>
@@ -14,8 +16,8 @@
         </thead>
         <tbody>
             <tr class="item" v-for="card in cards" :key="card.id">
-                <td class="id" data-name="ID">
-                    <span>{{ card.id }}</span>
+                <td class="export" data-name="Export">
+                    <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card.id" number />
                 </td>
                 <td class="route" data-name="Route">
                     <input v-if="card.editmode" v-model="card.route" placeholder="Route Name" />
@@ -79,6 +81,8 @@
         data() {
             return {
                 grades: Utils.grades(true),
+                selected: [],
+                selectAll: false,
             };
         },
         async setup() {
@@ -91,6 +95,7 @@
                 card.errors = {};
                 return card;
             });
+
             store.commit('setCards', (store.state.cards = cards));
 
             return {
@@ -206,6 +211,20 @@
                 }
 
                 return true;
+            },
+
+            /**
+             * Check all routes
+             *
+             * @return {Void}
+             */
+            _selectAll(e) {
+                if (this.selectAll) {
+                    const selected = this.cards.map(card => card.id);
+                    this.selected = selected;
+                } else {
+                    this.selected = [];
+                }
             },
         },
     };
