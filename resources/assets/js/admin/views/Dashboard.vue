@@ -5,13 +5,13 @@
                 <div class="col">
                     <Header title="Cards" description="View your team’s trades and transactions." />
                     <div style="display: flex">
+                        <div class="btn" @click.prevent="appendCard(newCardTemplate())">
+                            <Plus :size="16" />
+                            Add
+                        </div>
                         <div class="btn" @click.prevent="exportToCsv()">
                             <Download :size="16" />
                             export
-                        </div>
-                        <div class="btn" @click.prevent="appendCard(newCardTemplate)">
-                            <Plus :size="16" />
-                            Add
                         </div>
                     </div>
                 </div>
@@ -46,9 +46,9 @@
     export default {
         name: 'Dashboard',
         components: { Cards, CardsSkeleton, Header, Plus, Download },
-        data() {
-            return {
-                newCardTemplate: {
+        methods: {
+            newCardTemplate() {
+                return {
                     id: '',
                     route: '',
                     crag: '',
@@ -58,10 +58,8 @@
                     climbed_at: new Date().toISOString().substring(0, 10),
                     editmode: true,
                     errors: {},
-                },
-            };
-        },
-        methods: {
+                };
+            },
             ...mapActions({
                 appendCard: 'appendCard',
                 exportToCsv: 'exportToCsv',
