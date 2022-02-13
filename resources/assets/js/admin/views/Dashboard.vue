@@ -4,8 +4,15 @@
             <div class="row">
                 <div class="col">
                     <Header title="Cards" description="View your team’s trades and transactions." />
-                    <div>
-                        <div class="cc-btn icon-plus" @click.prevent="appendCard(newCardTemplate)">Add climbed route</div>
+                    <div style="display: flex">
+                        <div class="btn" @click.prevent="exportToCsv()">
+                            <Download :size="16" />
+                            export
+                        </div>
+                        <div class="btn" @click.prevent="appendCard(newCardTemplate)">
+                            <Plus :size="16" />
+                            Add
+                        </div>
                     </div>
                 </div>
             </div>
@@ -34,10 +41,11 @@
     import CardsSkeleton from '../components/loading/CardsSkeleton';
     import Header from '../components/partials/Header';
     import { mapActions } from 'vuex';
+    import { Plus, Download } from 'lucide-vue-next';
 
     export default {
         name: 'Dashboard',
-        components: { Cards, CardsSkeleton, Header },
+        components: { Cards, CardsSkeleton, Header, Plus, Download },
         data() {
             return {
                 newCardTemplate: {
@@ -56,6 +64,7 @@
         methods: {
             ...mapActions({
                 appendCard: 'appendCard',
+                exportToCsv: 'exportToCsv',
             }),
         },
     };
