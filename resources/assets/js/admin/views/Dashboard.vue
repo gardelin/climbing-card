@@ -1,10 +1,12 @@
 <template>
-    <section class="header-section border-bottom-gray-bright">
+    <section class="header-section border-bottom-gray-100">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <Header title="Cards" description="Manage your climbing card. Edit, Delete your climbed routes." />
-                    <div class="cc-btn icon-plus" @click.prevent="appendCard(newCardTemplate)">Add climbed route</div>
+                    <Header title="Cards" description="View your team’s trades and transactions." />
+                    <div>
+                        <div class="cc-btn icon-plus" @click.prevent="appendCard(newCardTemplate)">Add climbed route</div>
+                    </div>
                 </div>
             </div>
         </div>

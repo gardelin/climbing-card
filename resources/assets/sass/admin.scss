@@ -2,9 +2,15 @@
 @import '~normalize.css/normalize';
 @import '../sass/vendors/icons';
 @import 'variables';
+@import 'colors';
+@import 'mixins';
 
 html {
     font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 .climbing-card-admin-app {
@@ -22,10 +28,6 @@ html {
         font-size: 1.4rem;
     }
 
-    .border-bottom-gray-bright {
-        border-bottom: 1px solid $gray-bright;
-    }
-
     .header-section .col {
         display: flex;
         align-items: center;
@@ -35,7 +37,7 @@ html {
     .cc-btn {
         padding: 10px 20px;
         background-color: #fff;
-        border: 2px solid var(--cc-gray-bright);
+        border: 2px solid var(--cc-gray-100);
         border-radius: 4px;
         transition: color, background-color 100ms ease-in-out;
         color: var(--cc-black);

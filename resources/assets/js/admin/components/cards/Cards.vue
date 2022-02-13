@@ -14,20 +14,20 @@
         </thead>
         <tbody>
             <tr class="item" v-for="card in cards" :key="card.id">
-                <td class="id">
+                <td class="id" data-name="ID">
                     <span>{{ card.id }}</span>
                 </td>
-                <td class="route">
+                <td class="route" data-name="Route">
                     <input v-if="card.editmode" v-model="card.route" />
                     <span v-else>{{ card.route }}</span>
                     <span v-if="card.errors.route" class="error">{{ card.errors.route }}</span>
                 </td>
-                <td class="crag">
+                <td class="crag" data-name="Crag">
                     <input v-if="card.editmode" v-model="card.crag" />
                     <span v-else>{{ card.crag }}</span>
                     <span v-if="card.errors.crag" class="error">{{ card.errors.crag }}</span>
                 </td>
-                <td class="grade">
+                <td class="grade" data-name="Grade">
                     <select v-if="card.editmode" v-model="card.grade">
                         <option v-for="grade in grades" :key="grade">
                             {{ grade }}
@@ -36,7 +36,7 @@
                     <span v-else>{{ card.grade }}</span>
                     <span v-if="card.errors.grade" class="error">{{ card.errors.grade }}</span>
                 </td>
-                <td class="style">
+                <td class="style" data-name="Style">
                     <select v-if="card.editmode" v-model="card.style">
                         <option value="red point">Red Point</option>
                         <option value="flash">Flash</option>
@@ -44,19 +44,19 @@
                     </select>
                     <span v-else :class="card.style.replace(' ', '')">{{ card.style }}</span>
                 </td>
-                <td class="comment">
+                <td class="comment" data-name="Comment">
                     <textarea v-if="card.editmode" v-model="card.comment" />
                     <span v-else>{{ card.comment }}</span>
                 </td>
-                <td class="climbed_at">
+                <td class="climbed_at" data-name="Date">
                     <input v-if="card.editmode" type="date" v-model="card.climbed_at" />
                     <span v-else>{{ card.climbed_at }}</span>
                     <span v-if="card.errors.climbed_at" class="error">{{ card.errors.climbed_at }}</span>
                 </td>
                 <td class="actions" data-name="Actions">
-                    <Edit2 v-if="!card.editmode" @click="_edit(card)" />
-                    <Save v-else @click="_save(card)" />
-                    <Trash2 @click="_delete(card)" />
+                    <Edit2 :size="20" v-if="!card.editmode" @click="_edit(card)" />
+                    <Save :size="20" v-else @click="_save(card)" />
+                    <Trash2 :size="20" @click="_delete(card)" />
                 </td>
             </tr>
         </tbody>
@@ -71,8 +71,8 @@
 
     export default {
         name: 'Cards',
-        data() {
         components: { Edit2, Trash2, Save },
+        data() {
             return {
                 grades: Utils.grades(true),
             };

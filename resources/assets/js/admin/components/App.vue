@@ -1,6 +1,6 @@
 <template>
     <div id="climbing-card">
-        <section class="border-bottom-gray-bright">
+        <section class="border-bottom-gray-100">
             <div class="container">
                 <div class="row">
                     <div class="col">

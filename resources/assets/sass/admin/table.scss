@@ -7,23 +7,23 @@
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--cc-gray-bright);
+    border: 1px solid var(--cc-gray-100);
     border-collapse: separate;
     border-spacing: 0;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    table-layout: fixed;
 
     thead tr {
         text-align: left;
-        background-color: #f9fafc;
+        background-color: var(--cc-gray-25);
 
         th {
-            font-weight: 500;
-            color: var(--cc-gray);
-            border-bottom: 1px solid var(--cc-gray-bright);
-            font-size: 1.3rem;
-            font-weight: 500;
-            padding: 10px;
+            font-weight: 400;
+            color: var(--cc-gray-500);
+            border-bottom: 1px solid var(--cc-gray-100);
+            font-size: 1.2rem;
+            padding: 10px 0 10px 15px;
         }
 
         th:first-child {
@@ -40,8 +40,8 @@
         padding: 15px 0 15px 15px;
         font-size: 1.4rem;
         font-weight: 300;
-        color: var(--cc-gray);
-        border-bottom: 1px solid var(--cc-gray-bright);
+        color: var(--cc-gray-500);
+        border-bottom: 1px solid var(--cc-gray-100);
     }
 
     td {
@@ -53,7 +53,7 @@
     input {
         height: 30px;
         border-radius: 5px;
-        border: 1px solid var(--cc-gray-bright);
+        border: 1px solid var(--cc-gray-100);
         width: 100%;
 
         :focus {
@@ -71,16 +71,11 @@
     }
 
     .actions {
-        width: 80px;
+        svg {
+            margin: 0 10px;
 
-        i {
-            padding: 5px;
+            cursor: pointer;
         }
-    }
-
-    [class^='icon-'] {
-        font-size: 1.6rem;
-        cursor: pointer;
     }
 
     .style span {
@@ -110,5 +105,37 @@
         display: block;
         color: $red;
         margin-top: 10px;
+    }
+
+    @include respond-to('small') {
+        display: flex;
+        flex-direction: column;
+        min-width: inherit;
+        border: 0;
+        box-shadow: none;
+
+        thead {
+            display: none;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--cc-gray-100);
+            margin-bottom: 20px;
+
+            td {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-right: 10px;
+
+                &:before {
+                    content: attr(data-name);
+                }
+            }
+        }
     }
 }

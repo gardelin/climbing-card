@@ -57,19 +57,19 @@
         height: 25px;
         border-radius: 4px !important;
         padding: 0 !important;
-        background-color: $gray-bright;
+        background-color: $gray-100;
         animation: pulse-bg 1s infinite;
     }
 
     @keyframes pulse-bg {
         0% {
-            background-color: $gray-bright;
+            background-color: $gray-100;
         }
         50% {
-            background-color: #f9f9f9;
+            background-color: #gray-200;
         }
         100% {
-            background-color: $gray-bright;
+            background-color: $gray-100;
         }
     }
 </style>

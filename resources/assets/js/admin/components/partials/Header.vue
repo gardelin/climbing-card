@@ -18,15 +18,17 @@
 
         .title {
             color: var(--cc-black);
-            font-size: 2.5rem;
+            font-size: 3rem;
+            line-height: 3.8rem;
             font-weight: 500;
             margin: 0;
         }
 
         .description {
-            color: var(--cc-gray);
+            color: var(--cc-gray-500);
+            font-size: 1.6rem;
+            line-height: 2.4rem;
             font-weight: 300;
-            margin: 1.5rem 0 0 0;
         }
     }
 </style>
