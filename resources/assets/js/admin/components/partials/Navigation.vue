@@ -30,7 +30,8 @@
                 padding: 15px 20px;
                 text-decoration: none;
                 transition: color 500ms ease-in-out;
-                color: #444;
+                color: var(--cc-gray-500);
+                font-weight: 400;
             }
 
             a::after {
