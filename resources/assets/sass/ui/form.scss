@@ -20,5 +20,7 @@ input[type='checkbox'] {
     &:checked:before {
         height: 1.6rem;
         width: 1.6rem;
+        margin-top: -1px;
+        margin-left: -2px;
     }
 }

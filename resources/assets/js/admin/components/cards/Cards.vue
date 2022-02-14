@@ -5,12 +5,32 @@
                 <th class="export">
                     <input type="checkbox" v-model="selectAll" @change="_selectAll()" />
                 </th>
-                <th class="route">{{ $gettext('Route') }}</th>
-                <th class="crag">{{ $gettext('Crag') }}</th>
-                <th class="grade">{{ $gettext('Grade') }}</th>
-                <th class="style">{{ $gettext('Style') }}</th>
+                <th class="route" @click="_sort('route')">
+                    {{ $gettext('Route') }}
+                    <ChevronUp :size="15" v-if="this.sortBy === 'route' && !this.asc" />
+                    <ChevronDown :size="15" v-if="this.sortBy === 'route' && this.asc" />
+                </th>
+                <th class="crag" @click="_sort('crag')">
+                    {{ $gettext('Crag') }}
+                    <ChevronUp :size="15" v-if="this.sortBy === 'crag' && !this.asc" />
+                    <ChevronDown :size="15" v-if="this.sortBy === 'crag' && this.asc" />
+                </th>
+                <th class="grade" @click="_sort('grade')">
+                    {{ $gettext('Grade') }}
+                    <ChevronUp :size="15" v-if="this.sortBy === 'grade' && !this.asc" />
+                    <ChevronDown :size="15" v-if="this.sortBy === 'grade' && this.asc" />
+                </th>
+                <th class="style" @click="_sort('style')">
+                    {{ $gettext('Style') }}
+                    <ChevronUp :size="15" v-if="this.sortBy === 'style' && !this.asc" />
+                    <ChevronDown :size="15" v-if="this.sortBy === 'style' && this.asc" />
+                </th>
                 <th class="comment">{{ $gettext('Comment') }}</th>
-                <th class="climbed_at">{{ $gettext('Date') }}</th>
+                <th class="climbed_at" @click="_sort('climbed_at')">
+                    {{ $gettext('Date') }}
+                    <ChevronUp :size="15" v-if="this.sortBy === 'climbed_at' && !this.asc" />
+                    <ChevronDown :size="15" v-if="this.sortBy === 'climbed_at' && this.asc" />
+                </th>
                 <th class="actions"></th>
             </tr>
         </thead>
@@ -70,18 +90,20 @@
     import Utils from '../../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
-    import { Edit2, Trash2, Save } from 'lucide-vue-next';
+    import { Edit2, Trash2, Save, ChevronDown, ChevronUp } from 'lucide-vue-next';
     import language from '../../language';
 
     const { $gettext } = language;
 
     export default {
         name: 'Cards',
-        components: { Edit2, Trash2, Save },
+        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp },
         data() {
             return {
                 grades: Utils.grades(true),
                 selectAll: false,
+                asc: false,
+                sortBy: null,
             };
         },
         async setup() {
@@ -237,6 +259,22 @@
                 } else {
                     this.$store.commit('setSelected', (this.$store.state.selected = []));
                 }
+            },
+
+            /**
+             * Sort table column
+             *
+             * @param {String} prop
+             * @return {Void}
+             */
+            _sort(prop) {
+                this.asc = !this.asc;
+                this.sortBy = prop;
+                const asc = this.asc;
+
+                this.$store.state.cards.sort((a, b) => {
+                    return asc ? a[prop] > b[prop] : a[prop] < b[prop];
+                });
             },
         },
     };
