@@ -57,7 +57,12 @@
                     style: 'red point',
                     climbed_at: new Date().toISOString().substring(0, 10),
                     editmode: true,
-                    errors: {},
+                    errors: {
+                        route: null,
+                        crag: null,
+                        grade: null,
+                        climbed_at: null,
+                    },
                 };
             },
             ...mapActions({

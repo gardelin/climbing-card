@@ -17,7 +17,7 @@
         <tbody>
             <tr class="item" v-for="card in cards" :key="card.id">
                 <td class="export" data-name="Export">
-                    <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card.id" number />
+                    <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card" number />
                 </td>
                 <td class="route" data-name="Route">
                     <input v-if="card.editmode" v-model="card.route" placeholder="Route Name" />
@@ -81,7 +81,6 @@
         data() {
             return {
                 grades: Utils.grades(true),
-                selected: [],
                 selectAll: false,
             };
         },
@@ -92,14 +91,28 @@
             const json = await response.json();
 
             cards.value = json.data.cards.map(card => {
-                card.errors = {};
+                card.errors = {
+                    route: null,
+                    crag: null,
+                    grade: null,
+                    climbed_at: null,
+                };
+
                 return card;
             });
 
             store.commit('setCards', (store.state.cards = cards));
 
+            const selected = computed({
+                get: () => store.state.selected,
+                set: value => {
+                    store.commit('setSelected', value);
+                },
+            });
+
             return {
                 cards: computed(() => store.state.cards),
+                selected: selected,
             };
         },
         methods: {
@@ -220,10 +233,9 @@
              */
             _selectAll(e) {
                 if (this.selectAll) {
-                    const selected = this.cards.map(card => card.id);
-                    this.selected = selected;
+                    this.$store.commit('setSelected', (this.$store.state.selected = this.$store.state.cards));
                 } else {
-                    this.selected = [];
+                    this.$store.commit('setSelected', (this.$store.state.selected = []));
                 }
             },
         },
