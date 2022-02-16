@@ -107,6 +107,17 @@
         margin-top: 10px;
     }
 
+    input,
+    textarea {
+        padding: 0 10px;
+    }
+
+    input,
+    textarea,
+    select {
+        height: 30px;
+    }
+
     @include respond-to('small') {
         display: flex;
         flex-direction: column;

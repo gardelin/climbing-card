@@ -1,4 +1,10 @@
 <template>
+    <div class="table-header">
+        <div class="search-container">
+            <Search :size="18" />
+            <input class="search" type="text" :placeholder="$gettext('Search Cards')" v-model="searchQuery" />
+        </div>
+    </div>
     <table class="cards">
         <thead>
             <tr>
@@ -35,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="item" v-for="card in cards" :key="card.id">
+            <tr class="item" v-for="card in searchedCards" :key="card.id">
                 <td class="export" data-name="Export">
                     <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card" number />
                 </td>
@@ -90,14 +96,14 @@
     import Utils from '../../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
-    import { Edit2, Trash2, Save, ChevronDown, ChevronUp } from 'lucide-vue-next';
+    import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search } from 'lucide-vue-next';
     import language from '../../language';
 
     const { $gettext } = language;
 
     export default {
         name: 'Cards',
-        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp },
+        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search },
         data() {
             return {
                 grades: Utils.grades(true),
@@ -108,6 +114,7 @@
         },
         async setup() {
             const cards = ref([]);
+            const searchQuery = ref('');
             const store = useStore();
             const response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`);
             const json = await response.json();
@@ -132,9 +139,18 @@
                 },
             });
 
+            const searchedCards = computed(() => {
+                const term = searchQuery.value.toLowerCase();
+                return store.state.cards.filter(card => {
+                    return false || card.route.toLowerCase().indexOf(term) != -1 || card.crag.toLowerCase().indexOf(term) != -1 || card.grade.toLowerCase().indexOf(term) != -1;
+                });
+            });
+
             return {
                 cards: computed(() => store.state.cards),
                 selected: selected,
+                searchedCards,
+                searchQuery,
             };
         },
         methods: {
@@ -280,4 +296,29 @@
     };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .table-header {
+        margin-top: 2.5rem;
+    }
+
+    .search-container {
+        position: relative;
+
+        .lucide {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: var(--cc-gray-500);
+        }
+
+        input {
+            border: 1px solid var(--cc-gray-300);
+            width: 400px;
+            padding: 5px 10px 5px 40px;
+            box-shadow: var(--cc-box-shadow-sx);
+            border-radius: var(--cc-border-radius);
+            font-weight: 300;
+        }
+    }
+</style>
