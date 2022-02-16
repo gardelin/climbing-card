@@ -6,9 +6,11 @@ input {
     width: 100%;
     box-shadow: var(--cc-box-shadow-sx);
     color: var(--cc-gray-900);
+    font-weight: 300;
+    background-color: white;
 
     :focus {
-        border: 1px solid var(--cc-red);
+        border: 1px solid var(--cc-red) !important;
     }
 }
 

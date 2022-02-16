@@ -4,6 +4,12 @@
             <Search :size="18" />
             <input class="search" type="text" :placeholder="$gettext('Search Cards')" v-model="searchQuery" />
         </div>
+        <div class="date-container">
+            <div class="input-group">
+                <flat-pickr v-model="dateRange" :config="config" :placeholder="$gettext('Select Dates')"> </flat-pickr>
+                <X :size="18" v-if="dateRange" @click="dateRange = null" />
+            </div>
+        </div>
     </div>
     <table class="cards">
         <thead>
@@ -41,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="item" v-for="card in searchedCards" :key="card.id">
+            <tr class="item" v-for="card in filteredCards" :key="card.id">
                 <td class="export" data-name="Export">
                     <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card" number />
                 </td>
@@ -96,25 +102,35 @@
     import Utils from '../../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
-    import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search } from 'lucide-vue-next';
+    import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
     import language from '../../language';
+    import flatPickr from 'vue-flatpickr-component';
 
     const { $gettext } = language;
 
     export default {
         name: 'Cards',
-        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search },
+        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X, flatPickr },
         data() {
             return {
                 grades: Utils.grades(true),
                 selectAll: false,
                 asc: false,
                 sortBy: null,
+                config: {
+                    altFormat: 'Y-m-d',
+                    altInput: true,
+                    dateFormat: 'Y-m-d',
+                    mode: 'range',
+                    locale: { rangeSeparator: ' - ' },
+                },
             };
         },
         async setup() {
             const cards = ref([]);
             const searchQuery = ref('');
+            const dateRange = ref('');
+
             const store = useStore();
             const response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`);
             const json = await response.json();
@@ -139,18 +155,36 @@
                 },
             });
 
-            const searchedCards = computed(() => {
+            const filteredCards = computed(() => {
+                let data = store.state.cards;
                 const term = searchQuery.value.toLowerCase();
-                return store.state.cards.filter(card => {
+                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
+
+                // Filter by date
+                if (dates?.[0] && dates?.[1]) {
+                    const from = new Date(dates[0]);
+                    const to = new Date(dates[1]);
+
+                    data = data.filter(card => {
+                        const check = new Date(card.climbed_at);
+                        return check >= from && check <= to;
+                    });
+                }
+
+                // Filter by searched term
+                data = data.filter(card => {
                     return false || card.route.toLowerCase().indexOf(term) != -1 || card.crag.toLowerCase().indexOf(term) != -1 || card.grade.toLowerCase().indexOf(term) != -1;
                 });
+
+                return data;
             });
 
             return {
                 cards: computed(() => store.state.cards),
                 selected: selected,
-                searchedCards,
+                filteredCards,
                 searchQuery,
+                dateRange,
             };
         },
         methods: {
@@ -292,13 +326,43 @@
                     return asc ? a[prop] > b[prop] : a[prop] < b[prop];
                 });
             },
+
+            /**
+             * Get cards filtered by date range
+             *
+             * @param {String} prop
+             * @return {Void}
+             */
+            _getCardsByDateRange(selectedDates, dateStr, instance) {
+                let dates = dateStr.spilt(' - ');
+                console.log(dates);
+            },
         },
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+    @import 'flatpickr/dist/flatpickr.css';
+
     .table-header {
         margin-top: 2.5rem;
+    }
+
+    .date-container {
+        position: relative;
+
+        .lucide {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: var(--cc-gray-500);
+            cursor: pointer;
+        }
+
+        input {
+            padding: 2px 40px 2px 10px;
+        }
     }
 
     .search-container {
@@ -314,8 +378,8 @@
 
         input {
             border: 1px solid var(--cc-gray-300);
-            width: 400px;
-            padding: 5px 10px 5px 40px;
+            width: 300px;
+            padding: 2px 10px 2px 40px;
             box-shadow: var(--cc-box-shadow-sx);
             border-radius: var(--cc-border-radius);
             font-weight: 300;
