@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <Header :title="$gettext('Cards')" :description="$gettext('Manage your climbed routes.')" />
+                    <Header :title="$gettext('CLimbing Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
-                        <div class="btn" @click.prevent="exportToCsv()">
+                        <div class="btn" v-if="selected.length" @click.prevent="exportToCsv()">
                             <Download :size="16" />
                             {{ $gettext('Export CSV') }}
                         </div>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+    import { computed } from 'vue';
+    import { useStore } from 'vuex';
     import Cards from '../components/cards/Cards';
     import CardsSkeleton from '../components/loading/CardsSkeleton';
     import Header from '../components/partials/Header';
@@ -46,6 +48,13 @@
     export default {
         name: 'Dashboard',
         components: { Cards, CardsSkeleton, Header, Plus, Download },
+        setup() {
+            const store = useStore();
+
+            return {
+                selected: computed(() => store.state.selected),
+            };
+        },
         methods: {
             newCardTemplate() {
                 return {
