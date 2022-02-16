@@ -11,23 +11,25 @@ msgstr ""
 msgid "Cards"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:10
+#: resources/assets/js/admin/components/cards/Cards.vue:40
 msgid "Comment"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:7
+#: resources/assets/js/admin/components/cards/Cards.vue:25
+#: resources/assets/js/admin/components/cards/Cards.vue:26
 msgid "Crag"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:197
+#: resources/assets/js/admin/components/cards/Cards.vue:290
 msgid "Crag required!"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:11
+#: resources/assets/js/admin/components/cards/Cards.vue:41
+#: resources/assets/js/admin/components/cards/Cards.vue:42
 msgid "Date"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:199
+#: resources/assets/js/admin/components/cards/Cards.vue:292
 msgid "Date required!"
 msgstr ""
 
@@ -35,34 +37,40 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:8
+#: resources/assets/js/admin/components/cards/Cards.vue:30
+#: resources/assets/js/admin/components/cards/Cards.vue:31
 msgid "Grade"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:198
+#: resources/assets/js/admin/components/cards/Cards.vue:291
 msgid "Grade required!"
-msgstr ""
-
-#: resources/assets/js/admin/components/cards/Cards.vue:5
-msgid "ID"
 msgstr ""
 
 #: resources/assets/js/admin/views/Dashboard.vue:6
 msgid "Manage your climbed routes."
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:6
+#: resources/assets/js/admin/components/cards/Cards.vue:21
 msgid "Route"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:196
+#: resources/assets/js/admin/components/cards/Cards.vue:289
 msgid "Route required!"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:5
+msgid "Search Cards"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:9
+msgid "Select Dates"
 msgstr ""
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
 msgid "Settings"
 msgstr ""
 
-#: resources/assets/js/admin/components/cards/Cards.vue:9
+#: resources/assets/js/admin/components/cards/Cards.vue:35
+#: resources/assets/js/admin/components/cards/Cards.vue:36
 msgid "Style"
 msgstr ""
