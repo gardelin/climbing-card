@@ -13,13 +13,15 @@ html {
 }
 
 .climbing-card-admin-app {
-    background-color: #fff;
+    background-color: var(--cc-gray-50);
     font-family: 'Inter', sans-serif;
     font-size: 1.4rem;
 
-    @import 'ui/table.scss';
-    @import 'ui/form.scss';
-    @import 'ui/button.scss';
+    @import 'ui/table';
+    @import 'ui/form';
+    @import 'ui/button';
+    @import 'ui/wrapper';
+    @import 'ui/toggle';
 
     #wpcontent {
         padding-left: 0;

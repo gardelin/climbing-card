@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <Header :title="$gettext('CLimbing Cards')" :description="$gettext('Manage your climbed routes.')" />
+                    <Header :title="$gettext('Climbing Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
                         <div class="btn" v-if="selected.length" @click.prevent="exportToCsv()">
                             <Download :size="16" />

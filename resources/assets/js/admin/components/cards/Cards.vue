@@ -47,7 +47,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="item" v-for="card in filteredCards" :key="card.id">
+            <tr class="item" :class="{ edit: card.editmode === true }" v-for="card in filteredCards" :key="card.id">
                 <td class="export" data-name="Export">
                     <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card" number />
                 </td>
@@ -159,6 +159,8 @@
                 let data = store.state.cards;
                 const term = searchQuery.value.toLowerCase();
                 const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
+
+                if (dates?.[0] && !dates?.[1]) dates[1] = dates[0];
 
                 // Filter by date
                 if (dates?.[0] && dates?.[1]) {
@@ -344,10 +346,6 @@
 <style lang="scss">
     @import 'flatpickr/dist/flatpickr.css';
 
-    .table-header {
-        margin-top: 2.5rem;
-    }
-
     .date-container {
         position: relative;
 
@@ -361,7 +359,12 @@
         }
 
         input {
+            border: 1px solid var(--cc-gray-300);
+            width: 300px;
             padding: 2px 40px 2px 10px;
+            box-shadow: var(--cc-box-shadow-sx);
+            border-radius: var(--cc-border-radius);
+            font-weight: 300;
         }
     }
 

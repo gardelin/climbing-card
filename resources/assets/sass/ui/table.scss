@@ -1,6 +1,15 @@
 .table-header {
     display: flex;
     justify-content: space-between;
+    margin-top: 2.5rem;
+
+    @include respond-to('small') {
+        gap: 30px;
+
+        input {
+            width: 100%;
+        }
+    }
 }
 
 .cards {
@@ -18,6 +27,7 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     table-layout: fixed;
+    background-color: white;
 
     thead tr {
         text-align: left;
@@ -150,6 +160,40 @@
 
                 &:before {
                     content: attr(data-name);
+                }
+            }
+
+            .export {
+                display: none;
+            }
+
+            .actions {
+                flex-direction: row-reverse;
+
+                &:before {
+                    display: none;
+                }
+            }
+
+            &.edit {
+                td:before {
+                    display: none;
+                }
+
+                input,
+                select {
+                    height: 40px;
+                }
+
+                textarea {
+                    height: 70px;
+                }
+
+                input,
+                textarea,
+                select {
+                    width: 100%;
+                    max-width: 100%;
                 }
             }
         }

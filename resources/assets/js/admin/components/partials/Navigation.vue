@@ -2,7 +2,7 @@
     <nav>
         <ul>
             <li>
-                <router-link :to="{ name: 'dashboard', params: {} }">{{ $gettext('Cards') }}</router-link>
+                <router-link :to="{ name: 'dashboard', params: {} }">{{ $gettext('Climbing Cards') }}</router-link>
             </li>
             <li>
                 <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
@@ -20,7 +20,6 @@
 <style scoped lang="scss">
     ul {
         display: flex;
-        background-color: #fff;
         margin: 0;
 
         li {
@@ -46,7 +45,7 @@
                 height: 2px;
                 width: 0%;
                 background-color: var(--cc-red);
-                transition: width 500ms ease-in-out;
+                transition: width 200ms ease-in-out;
             }
         }
 
@@ -64,6 +63,14 @@
 
         li:hover a::after {
             width: 100%;
+        }
+    }
+
+    .router-link-active {
+        color: var(--cc-red);
+
+        &:after {
+            width: calc(100%);
         }
     }
 </style>
