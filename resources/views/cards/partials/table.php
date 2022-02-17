@@ -1,4 +1,4 @@
-<table id="crags-table">
+<table id="cards-table">
     <thead>
         <tr>
             <th>Redni Broj</th>
@@ -24,7 +24,7 @@
 </table>
 
 <template id="table-row">
-    <tr class="crag">
+    <tr class="card">
         <td class="number"></td>
         <td class="route"></td>
         <td class="crag"></td>
