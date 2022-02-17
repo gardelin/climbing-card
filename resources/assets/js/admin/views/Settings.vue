@@ -23,8 +23,8 @@
                                         <div class="item">
                                             <div class="item-label">{{ $gettext('Make my card public') }}</div>
                                             <div class="item-content">
-                                                <Toggle :offLabel="$gettext('Off')" :onLabel="$gettext('On')" />
-                                                <p class="item-description">{{ $gettext('By turning this option your climbing card data will be visible to all page visitors.') }}</p>
+                                                <Toggle :name="is_climbing_card_public" v-model="isClimbingCardPublic" :offLabel="$gettext('Off')" :onLabel="$gettext('On')" style="width: 90px" @change="setUserClimbingCardStatus" />
+                                                <p class="item-description">{{ $gettext('By turning this option your climbing card data will be visible to all visitors') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-    import { computed } from 'vue';
+    import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
     import Toggle from '../components/Toggle';
     // import CardsSkeleton from '../components/loading/CardsSkeleton';
@@ -51,35 +51,41 @@
     export default {
         name: 'Settings',
         components: { Header, Toggle },
-        setup() {
-            // const store = useStore();
-            // return {
-            //     selected: computed(() => store.state.selected),
-            // };
-        },
-        methods: {
-            // newCardTemplate() {
-            //     return {
-            //         id: '',
-            //         route: '',
-            //         crag: '',
-            //         grade: '',
-            //         comment: '',
-            //         style: 'red point',
-            //         climbed_at: new Date().toISOString().substring(0, 10),
-            //         editmode: true,
-            //         errors: {
-            //             route: null,
-            //             crag: null,
-            //             grade: null,
-            //             climbed_at: null,
-            //         },
-            //     };
-            // },
-            // ...mapActions({
-            //     appendCard: 'appendCard',
-            //     exportToCsv: 'exportToCsv',
-            // }),
+        async setup() {
+            const store = useStore();
+            const isClimbingCardPublic = ref(null);
+
+            const response = await fetch(`${window.climbingcards.rest_url}settings?user_id=${window.climbingcards.logged_user_id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'X-WP-Nonce': window.climbingcards.nonce,
+                },
+            });
+            const json = await response.json();
+            isClimbingCardPublic.value = json.data.is_climbing_card_public;
+
+            return {
+                isClimbingCardPublic,
+                setUserClimbingCardStatus: () => {
+                    fetch(`${window.climbingcards.rest_url}settings`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json;charset=UTF-8',
+                            'X-WP-Nonce': window.climbingcards.nonce,
+                        },
+                        body: JSON.stringify({
+                            is_climbing_card_public: isClimbingCardPublic.value,
+                            user_id: window.climbingcards.logged_user_id,
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.data.updated) isClimbingCardPublic.value = data.data.is_climbing_card_public;
+                        })
+                        .catch(error => console.log(error));
+                },
+            };
         },
     };
 </script>

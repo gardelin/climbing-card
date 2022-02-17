@@ -9,7 +9,9 @@
                 </div>
             </div>
         </section>
-        <router-view />
+        <Suspense>
+            <router-view />
+        </Suspense>
     </div>
 </template>
 

@@ -6,3 +6,6 @@ register_rest_route('climbingcard/v1', '/cards/(?P<user_id>\d+)', ['methods' => 
 register_rest_route('climbingcard/v1', '/cards/(?P<id>\d+)',      ['methods' => 'PUT',    'callback' => [$namespace . '\CardsController', 'update'],        'permission_callback' => 'ClimbingCard\can_access_card']);
 register_rest_route('climbingcard/v1', '/cards/(?P<id>\d+)',      ['methods' => 'DELETE', 'callback' => [$namespace . '\CardsController', 'delete'],        'permission_callback' => 'ClimbingCard\can_access_card']);
 register_rest_route('climbingcard/v1', '/cards',                  ['methods' => 'POST',   'callback' => [$namespace . '\CardsController', 'create'],        'permission_callback' => 'ClimbingCard\can_access_card']);
+
+register_rest_route('climbingcard/v1', '/settings',               ['methods' => 'GET',    'callback' => [$namespace . '\SettingsController', 'get'],        'permission_callback' => 'ClimbingCard\can_access_card']);
+register_rest_route('climbingcard/v1', '/settings',               ['methods' => 'POST',   'callback' => [$namespace . '\SettingsController', 'save'],       'permission_callback' => 'ClimbingCard\can_access_card']);
