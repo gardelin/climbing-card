@@ -2,6 +2,7 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 
 import Dashboard from '../views/Dashboard';
 import Settings from '../views/Settings';
+import Statistics from '../views/Statistics';
 
 // Define all routes
 export const routes = [
@@ -16,6 +17,12 @@ export const routes = [
         path: '/settings',
         component: Settings,
         meta: { title: 'Climbing Card - Settings' },
+    },
+    {
+        name: 'statistics',
+        path: '/statistics',
+        component: Statistics,
+        meta: { title: 'Climbing Card - Statistics' },
     },
 ];
 

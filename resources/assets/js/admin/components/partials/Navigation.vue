@@ -5,6 +5,9 @@
                 <router-link :to="{ name: 'dashboard', params: {} }">{{ $gettext('Climbing Cards') }}</router-link>
             </li>
             <li>
+                <router-link :to="{ name: 'statistics' }">{{ $gettext('Statistics') }}</router-link>
+            </li>
+            <li>
                 <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
             </li>
         </ul>
