@@ -1,0 +1,27 @@
+select,
+textarea,
+input {
+    border-radius: 5px;
+    border: 1px solid var(--cc-gray-300);
+    width: 100%;
+    box-shadow: var(--cc-box-shadow-sx);
+    color: var(--cc-gray-900);
+    font-weight: 300;
+    background-color: white;
+
+    :focus {
+        border: 1px solid var(--cc-red) !important;
+    }
+}
+
+input[type='checkbox'] {
+    width: 1.6rem;
+    height: 1.6rem;
+
+    &:checked:before {
+        height: 1.6rem;
+        width: 1.6rem;
+        margin-top: -1px;
+        margin-left: -2px;
+    }
+}

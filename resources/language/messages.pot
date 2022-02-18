@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+
+#: resources/assets/js/admin/views/Dashboard.vue:14
+msgid "Add"
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:27
+msgid "By turning this option your climbing card data will be visible to all visitors"
+msgstr ""
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:5
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Climbing Cards"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:40
+msgid "Comment"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:25
+#: resources/assets/js/admin/components/cards/Cards.vue:26
+msgid "Crag"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:292
+msgid "Crag required!"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:41
+#: resources/assets/js/admin/components/cards/Cards.vue:42
+msgid "Date"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:294
+msgid "Date required!"
+msgstr ""
+
+#: resources/assets/js/admin/views/Dashboard.vue:10
+msgid "Export CSV"
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:20
+msgid "General"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:30
+#: resources/assets/js/admin/components/cards/Cards.vue:31
+msgid "Grade"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:293
+msgid "Grade required!"
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:24
+msgid "Make my card public"
+msgstr ""
+
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Manage your climbed routes."
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:6
+msgid "Manage your climbing card settings"
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:26
+msgid "Off"
+msgstr ""
+
+#: resources/assets/js/admin/views/Settings.vue:26
+msgid "On"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:21
+msgid "Route"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:291
+msgid "Route required!"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:5
+msgid "Search Cards"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:9
+msgid "Select Dates"
+msgstr ""
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/views/Settings.vue:6
+msgid "Settings"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:35
+#: resources/assets/js/admin/components/cards/Cards.vue:36
+msgid "Style"
+msgstr ""

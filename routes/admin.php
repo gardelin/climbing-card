@@ -10,14 +10,6 @@ Route::adminPage(
 		'climbingcard'
 	),
 	'climbingcard',
-	'Admin\JournalsController@index',
+	'Admin\CardsController@index',
 	['position' => 40, 'capability' => 'read']
-);
-
-Route::adminSubPage(
-	__('Settings',  'climbingcard'),
-	'climbingcard',
-	'settings',
-	'Admin\SettingsController@index',
-	['position' => 60, 'capability' => 'read']
 );

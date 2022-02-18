@@ -2,7 +2,7 @@
 
 namespace ClimbingCard\Shortcodes;
 
-use ClimbingCard\Repositories\Journals;
+use ClimbingCard\Repositories\Cards;
 use function ClimbingCard\view;
 
 class Stats
@@ -18,8 +18,8 @@ class Stats
      */
     public static function render($attributes = [], $content = null): string
     {
-        $stats = Journals::getInstance()->stats();
+        $stats = Cards::getInstance()->stats();
 
-        return view('journal/stats', ['stats' => $stats], false);
+        return view('cards/stats', ['stats' => $stats], false);
     }
 }

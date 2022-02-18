@@ -1,0 +1,39 @@
+@import '~bootstrap/dist/css/bootstrap-grid';
+@import '~normalize.css/normalize';
+@import 'variables';
+@import 'colors';
+@import 'mixins';
+
+html {
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.climbing-card-admin-app {
+    background-color: var(--cc-gray-50);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+
+    @import 'ui/table';
+    @import 'ui/form';
+    @import 'ui/button';
+    @import 'ui/wrapper';
+    @import 'ui/toggle';
+
+    #wpcontent {
+        padding-left: 0;
+    }
+
+    p {
+        font-size: 1.4rem;
+    }
+
+    .header-section .col {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

@@ -11,8 +11,14 @@ class Plugin
      */
     public function init()
     {
+        // handle database upgrades
+        add_action('admin_init', [new Database, 'run']);
+
+        // fill database with necessary data
+        add_action('admin_init', [new Seeder, 'run']);
+
         // Register routes
-        add_action('init', [new RouteRegistration, 'register']);
+        add_action('init', [new Routes, 'register']);
 
         // Load translations
         add_action('init', [$this, 'loadPluginTextDomain']);
@@ -24,16 +30,10 @@ class Plugin
         add_action('init', [new PageTemplates, 'init']);
 
         // Load shortcodes rendering
-        add_action('init', [new ShortcodesProvider, 'init']);
+        add_action('init', [new Shortcodes, 'init']);
 
-        // Add notices
-        add_action('admin_notices', [$this, 'initNotices']);
-
-        // handle database upgrades
-        add_action('admin_init', [new Upgrades, 'run']);
-
-        // fill database with necessary data
-        add_action('admin_init', [new Seeder, 'run']);
+        // Set changes to wordpress registration form
+        add_action('init', [new Registration, 'init']);
     }
 
     /**
@@ -46,14 +46,5 @@ class Plugin
 
         load_textdomain($domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo');
         load_plugin_textdomain($domain, FALSE, CLIMBING_CARD_PATH . '/lang/');
-    }
-
-    /**
-     * Add some notices to the admin screens
-     *
-     * @return void
-     */
-    public function initNotices()
-    {
     }
 }

@@ -1,0 +1,201 @@
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+
+    @include respond-to('small') {
+        gap: 30px;
+
+        input {
+            width: 100%;
+        }
+    }
+}
+
+.cards {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2.5rem 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: var(--cc-box-shadow-md);
+    border: 1px solid var(--cc-gray-100);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    table-layout: fixed;
+    background-color: white;
+
+    thead tr {
+        text-align: left;
+        background-color: var(--cc-gray-25);
+
+        th {
+            font-weight: 400;
+            color: var(--cc-gray-500);
+            border-bottom: 1px solid var(--cc-gray-100);
+            font-size: 1.2rem;
+            padding: 10px 0 10px 15px;
+            cursor: pointer;
+
+            .lucide {
+                vertical-align: text-bottom;
+            }
+        }
+
+        th:first-child {
+            border-top-right-radius: 5px;
+        }
+
+        th:last-child {
+            border-top-left-radius: 5px;
+        }
+    }
+
+    th,
+    td {
+        padding: 15px 0 15px 15px;
+        font-size: 1.4rem;
+        font-weight: 300;
+        color: var(--cc-gray-500);
+        border-bottom: 1px solid var(--cc-gray-100);
+    }
+
+    td {
+        vertical-align: top;
+    }
+
+    .export {
+        width: 35px;
+    }
+
+    .grade {
+        width: 138;
+    }
+
+    .id {
+        width: 100px;
+    }
+
+    .style {
+        width: 116px;
+    }
+
+    .actions {
+        width: 100px;
+        svg {
+            margin: 0 10px;
+
+            cursor: pointer;
+        }
+    }
+
+    .style span {
+        border-radius: 50px;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        font-size: 1rem;
+        font-weight: 500;
+
+        &.redpoint {
+            background-color: rgba($red-point, 0.1);
+            color: darken($red-point, 10%);
+        }
+
+        &.onsight {
+            background-color: rgba($on-sight, 0.1);
+            color: darken($on-sight, 10%);
+        }
+
+        &.flash {
+            background-color: rgba($flash, 0.1);
+            color: darken($flash, 10%);
+        }
+    }
+
+    .error {
+        display: block;
+        color: $red;
+        margin-top: 10px;
+    }
+
+    input,
+    textarea {
+        padding: 0 10px;
+    }
+
+    input,
+    textarea,
+    select {
+        height: 30px;
+    }
+
+    @include respond-to('small') {
+        display: flex;
+        flex-direction: column;
+        min-width: inherit;
+        border: 0;
+        box-shadow: none;
+
+        thead {
+            display: none;
+        }
+
+        .item {
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--cc-gray-100);
+            margin-bottom: 20px;
+
+            td {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-right: 10px;
+
+                &:before {
+                    content: attr(data-name);
+                }
+            }
+
+            .export {
+                display: none;
+            }
+
+            .actions {
+                flex-direction: row-reverse;
+
+                &:before {
+                    display: none;
+                }
+            }
+
+            &.edit {
+                td:before {
+                    display: none;
+                }
+
+                input,
+                select {
+                    height: 40px;
+                }
+
+                textarea {
+                    height: 70px;
+                }
+
+                input,
+                textarea,
+                select {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}

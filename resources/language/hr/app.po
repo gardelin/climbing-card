@@ -1,0 +1,111 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: resources/assets/js/admin/views/Dashboard.vue:14
+msgid "Add"
+msgstr "Dodaj"
+
+#: resources/assets/js/admin/views/Settings.vue:27
+msgid ""
+"By turning this option your climbing card data will be visible to all "
+"visitors"
+msgstr "Ako uključte ovu opciju vaš penjački kartno biti će vidljiv svim posjetiteljima stranice"
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:5
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Climbing Cards"
+msgstr "Penjački Karton"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:40
+msgid "Comment"
+msgstr "Komentar"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:25
+#: resources/assets/js/admin/components/cards/Cards.vue:26
+msgid "Crag"
+msgstr "Penjalište"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:292
+msgid "Crag required!"
+msgstr "Unesite Penjalište"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:41
+#: resources/assets/js/admin/components/cards/Cards.vue:42
+msgid "Date"
+msgstr "Datum"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:294
+msgid "Date required!"
+msgstr "Unesite Datum!"
+
+#: resources/assets/js/admin/views/Dashboard.vue:10
+msgid "Export CSV"
+msgstr "Izvezi CSV"
+
+#: resources/assets/js/admin/views/Settings.vue:20
+msgid "General"
+msgstr "Generalne Postavke"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:30
+#: resources/assets/js/admin/components/cards/Cards.vue:31
+msgid "Grade"
+msgstr "Ocjena"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:293
+msgid "Grade required!"
+msgstr "Unesite Ocjenu!"
+
+#: resources/assets/js/admin/views/Settings.vue:24
+msgid "Make my card public"
+msgstr "Učini moj penjački karton javnim"
+
+#: resources/assets/js/admin/views/Dashboard.vue:6
+msgid "Manage your climbed routes."
+msgstr "Ažuriraj svoje popete smjerove"
+
+#: resources/assets/js/admin/views/Settings.vue:6
+msgid "Manage your climbing card settings"
+msgstr "Postavke penjačkog kartona"
+
+#: resources/assets/js/admin/views/Settings.vue:26
+msgid "Off"
+msgstr "Isključeno"
+
+#: resources/assets/js/admin/views/Settings.vue:26
+msgid "On"
+msgstr "Uključeno"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:21
+msgid "Route"
+msgstr "Smjer"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:291
+msgid "Route required!"
+msgstr "Unesite Smjer"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:5
+msgid "Search Cards"
+msgstr "Pretraži Karton"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:9
+msgid "Select Dates"
+msgstr "Odaberi Datume"
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/views/Settings.vue:6
+msgid "Settings"
+msgstr "Postavke"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:35
+#: resources/assets/js/admin/components/cards/Cards.vue:36
+msgid "Style"
+msgstr "Način"

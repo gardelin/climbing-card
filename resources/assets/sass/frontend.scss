@@ -83,10 +83,15 @@
     }
 }
 
-.page-template-journal {
+.page-template-cards {
     form {
         display: flex;
-        gap: 10px;
+        justify-content: space-between;
+
+        > div {
+            display: flex;
+            gap: 10px;
+        }
 
         select {
             padding: 12px;
@@ -113,7 +118,7 @@
             padding: 10px;
         }
 
-        .journal:nth-child(even) {
+        .card:nth-child(even) {
             background-color: #fafafa;
         }
     }
@@ -149,5 +154,23 @@
                 text-align: center;
             }
         }
+    }
+}
+
+.sub-menu a[href="https://vertikal.local/wp-login.php?action=logout"]
+{
+    display: none;
+}
+
+.logged-in .sub-menu {
+    a[href="https://vertikal.local/wp-login.php?action=register"],
+    a[href="https://vertikal.local/wp-login.php"]
+    {
+        display: none;
+    }
+
+    a[href="https://vertikal.local/wp-login.php?action=logout"]
+    {
+        display: block;
     }
 }

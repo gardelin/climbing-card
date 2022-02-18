@@ -2,7 +2,7 @@
 
 namespace ClimbingCard\Providers;
 
-// use ClimbingCard\Helpers\DatabaseSeeders\JournalsSeeder;
+use ClimbingCard\Helpers\DatabaseSeeders\CardsSeeder;
 
 class Seeder
 {
@@ -11,6 +11,6 @@ class Seeder
      */
     public function run()
     {
-        // (new JournalsSeeder)->run();
+        (new CardsSeeder)->run();
     }
 }

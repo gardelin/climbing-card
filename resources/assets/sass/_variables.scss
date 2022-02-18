@@ -2,8 +2,62 @@ $red-point: #d51c54;
 $flash: #f8b231;
 $on-sight: #00a19a;
 
+$red: #cf291d;
+$black: #101828;
+
+$gray-25: #fcfcfd;
+$gray-50: #f9fafb;
+$gray-100: #f2f4f7;
+$gray-200: #eaecf0;
+$gray-300: #d0d5dd;
+$gray-400: #98a2b3;
+$gray-500: #667085;
+$gray-600: #475467;
+$gray-700: #344054;
+$gray-800: #1d2939;
+$gray-900: #101828;
+
+$box-shadow-xs: 0px 1px 2px rgba(16, 24, 40, 0.05);
+$box-shadow-sm: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+$box-shadow-md: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+$box-shadow-lg: 0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+$box-shadow-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+$box-shadow-2xl: 0px 24px 48px -12px rgba(16, 24, 40, 0.18);
+
+$border-radius: 8px;
+
 $breakpoints: (
     'small': 767px,
     'medium': 992px,
     'large': 1200px,
 ) !default;
+
+:root {
+    --cc-red: #{$red};
+    --cc-black: #{$black};
+    --cc-red-point: #{$red-point};
+    --cc-flash: #{$flash};
+    --cc-on-sight: #{$on-sight};
+    --bs-gutter-x: 30px;
+
+    --cc-gray-25: #{$gray-25};
+    --cc-gray-50: #{$gray-50};
+    --cc-gray-100: #{$gray-100};
+    --cc-gray-200: #{$gray-200};
+    --cc-gray-300: #{$gray-300};
+    --cc-gray-400: #{$gray-400};
+    --cc-gray-500: #{$gray-500};
+    --cc-gray-600: #{$gray-600};
+    --cc-gray-700: #{$gray-700};
+    --cc-gray-800: #{$gray-800};
+    --cc-gray-900: #{$gray-900};
+
+    --cc-box-shadow-sx: #{$box-shadow-xs};
+    --cc-box-shadow-sm: #{$box-shadow-sm};
+    --cc-box-shadow-md: #{$box-shadow-md};
+    --cc-box-shadow-lg: #{$box-shadow-lg};
+    --cc-box-shadow-xl: #{$box-shadow-xl};
+    --cc-box-shadow-2xl: #{$box-shadow-2xl};
+
+    --cc-border-radius: #{$border-radius};
+}

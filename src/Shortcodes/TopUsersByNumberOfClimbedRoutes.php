@@ -2,7 +2,7 @@
 
 namespace ClimbingCard\Shortcodes;
 
-use ClimbingCard\Repositories\Journals;
+use ClimbingCard\Repositories\Cards;
 use function ClimbingCard\view;
 
 class TopUsersByNumberOfClimbedRoutes
@@ -20,14 +20,14 @@ class TopUsersByNumberOfClimbedRoutes
     {
         $number = isset($attributes['number']) ? (int) $attributes['number'] : 10;
 
-        $users = Journals::getInstance()->topUsersByNumberOfClimbedRoutes($number);
+        $users = Cards::getInstance()->topUsersByNumberOfClimbedRoutes($number);
 
         foreach ($users as $key => $user) {
-            $data = get_user_by('login', $user['username']);
-            $fullname = $data->user_firstname . " " . $data->user_lastname;
+            $user = get_userdata($user['user_id']);
+            $fullname = trim($user->first_name . " " . $user->last_name);
             $users[$key]['fullname'] = $fullname;
         }
 
-        return view('journal/top-users-by-number-of-climbed-routes', ['users' => $users], false);
+        return view('cards/top-users-by-number-of-climbed-routes', ['users' => $users], false);
     }
 }
