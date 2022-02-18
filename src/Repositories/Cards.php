@@ -212,62 +212,6 @@ class Cards
         return $result;
     }
 
-    /**
-     * Copied from old plugin (novikarton)
-     */
-    function ekarton_karton_exist($korisnik)
-    {
-        global $wpdb;
-        $tableName = CardsTable::getTableName();
-        $sql = "SELECT * FROM $tableName WHERE username = '" . esc_sql($korisnik) . "' LIMIT 1";
-        $result = $wpdb->get_results($sql);
-
-        if ($result)
-            return 1;
-
-        return 0;
-    }
-
-    /**
-     * Copied from old plugin (novikarton)
-     */
-    function get_all_korisnik($korisnik)
-    {
-        global $wpdb;
-        $tableName = CardsTable::getTableName();
-
-        $sql = "SELECT * FROM $tableName WHERE username = '" . esc_sql($korisnik) . "' ORDER BY ocjena DESC";
-
-        $rows = $wpdb->get_results($sql, ARRAY_A);
-
-        echo '<table id="table_smjerovi" cellspacing="1" class="tablesorter">
-                <thead>
-                    <tr>
-                        <th>Redni Broj</th>
-                        <th>Smjer</th>
-                        <th>Penjalište</th>
-                        <th>Način</th>
-                        <th>Ocjena</th>
-                        <th>Komentar</th>
-                        <th>Datum</th>
-                    </tr>
-                </thead>
-                <tbody>';
-        foreach ($rows as $key => $row) {
-            echo '<tr class="pojedini_smjer">';
-            echo '<td class="redni_broj">' . ($key + 1) . '</td>';
-            echo '<td class="smjer">' . $row['smjer'] . '</td>';
-            echo '<td class="penjaliste">' . $row['penjaliste'] . '</td>';
-            echo '<td class="nacin"><span class="dot ' .  str_replace(" ", "-", $row['nacin']) . '" title="' . $row['nacin'] . '"></span></td>';
-            echo '<td class="ocjena">' . $row['ocjena'] . '</td>';
-            echo '<td class="komentar">' . $row['komentar'] . '</td>';
-            echo '<td class="datum">' . $row['datum'] . '</td>';
-            echo '</tr>';
-        }
-        echo '</tbody>
-            </table>';
-    }
-
     function racunaj_smjerove($korisnik, $nacin)
     {
         global $wpdb;
