@@ -156,3 +156,21 @@
         }
     }
 }
+
+.sub-menu a[href="https://vertikal.local/wp-login.php?action=logout"]
+{
+    display: none;
+}
+
+.logged-in .sub-menu {
+    a[href="https://vertikal.local/wp-login.php?action=register"],
+    a[href="https://vertikal.local/wp-login.php"]
+    {
+        display: none;
+    }
+
+    a[href="https://vertikal.local/wp-login.php?action=logout"]
+    {
+        display: block;
+    }
+}
