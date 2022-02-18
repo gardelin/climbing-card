@@ -10,7 +10,7 @@ use ClimbingCard\Shortcodes\TopUsersByNumberOfClimbedRoutes;
 /**
  * Handle all builder shortcodes
  */
-class ShortcodesProvider
+class Shortcodes
 {
     /**
      * Init the editor backend

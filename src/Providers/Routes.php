@@ -4,7 +4,7 @@ namespace ClimbingCard\Providers;
 
 use ClimbingCard\Services\Route;
 
-class RouteRegistration
+class Routes
 {
     /**
      * Register plugin routes
