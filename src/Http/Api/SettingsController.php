@@ -16,7 +16,7 @@ class SettingsController extends ApiController
             return;
         }
 
-        $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true);
+        $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true) || 'true';
 
         return self::apiResponse([
             'is_climbing_card_public' => $isClimbingCardPublic == 'true' ? 'true' : 'false',
