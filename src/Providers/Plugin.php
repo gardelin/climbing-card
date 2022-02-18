@@ -31,6 +31,9 @@ class Plugin
 
         // Load shortcodes rendering
         add_action('init', [new Shortcodes, 'init']);
+
+        // Set changes to wordpress registration form
+        add_action('init', [new Registration, 'init']);
     }
 
     /**
