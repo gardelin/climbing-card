@@ -18,7 +18,7 @@ class Plugin
         add_action('admin_init', [new Seeder, 'run']);
 
         // Register routes
-        add_action('init', [new RouteRegistration, 'register']);
+        add_action('init', [new Routes, 'register']);
 
         // Load translations
         add_action('init', [$this, 'loadPluginTextDomain']);
@@ -30,7 +30,7 @@ class Plugin
         add_action('init', [new PageTemplates, 'init']);
 
         // Load shortcodes rendering
-        add_action('init', [new ShortcodesProvider, 'init']);
+        add_action('init', [new Shortcodes, 'init']);
     }
 
     /**
