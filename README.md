@@ -23,4 +23,5 @@ Wordpress plugin for managing climbing crags, routes and crags
 -   Remove users data from shortcodes
 -   fix database dates climbed_at (2022-10-02, 03.06.2022, 07.2021, )
 -   GDPR ako se pobrise korisnik pobrisu se i njegovi podaci u tablici
+-   When user is deleted, delete corresponding rows in climbing_cards table
 -   Frontend responsive table
