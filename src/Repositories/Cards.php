@@ -42,8 +42,23 @@ class Cards
         return $count;
     }
 
+    /*
+    * Insert DB entry.
+    * 
+    * @param array $data
+    * @return int|false
+    */
+    public function insert($data)
+    {
+        global $wpdb;
+
+        $inserted = $wpdb->insert(CardsTable::getTableName(), $data);
+
+        return $inserted;
+    }
+
     /**
-     * Add entry to DB table
+     * Create entry to DB table
      * 
      * @param array $data
      * @return Card|false

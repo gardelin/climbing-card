@@ -41,9 +41,7 @@ class CardsSeeder
                 'updated_at' => $record['datum_upisa'],
             ];
 
-            error_log($data['climbed_at']);
-
-            $cardsRepository->create($data);
+            $cardsRepository->insert($data);
         }
     }
 
