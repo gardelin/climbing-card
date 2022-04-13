@@ -15,10 +15,13 @@ msgid "Add"
 msgstr "Dodaj"
 
 #: resources/assets/js/admin/views/Settings.vue:27
-msgid ""
-"By turning this option your climbing card data will be visible to all "
-"visitors"
-msgstr "Ako uključte ovu opciju vaš penjački kartno biti će vidljiv svim posjetiteljima stranice"
+msgid "By turning this option your climbing card data will be visible to all visitors"
+msgstr "Ako uključte ovu opciju vaš penjački karton biti će vidljiv svim posjetiteljima stranice"
+
+#: resources/assets/js/admin/views/Statistics.vue:6
+#, fuzzy
+msgid "Check your climbing statistics"
+msgstr "Postavke penjačkog kartona"
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:5
 #: resources/assets/js/admin/views/Dashboard.vue:6
@@ -26,17 +29,23 @@ msgid "Climbing Cards"
 msgstr "Penjački Karton"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:40
+#: resources/assets/js/admin/components/cards/Cards.vue:82
 msgid "Comment"
 msgstr "Komentar"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:25
 #: resources/assets/js/admin/components/cards/Cards.vue:26
+#: resources/assets/js/admin/components/cards/Cards.vue:59
 msgid "Crag"
 msgstr "Penjalište"
 
+#: resources/assets/js/admin/components/cards/Cards.vue:60
+msgid "Crag - Sector"
+msgstr "Penjalište - Sektor"
+
 #: resources/assets/js/admin/components/cards/Cards.vue:292
 msgid "Crag required!"
-msgstr "Unesite Penjalište"
+msgstr "Unesi Penjalište"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:41
 #: resources/assets/js/admin/components/cards/Cards.vue:42
@@ -45,7 +54,12 @@ msgstr "Datum"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:294
 msgid "Date required!"
-msgstr "Unesite Datum!"
+msgstr "Unesi Datum!"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:51
+#, fuzzy
+msgid "Export"
+msgstr "Izvezi CSV"
 
 #: resources/assets/js/admin/views/Dashboard.vue:10
 msgid "Export CSV"
@@ -57,6 +71,7 @@ msgstr "Generalne Postavke"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:30
 #: resources/assets/js/admin/components/cards/Cards.vue:31
+#: resources/assets/js/admin/components/cards/Cards.vue:64
 msgid "Grade"
 msgstr "Ocjena"
 
@@ -85,7 +100,12 @@ msgid "On"
 msgstr "Uključeno"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:21
+#: resources/assets/js/admin/components/cards/Cards.vue:54
 msgid "Route"
+msgstr "Smjer"
+
+#: resources/assets/js/admin/components/cards/Cards.vue:55
+msgid "Route Name"
 msgstr "Smjer"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:291
@@ -100,12 +120,22 @@ msgstr "Pretraži Karton"
 msgid "Select Dates"
 msgstr "Odaberi Datume"
 
-#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/components/cards/Cards.vue:66
+msgid "Select Grade"
+msgstr "Odaberi Ocjenu"
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:11
 #: resources/assets/js/admin/views/Settings.vue:6
 msgid "Settings"
 msgstr "Postavke"
 
+#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/views/Statistics.vue:6
+msgid "Statistics"
+msgstr "Statistika"
+
 #: resources/assets/js/admin/components/cards/Cards.vue:35
 #: resources/assets/js/admin/components/cards/Cards.vue:36
+#: resources/assets/js/admin/components/cards/Cards.vue:74
 msgid "Style"
 msgstr "Način"

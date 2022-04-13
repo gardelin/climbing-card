@@ -10,18 +10,28 @@ msgstr ""
 msgid "By turning this option your climbing card data will be visible to all visitors"
 msgstr ""
 
+#: resources/assets/js/admin/views/Statistics.vue:6
+msgid "Check your climbing statistics"
+msgstr ""
+
 #: resources/assets/js/admin/components/partials/Navigation.vue:5
 #: resources/assets/js/admin/views/Dashboard.vue:6
 msgid "Climbing Cards"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:40
+#: resources/assets/js/admin/components/cards/Cards.vue:82
 msgid "Comment"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:25
 #: resources/assets/js/admin/components/cards/Cards.vue:26
+#: resources/assets/js/admin/components/cards/Cards.vue:59
 msgid "Crag"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:60
+msgid "Crag - Sector"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:292
@@ -37,6 +47,10 @@ msgstr ""
 msgid "Date required!"
 msgstr ""
 
+#: resources/assets/js/admin/components/cards/Cards.vue:51
+msgid "Export"
+msgstr ""
+
 #: resources/assets/js/admin/views/Dashboard.vue:10
 msgid "Export CSV"
 msgstr ""
@@ -47,6 +61,7 @@ msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:30
 #: resources/assets/js/admin/components/cards/Cards.vue:31
+#: resources/assets/js/admin/components/cards/Cards.vue:64
 msgid "Grade"
 msgstr ""
 
@@ -75,7 +90,12 @@ msgid "On"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:21
+#: resources/assets/js/admin/components/cards/Cards.vue:54
 msgid "Route"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:55
+msgid "Route Name"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:291
@@ -90,12 +110,22 @@ msgstr ""
 msgid "Select Dates"
 msgstr ""
 
-#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/components/cards/Cards.vue:66
+msgid "Select Grade"
+msgstr ""
+
+#: resources/assets/js/admin/components/partials/Navigation.vue:11
 #: resources/assets/js/admin/views/Settings.vue:6
 msgid "Settings"
 msgstr ""
 
+#: resources/assets/js/admin/components/partials/Navigation.vue:8
+#: resources/assets/js/admin/views/Statistics.vue:6
+msgid "Statistics"
+msgstr ""
+
 #: resources/assets/js/admin/components/cards/Cards.vue:35
 #: resources/assets/js/admin/components/cards/Cards.vue:36
+#: resources/assets/js/admin/components/cards/Cards.vue:74
 msgid "Style"
 msgstr ""
