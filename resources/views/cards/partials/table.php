@@ -1,7 +1,6 @@
 <table id="cards-table">
     <thead>
         <tr>
-            <th>Redni Broj</th>
             <th>Smjer</th>
             <th>Penjalište</th>
             <th>Način</th>
@@ -12,7 +11,6 @@
     </thead>
     <tbody>
         <tr>
-            <td class="number">-</td>
             <td class="route">-</td>
             <td class="crag">-</td>
             <td class="style">-</td>
@@ -25,7 +23,6 @@
 
 <template id="table-row">
     <tr class="card">
-        <td class="number"></td>
         <td class="route"></td>
         <td class="crag"></td>
         <td class="style"></td>

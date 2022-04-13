@@ -34,21 +34,35 @@ export default class ClimbingCard {
         })
             .then(response => response.json())
             .then(data => {
+                let cards = data.data.cards;
+
+                if (!cards.length) {
+                    cards = [
+                        {
+                            route: '-',
+                            crag: '-',
+                            style: '-',
+                            grade: '-',
+                            comment: '-',
+                            climbed_at: '-',
+                        },
+                    ];
+                }
+
                 let tbody = that.table.querySelector('tbody');
                 tbody.innerHTML = '';
 
-                data.data.cards.forEach((card, index) => {
+                cards.forEach((card, index) => {
                     let row = that.rowTemplate.cloneNode(true);
                     let columns = row.content.querySelectorAll('td');
                     let style = card.style.replace(' ', '-');
 
-                    columns[0].textContent = index + 1;
-                    columns[1].textContent = card.route;
-                    columns[2].textContent = card.crag;
-                    columns[3].innerHTML = `<span class="dot ${style}" title="${card.style}"></span>`;
-                    columns[4].textContent = card.grade;
-                    columns[5].textContent = card.comment;
-                    columns[6].textContent = card.climbed_at;
+                    columns[0].textContent = card.route;
+                    columns[1].textContent = card.crag;
+                    columns[2].innerHTML = `<span class="dot ${style}" title="${card.style}"></span>`;
+                    columns[3].textContent = card.grade;
+                    columns[4].textContent = card.comment;
+                    columns[5].textContent = card.climbed_at;
 
                     tbody.appendChild(row.content);
                 });
