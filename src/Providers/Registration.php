@@ -12,9 +12,9 @@ class Registration
      */
     public static function init()
     {
-        add_action('register_form', [$this, 'insertFieldsToRegistrationForm']);
-        add_filter('registration_errors', [$this, 'errors'], 10, 3);
-        add_action('user_register', [$this, 'save']);
+        add_action('register_form', [new Registration, 'insertFieldsToRegistrationForm']);
+        add_filter('registration_errors', [new Registration, 'errors'], 10, 3);
+        add_action('user_register', [new Registration, 'save']);
     }
 
     /**

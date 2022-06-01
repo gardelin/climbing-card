@@ -3,11 +3,15 @@ import { createStore } from 'vuex';
 const store = createStore({
     state: {
         cards: [],
+        stats: [],
         selected: [],
     },
     getters: {
         cards(state) {
             return state.cards;
+        },
+        stats(state) {
+            return state.stats;
         },
         selected(state) {
             return state.selected;
@@ -16,6 +20,9 @@ const store = createStore({
     mutations: {
         setCards(state, value) {
             state.cards = value;
+        },
+        setStats(state, value) {
+            state.stats = value;
         },
         setSelected(state, value) {
             state.selected = value;

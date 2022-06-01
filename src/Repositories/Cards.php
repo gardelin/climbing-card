@@ -204,6 +204,34 @@ class Cards
     }
 
     /**
+     * Get user stats data
+     * 
+     * @return array
+     */
+    public function userStats($id)
+    {
+        global $wpdb;
+
+        $tableName = CardsTable::getTableName();
+        $sql = "
+        SELECT
+            `grade`,
+            COUNT(id) as total,
+            SUM(CASE WHEN style = 'on sight' then 1 else 0 end) AS on_sight,
+            SUM(CASE WHEN style = 'flash' then 1 else 0 end) AS flash,
+            SUM(CASE WHEN style = 'red point' then 1 else 0 end) AS red_point
+        FROM " . $tableName . "
+        WHERE `user_id` = " . $id . "
+        GROUP BY `grade`
+        ORDER BY `grade` 
+        DESC";
+
+        $result = $wpdb->get_results($sql, ARRAY_A);
+
+        return $result;
+    }
+
+    /**
      * Get top n users by number of climbed routes.
      * 
      * @param int $limit

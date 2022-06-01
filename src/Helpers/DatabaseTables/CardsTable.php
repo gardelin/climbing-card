@@ -31,11 +31,8 @@ class CardsTable extends BaseTable implements CreatableDbTable
                 `created_at` datetime NOT NULL,
                 `updated_at` datetime NOT NULL,
                 `deleted_at` datetime DEFAULT NULL,
-                PRIMARY KEY (`id`),
-                FOREIGN KEY (`user_id`)
-                    REFERENCES " . $wpdb->prefix . "users (`ID`)
-                    ON DELETE CASCADE
-            ) " . $this->getCharsetCollate() . ";";
+                PRIMARY KEY (`id`)
+            );";
 
             dbDelta($sql);
 

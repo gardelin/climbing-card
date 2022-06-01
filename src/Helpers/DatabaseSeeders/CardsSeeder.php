@@ -21,7 +21,7 @@ class CardsSeeder
         }
 
         $oldRecords = $cardsRepository->getRecordsFromOldTable();
-
+        
         foreach ($oldRecords as $record) {
             $user = get_user_by('login', $record['userName']);
 

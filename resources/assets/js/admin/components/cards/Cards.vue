@@ -113,7 +113,16 @@
 
     export default {
         name: 'Cards',
-        components: { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X, flatPickr },
+        components: { 
+            Edit2, 
+            Trash2, 
+            Save, 
+            ChevronDown, 
+            ChevronUp, 
+            Search, 
+            X, 
+            flatPickr 
+        },
         data() {
             return {
                 grades: Utils.grades(true),
@@ -178,7 +187,10 @@
 
                 // Filter by searched term
                 data = data.filter(card => {
-                    return false || card.route.toLowerCase().indexOf(term) != -1 || card.crag.toLowerCase().indexOf(term) != -1 || card.grade.toLowerCase().indexOf(term) != -1;
+                    return false 
+                        || card.route.toLowerCase().indexOf(term) != -1 
+                        || card.crag.toLowerCase().indexOf(term) != -1 
+                        || card.grade.toLowerCase().indexOf(term) != -1;
                 });
 
                 return data;
