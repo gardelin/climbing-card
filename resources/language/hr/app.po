@@ -7,18 +7,26 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:12
+msgid "Action"
+msgstr ""
 
 #: resources/assets/js/admin/views/Dashboard.vue:14
 msgid "Add"
 msgstr "Dodaj"
 
 #: resources/assets/js/admin/views/Settings.vue:27
-msgid "By turning this option your climbing card data will be visible to all visitors"
-msgstr "Ako uključte ovu opciju vaš penjački karton biti će vidljiv svim posjetiteljima stranice"
+msgid ""
+"By turning this option your climbing card data will be visible to all "
+"visitors"
+msgstr ""
+"Ako uključte ovu opciju vaš penjački karton biti će vidljiv svim "
+"posjetiteljima stranice"
 
-#: resources/assets/js/admin/views/Statistics.vue:6
+#: resources/assets/js/admin/views/Statistics.vue:7
 #, fuzzy
 msgid "Check your climbing statistics"
 msgstr "Postavke penjačkog kartona"
@@ -28,18 +36,20 @@ msgstr "Postavke penjačkog kartona"
 msgid "Climbing Cards"
 msgstr "Penjački Karton"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:40
-#: resources/assets/js/admin/components/cards/Cards.vue:82
+#: resources/assets/js/admin/components/cards/Cards.vue:38
+#: resources/assets/js/admin/components/cards/Cards.vue:77
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:10
 msgid "Comment"
 msgstr "Komentar"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:25
-#: resources/assets/js/admin/components/cards/Cards.vue:26
-#: resources/assets/js/admin/components/cards/Cards.vue:59
+#: resources/assets/js/admin/components/cards/Cards.vue:23
+#: resources/assets/js/admin/components/cards/Cards.vue:24
+#: resources/assets/js/admin/components/cards/Cards.vue:54
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:7
 msgid "Crag"
 msgstr "Penjalište"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:60
+#: resources/assets/js/admin/components/cards/Cards.vue:55
 msgid "Crag - Sector"
 msgstr "Penjalište - Sektor"
 
@@ -47,8 +57,9 @@ msgstr "Penjalište - Sektor"
 msgid "Crag required!"
 msgstr "Unesi Penjalište"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:41
-#: resources/assets/js/admin/components/cards/Cards.vue:42
+#: resources/assets/js/admin/components/cards/Cards.vue:39
+#: resources/assets/js/admin/components/cards/Cards.vue:40
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:11
 msgid "Date"
 msgstr "Datum"
 
@@ -56,22 +67,25 @@ msgstr "Datum"
 msgid "Date required!"
 msgstr "Unesi Datum!"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:51
-#, fuzzy
-msgid "Export"
-msgstr "Izvezi CSV"
-
 #: resources/assets/js/admin/views/Dashboard.vue:10
 msgid "Export CSV"
 msgstr "Izvezi CSV"
+
+#: resources/assets/js/admin/views/Statistics.vue:25
+#: resources/assets/js/admin/views/Statistics.vue:34
+msgid "Flash"
+msgstr ""
 
 #: resources/assets/js/admin/views/Settings.vue:20
 msgid "General"
 msgstr "Generalne Postavke"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:30
-#: resources/assets/js/admin/components/cards/Cards.vue:31
-#: resources/assets/js/admin/components/cards/Cards.vue:64
+#: resources/assets/js/admin/components/cards/Cards.vue:28
+#: resources/assets/js/admin/components/cards/Cards.vue:29
+#: resources/assets/js/admin/components/cards/Cards.vue:59
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:8
+#: resources/assets/js/admin/views/Statistics.vue:22
+#: resources/assets/js/admin/views/Statistics.vue:31
 msgid "Grade"
 msgstr "Ocjena"
 
@@ -99,12 +113,23 @@ msgstr "Isključeno"
 msgid "On"
 msgstr "Uključeno"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:21
-#: resources/assets/js/admin/components/cards/Cards.vue:54
+#: resources/assets/js/admin/views/Statistics.vue:24
+#: resources/assets/js/admin/views/Statistics.vue:33
+msgid "On Sight"
+msgstr ""
+
+#: resources/assets/js/admin/views/Statistics.vue:26
+#: resources/assets/js/admin/views/Statistics.vue:35
+msgid "Red Point"
+msgstr ""
+
+#: resources/assets/js/admin/components/cards/Cards.vue:19
+#: resources/assets/js/admin/components/cards/Cards.vue:49
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:6
 msgid "Route"
 msgstr "Smjer"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:55
+#: resources/assets/js/admin/components/cards/Cards.vue:50
 msgid "Route Name"
 msgstr "Smjer"
 
@@ -112,15 +137,15 @@ msgstr "Smjer"
 msgid "Route required!"
 msgstr "Unesite Smjer"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:5
+#: resources/assets/js/admin/components/cards/Cards.vue:6
 msgid "Search Cards"
 msgstr "Pretraži Karton"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:9
+#: resources/assets/js/admin/components/cards/Cards.vue:10
 msgid "Select Dates"
 msgstr "Odaberi Datume"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:66
+#: resources/assets/js/admin/components/cards/Cards.vue:61
 msgid "Select Grade"
 msgstr "Odaberi Ocjenu"
 
@@ -130,12 +155,22 @@ msgid "Settings"
 msgstr "Postavke"
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
-#: resources/assets/js/admin/views/Statistics.vue:6
+#: resources/assets/js/admin/views/Statistics.vue:7
 msgid "Statistics"
 msgstr "Statistika"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:35
-#: resources/assets/js/admin/components/cards/Cards.vue:36
-#: resources/assets/js/admin/components/cards/Cards.vue:74
+#: resources/assets/js/admin/components/cards/Cards.vue:33
+#: resources/assets/js/admin/components/cards/Cards.vue:34
+#: resources/assets/js/admin/components/cards/Cards.vue:69
+#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:9
 msgid "Style"
 msgstr "Način"
+
+#: resources/assets/js/admin/views/Statistics.vue:23
+#: resources/assets/js/admin/views/Statistics.vue:32
+msgid "Total"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Export"
+#~ msgstr "Izvezi CSV"
