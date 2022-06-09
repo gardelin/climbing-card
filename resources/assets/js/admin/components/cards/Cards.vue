@@ -15,9 +15,6 @@
         <table class="cards">
             <thead>
                 <tr>
-                    <th class="export">
-                        <input type="checkbox" v-model="selectAll" @change="_selectAll()" />
-                    </th>
                     <th class="route" @click="_sort('route')">
                         {{ $gettext('Route') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'route' && !this.asc" />
@@ -49,9 +46,6 @@
             </thead>
             <tbody>
                 <tr class="item" :class="{ edit: card.editmode === true }" v-for="card in filteredCards" :key="card.id">
-                    <td class="export" data-name="{{ $gettext('Export') }}">
-                        <input type="checkbox" v-if="!card.editmode" v-model="selected" :value="card" number />
-                    </td>
                     <td class="route" data-name="{{ $gettext('Route') }}">
                         <input v-if="card.editmode" v-model="card.route" :placeholder="$gettext('Route Name')" />
                         <span v-else>{{ card.route }}</span>
@@ -126,7 +120,6 @@
         data() {
             return {
                 grades: Utils.grades(true),
-                selectAll: false,
                 asc: false,
                 sortBy: null,
                 config: {
@@ -160,13 +153,6 @@
 
             store.commit('setCards', (store.state.cards = cards));
 
-            const selected = computed({
-                get: () => store.state.selected,
-                set: value => {
-                    store.commit('setSelected', value);
-                },
-            });
-
             const filteredCards = computed(() => {
                 let data = store.state.cards;
                 const term = searchQuery.value.toLowerCase();
@@ -198,7 +184,6 @@
 
             return {
                 cards: computed(() => store.state.cards),
-                selected: selected,
                 filteredCards,
                 searchQuery,
                 dateRange,
@@ -313,19 +298,6 @@
                 }
 
                 return true;
-            },
-
-            /**
-             * Check all routes
-             *
-             * @return {Void}
-             */
-            _selectAll(e) {
-                if (this.selectAll) {
-                    this.$store.commit('setSelected', (this.$store.state.selected = this.$store.state.cards));
-                } else {
-                    this.$store.commit('setSelected', (this.$store.state.selected = []));
-                }
             },
 
             /**

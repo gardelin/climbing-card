@@ -4,7 +4,6 @@ const store = createStore({
     state: {
         cards: [],
         stats: [],
-        selected: [],
     },
     getters: {
         cards(state) {
@@ -12,9 +11,6 @@ const store = createStore({
         },
         stats(state) {
             return state.stats;
-        },
-        selected(state) {
-            return state.selected;
         },
     },
     mutations: {
@@ -24,26 +20,20 @@ const store = createStore({
         setStats(state, value) {
             state.stats = value;
         },
-        setSelected(state, value) {
-            state.selected = value;
-        },
-        appendSelected(state, value) {
-            state.selected.push(value);
-        },
     },
     actions: {
         appendCard({ state }, card) {
             state.cards.unshift(card);
         },
         exportToCsv({ state }) {
-            const filtered = state.selected.map(card => {
+            const filtered = state.cards.map(card => {
                 return {
                     route: card.route,
                     crag: card.crag,
                     grade: card.grade,
                     style: card.style,
                     comment: card.comment,
-                    date: card.date,
+                    date: card.climbed_at,
                 };
             });
 

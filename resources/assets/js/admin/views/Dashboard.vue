@@ -5,7 +5,7 @@
                 <div class="col">
                     <Header :title="$gettext('Climbing Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
-                        <div class="btn" v-if="selected.length" @click.prevent="exportToCsv()">
+                        <div class="btn" v-if="cards.length" @click.prevent="exportToCsv()">
                             <Download :size="16" />
                             {{ $gettext('Export CSV') }}
                         </div>
@@ -52,7 +52,7 @@
             const store = useStore();
 
             return {
-                selected: computed(() => store.state.selected),
+                cards: computed(() => store.state.cards),
             };
         },
         methods: {
