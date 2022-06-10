@@ -23,7 +23,7 @@
                                         <div class="item">
                                             <div class="item-label">{{ $gettext('Make my card public') }}</div>
                                             <div class="item-content">
-                                                <Toggle :name="is_climbing_card_public" v-model="isClimbingCardPublic" :offLabel="$gettext('Off')" :onLabel="$gettext('On')" style="width: 90px" @change="setUserClimbingCardStatus" />
+                                                <Toggle :name="'is_climbing_card_public'" v-model="isClimbingCardPublic" :offLabel="$gettext('Off')" :onLabel="$gettext('On')" style="width: 90px" @change="setUserClimbingCardStatus" />
                                                 <p class="item-description">{{ $gettext('By turning this option your climbing card data will be visible to all visitors') }}</p>
                                             </div>
                                         </div>
@@ -43,10 +43,7 @@
     import { ref, computed } from 'vue';
     import { useStore } from 'vuex';
     import Toggle from '../components/Toggle';
-    // import CardsSkeleton from '../components/loading/CardsSkeleton';
     import Header from '../components/partials/Header';
-    // import { mapActions } from 'vuex';
-    // import { Plus, Download } from 'lucide-vue-next';
 
     export default {
         name: 'Settings',
@@ -63,7 +60,7 @@
                 },
             });
             const json = await response.json();
-            isClimbingCardPublic.value = json.data.is_climbing_card_public;
+            isClimbingCardPublic.value = !!json.data.is_climbing_card_public;
 
             return {
                 isClimbingCardPublic,
@@ -81,7 +78,9 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            if (data.data.updated) isClimbingCardPublic.value = data.data.is_climbing_card_public;
+                            if (data.data.updated) {
+                                isClimbingCardPublic.value = !!data.data.is_climbing_card_public;
+                            }
                         })
                         .catch(error => console.log(error));
                 },
