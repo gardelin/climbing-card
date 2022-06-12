@@ -17,6 +17,15 @@ const store = createStore({
         setCards(state, value) {
             state.cards = value;
         },
+        sortCards(state, {prop, asc}) {
+            state.cards.sort((a, b) => {
+                if (asc) {
+                    return a[prop] > b[prop] ? 1 : -1;
+                } else {
+                    return a[prop] < b[prop] ? 1 : -1;
+                }
+            });
+        },
         setStats(state, value) {
             state.stats = value;
         },

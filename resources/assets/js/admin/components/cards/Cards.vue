@@ -311,9 +311,7 @@
                 this.sortBy = prop;
                 const asc = this.asc;
 
-                this.$store.state.cards.sort((a, b) => {
-                    return asc ? a[prop] > b[prop] : a[prop] < b[prop];
-                });
+                this.$store.commit('sortCards', { prop, asc });
             },
 
             /**
