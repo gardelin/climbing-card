@@ -242,7 +242,7 @@
                 if (!card.id) return this.$store.state.cards.splice(index, 1);
 
                 fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                    method: 'DELETE',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=UTF-8',
                         'X-WP-Nonce': window.climbingcards.nonce,
