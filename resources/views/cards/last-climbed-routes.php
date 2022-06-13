@@ -18,8 +18,8 @@
                                 <span><?php echo $card->climbed_at; ?></span>
                             <?php endif; ?>
                             <div class="climbed-data">
-                                <div><?php echo $card->ocjena; ?></div>
-                                <span class="dot <?php echo str_replace(" ", "-", $card->style); ?> title=" <?php echo $card->style; ?>"></span>
+                                <div><?php echo $card->grade; ?></div>
+                                <span class="dot <?php echo str_replace(" ", "-", $card->style); ?>" title=" <?php echo $card->style; ?>"></span>
                             </div>
                         </div>
                     </div>
