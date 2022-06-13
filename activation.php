@@ -18,7 +18,7 @@ global $wpdb;
 // Add autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
-define('CLIMBING_CARD_VERSION', '1.0.0');
+define('CLIMBING_CARD_VERSION', '1.0.1');
 define('CLIMBING_CARD_PLUGIN_SLUG', plugin_basename(__FILE__));
 define('CLIMBING_CARD_FILE', __FILE__);
 define('CLIMBING_CARD_PATH', __DIR__);
