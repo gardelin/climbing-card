@@ -1,15 +1,15 @@
 import { createWebHashHistory, createRouter } from 'vue-router';
 
-import Dashboard from '../views/Dashboard';
+import ClimbingCards from '../views/ClimbingCards';
 import Settings from '../views/Settings';
-import Statistics from '../views/Statistics';
+import Stats from '../views/Stats';
 
 // Define all routes
 export const routes = [
     {
-        name: 'dashboard',
+        name: 'climbing-cards',
         path: '/',
-        component: Dashboard,
+        component: ClimbingCards,
         meta: { title: 'Climbing Card' },
     },
     {
@@ -19,9 +19,9 @@ export const routes = [
         meta: { title: 'Climbing Card - Settings' },
     },
     {
-        name: 'statistics',
-        path: '/statistics',
-        component: Statistics,
+        name: 'stats',
+        path: '/stats',
+        component: Stats,
         meta: { title: 'Climbing Card - Statistics' },
     },
 ];

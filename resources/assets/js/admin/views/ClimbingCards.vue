@@ -38,15 +38,14 @@
 
 <script>
     import { computed } from 'vue';
-    import { useStore } from 'vuex';
+    import { useStore, mapActions } from 'vuex';
     import Cards from '../components/cards/Cards';
     import CardsSkeleton from '../components/loading/CardsSkeleton';
     import Header from '../components/partials/Header';
-    import { mapActions } from 'vuex';
     import { Plus, Download } from 'lucide-vue-next';
 
     export default {
-        name: 'Dashboard',
+        name: 'ClimbingCards',
         components: { Cards, CardsSkeleton, Header, Plus, Download },
         setup() {
             const store = useStore();
