@@ -1,6 +1,6 @@
 {
     "name": "ClimbingCards",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": {
         "name": "Roko Labrovic",
         "email": "roko.labrovic@gmail.com",
@@ -12,7 +12,8 @@
         "browsersync": "0.0.1-security",
         "cross-env": "^7.0.3",
         "gulp": "^4.0.2",
-        "gulp-zip": "^5.1.0",
+        "gulp-cli": "^2.3.0",
+        "gulp-zip": "^4.2.0",
         "laravel-mix": "^6.0.13",
         "node-sass": "^7.0.1",
         "prettier": "2.4.1",
