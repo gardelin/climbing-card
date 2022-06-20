@@ -6,7 +6,7 @@ msgstr ""
 msgid "Action"
 msgstr ""
 
-#: resources/assets/js/admin/views/Dashboard.vue:14
+#: resources/assets/js/admin/views/ClimbingCards.vue:14
 msgid "Add"
 msgstr ""
 
@@ -14,18 +14,23 @@ msgstr ""
 msgid "By turning this option your climbing card data will be visible to all visitors"
 msgstr ""
 
-#: resources/assets/js/admin/views/Statistics.vue:7
+#: resources/assets/js/frontend/views/User.vue:3
+msgid "Card"
+msgstr ""
+
+#: resources/assets/js/admin/views/Stats.vue:7
 msgid "Check your climbing statistics"
 msgstr ""
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:5
-#: resources/assets/js/admin/views/Dashboard.vue:6
+#: resources/assets/js/admin/views/ClimbingCards.vue:6
 msgid "Climbing Cards"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:38
 #: resources/assets/js/admin/components/cards/Cards.vue:77
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:10
+#: resources/assets/js/frontend/views/User.vue:42
 msgid "Comment"
 msgstr ""
 
@@ -33,6 +38,8 @@ msgstr ""
 #: resources/assets/js/admin/components/cards/Cards.vue:24
 #: resources/assets/js/admin/components/cards/Cards.vue:54
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:7
+#: resources/assets/js/frontend/views/User.vue:27
+#: resources/assets/js/frontend/views/User.vue:28
 msgid "Crag"
 msgstr ""
 
@@ -47,6 +54,8 @@ msgstr ""
 #: resources/assets/js/admin/components/cards/Cards.vue:39
 #: resources/assets/js/admin/components/cards/Cards.vue:40
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:11
+#: resources/assets/js/frontend/views/User.vue:43
+#: resources/assets/js/frontend/views/User.vue:44
 msgid "Date"
 msgstr ""
 
@@ -54,12 +63,13 @@ msgstr ""
 msgid "Date required!"
 msgstr ""
 
-#: resources/assets/js/admin/views/Dashboard.vue:10
+#: resources/assets/js/admin/views/ClimbingCards.vue:10
 msgid "Export CSV"
 msgstr ""
 
-#: resources/assets/js/admin/views/Statistics.vue:25
-#: resources/assets/js/admin/views/Statistics.vue:34
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:8
+#: resources/assets/js/admin/components/statistics/Statistics.vue:18
+#: resources/assets/js/admin/components/statistics/Statistics.vue:9
 msgid "Flash"
 msgstr ""
 
@@ -71,8 +81,11 @@ msgstr ""
 #: resources/assets/js/admin/components/cards/Cards.vue:29
 #: resources/assets/js/admin/components/cards/Cards.vue:59
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:8
-#: resources/assets/js/admin/views/Statistics.vue:22
-#: resources/assets/js/admin/views/Statistics.vue:31
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:5
+#: resources/assets/js/admin/components/statistics/Statistics.vue:15
+#: resources/assets/js/admin/components/statistics/Statistics.vue:6
+#: resources/assets/js/frontend/views/User.vue:37
+#: resources/assets/js/frontend/views/User.vue:38
 msgid "Grade"
 msgstr ""
 
@@ -84,12 +97,16 @@ msgstr ""
 msgid "Make my card public"
 msgstr ""
 
-#: resources/assets/js/admin/views/Dashboard.vue:6
+#: resources/assets/js/admin/views/ClimbingCards.vue:6
 msgid "Manage your climbed routes."
 msgstr ""
 
 #: resources/assets/js/admin/views/Settings.vue:6
 msgid "Manage your climbing card settings"
+msgstr ""
+
+#: resources/assets/js/frontend/views/User.vue:4
+msgid "Number of climbed routes per grade"
 msgstr ""
 
 #: resources/assets/js/admin/views/Settings.vue:26
@@ -100,19 +117,22 @@ msgstr ""
 msgid "On"
 msgstr ""
 
-#: resources/assets/js/admin/views/Statistics.vue:24
-#: resources/assets/js/admin/views/Statistics.vue:33
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:7
+#: resources/assets/js/admin/components/statistics/Statistics.vue:17
+#: resources/assets/js/admin/components/statistics/Statistics.vue:8
 msgid "On Sight"
 msgstr ""
 
-#: resources/assets/js/admin/views/Statistics.vue:26
-#: resources/assets/js/admin/views/Statistics.vue:35
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:9
+#: resources/assets/js/admin/components/statistics/Statistics.vue:10
+#: resources/assets/js/admin/components/statistics/Statistics.vue:19
 msgid "Red Point"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:19
 #: resources/assets/js/admin/components/cards/Cards.vue:49
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:6
+#: resources/assets/js/frontend/views/User.vue:23
 msgid "Route"
 msgstr ""
 
@@ -125,10 +145,12 @@ msgid "Route required!"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:6
+#: resources/assets/js/frontend/views/User.vue:10
 msgid "Search Cards"
 msgstr ""
 
 #: resources/assets/js/admin/components/cards/Cards.vue:10
+#: resources/assets/js/frontend/views/User.vue:14
 msgid "Select Dates"
 msgstr ""
 
@@ -142,7 +164,7 @@ msgid "Settings"
 msgstr ""
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
-#: resources/assets/js/admin/views/Statistics.vue:7
+#: resources/assets/js/admin/views/Stats.vue:7
 msgid "Statistics"
 msgstr ""
 
@@ -150,10 +172,13 @@ msgstr ""
 #: resources/assets/js/admin/components/cards/Cards.vue:34
 #: resources/assets/js/admin/components/cards/Cards.vue:69
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:9
+#: resources/assets/js/frontend/views/User.vue:32
+#: resources/assets/js/frontend/views/User.vue:33
 msgid "Style"
 msgstr ""
 
-#: resources/assets/js/admin/views/Statistics.vue:23
-#: resources/assets/js/admin/views/Statistics.vue:32
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:6
+#: resources/assets/js/admin/components/statistics/Statistics.vue:16
+#: resources/assets/js/admin/components/statistics/Statistics.vue:7
 msgid "Total"
 msgstr ""

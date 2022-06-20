@@ -12,9 +12,9 @@ msgstr ""
 
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:12
 msgid "Action"
-msgstr ""
+msgstr "Akcija"
 
-#: resources/assets/js/admin/views/Dashboard.vue:14
+#: resources/assets/js/admin/views/ClimbingCards.vue:14
 msgid "Add"
 msgstr "Dodaj"
 
@@ -26,19 +26,24 @@ msgstr ""
 "Ako uključte ovu opciju vaš penjački karton biti će vidljiv svim "
 "posjetiteljima stranice"
 
-#: resources/assets/js/admin/views/Statistics.vue:7
+#: resources/assets/js/frontend/views/User.vue:3
+msgid "Card"
+msgstr "Karton"
+
+#: resources/assets/js/admin/views/Stats.vue:7
 #, fuzzy
 msgid "Check your climbing statistics"
 msgstr "Postavke penjačkog kartona"
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:5
-#: resources/assets/js/admin/views/Dashboard.vue:6
+#: resources/assets/js/admin/views/ClimbingCards.vue:6
 msgid "Climbing Cards"
 msgstr "Penjački Karton"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:38
 #: resources/assets/js/admin/components/cards/Cards.vue:77
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:10
+#: resources/assets/js/frontend/views/User.vue:42
 msgid "Comment"
 msgstr "Komentar"
 
@@ -46,6 +51,8 @@ msgstr "Komentar"
 #: resources/assets/js/admin/components/cards/Cards.vue:24
 #: resources/assets/js/admin/components/cards/Cards.vue:54
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:7
+#: resources/assets/js/frontend/views/User.vue:27
+#: resources/assets/js/frontend/views/User.vue:28
 msgid "Crag"
 msgstr "Penjalište"
 
@@ -60,6 +67,8 @@ msgstr "Unesi Penjalište"
 #: resources/assets/js/admin/components/cards/Cards.vue:39
 #: resources/assets/js/admin/components/cards/Cards.vue:40
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:11
+#: resources/assets/js/frontend/views/User.vue:43
+#: resources/assets/js/frontend/views/User.vue:44
 msgid "Date"
 msgstr "Datum"
 
@@ -67,14 +76,15 @@ msgstr "Datum"
 msgid "Date required!"
 msgstr "Unesi Datum!"
 
-#: resources/assets/js/admin/views/Dashboard.vue:10
+#: resources/assets/js/admin/views/ClimbingCards.vue:10
 msgid "Export CSV"
 msgstr "Izvezi CSV"
 
-#: resources/assets/js/admin/views/Statistics.vue:25
-#: resources/assets/js/admin/views/Statistics.vue:34
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:8
+#: resources/assets/js/admin/components/statistics/Statistics.vue:18
+#: resources/assets/js/admin/components/statistics/Statistics.vue:9
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 #: resources/assets/js/admin/views/Settings.vue:20
 msgid "General"
@@ -84,8 +94,11 @@ msgstr "Generalne Postavke"
 #: resources/assets/js/admin/components/cards/Cards.vue:29
 #: resources/assets/js/admin/components/cards/Cards.vue:59
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:8
-#: resources/assets/js/admin/views/Statistics.vue:22
-#: resources/assets/js/admin/views/Statistics.vue:31
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:5
+#: resources/assets/js/admin/components/statistics/Statistics.vue:15
+#: resources/assets/js/admin/components/statistics/Statistics.vue:6
+#: resources/assets/js/frontend/views/User.vue:37
+#: resources/assets/js/frontend/views/User.vue:38
 msgid "Grade"
 msgstr "Ocjena"
 
@@ -97,13 +110,17 @@ msgstr "Unesite Ocjenu!"
 msgid "Make my card public"
 msgstr "Učini moj penjački karton javnim"
 
-#: resources/assets/js/admin/views/Dashboard.vue:6
+#: resources/assets/js/admin/views/ClimbingCards.vue:6
 msgid "Manage your climbed routes."
 msgstr "Ažuriraj svoje popete smjerove"
 
 #: resources/assets/js/admin/views/Settings.vue:6
 msgid "Manage your climbing card settings"
 msgstr "Postavke penjačkog kartona"
+
+#: resources/assets/js/frontend/views/User.vue:4
+msgid "Number of climbed routes per grade"
+msgstr "Broj smjerova po ocjeni"
 
 #: resources/assets/js/admin/views/Settings.vue:26
 msgid "Off"
@@ -113,19 +130,22 @@ msgstr "Isključeno"
 msgid "On"
 msgstr "Uključeno"
 
-#: resources/assets/js/admin/views/Statistics.vue:24
-#: resources/assets/js/admin/views/Statistics.vue:33
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:7
+#: resources/assets/js/admin/components/statistics/Statistics.vue:17
+#: resources/assets/js/admin/components/statistics/Statistics.vue:8
 msgid "On Sight"
-msgstr ""
+msgstr "On Sight"
 
-#: resources/assets/js/admin/views/Statistics.vue:26
-#: resources/assets/js/admin/views/Statistics.vue:35
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:9
+#: resources/assets/js/admin/components/statistics/Statistics.vue:10
+#: resources/assets/js/admin/components/statistics/Statistics.vue:19
 msgid "Red Point"
-msgstr ""
+msgstr "Red Point"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:19
 #: resources/assets/js/admin/components/cards/Cards.vue:49
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:6
+#: resources/assets/js/frontend/views/User.vue:23
 msgid "Route"
 msgstr "Smjer"
 
@@ -138,10 +158,12 @@ msgid "Route required!"
 msgstr "Unesite Smjer"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:6
+#: resources/assets/js/frontend/views/User.vue:10
 msgid "Search Cards"
 msgstr "Pretraži Karton"
 
 #: resources/assets/js/admin/components/cards/Cards.vue:10
+#: resources/assets/js/frontend/views/User.vue:14
 msgid "Select Dates"
 msgstr "Odaberi Datume"
 
@@ -155,7 +177,7 @@ msgid "Settings"
 msgstr "Postavke"
 
 #: resources/assets/js/admin/components/partials/Navigation.vue:8
-#: resources/assets/js/admin/views/Statistics.vue:7
+#: resources/assets/js/admin/views/Stats.vue:7
 msgid "Statistics"
 msgstr "Statistika"
 
@@ -163,13 +185,16 @@ msgstr "Statistika"
 #: resources/assets/js/admin/components/cards/Cards.vue:34
 #: resources/assets/js/admin/components/cards/Cards.vue:69
 #: resources/assets/js/admin/components/loading/CardsSkeleton.vue:9
+#: resources/assets/js/frontend/views/User.vue:32
+#: resources/assets/js/frontend/views/User.vue:33
 msgid "Style"
 msgstr "Način"
 
-#: resources/assets/js/admin/views/Statistics.vue:23
-#: resources/assets/js/admin/views/Statistics.vue:32
+#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:6
+#: resources/assets/js/admin/components/statistics/Statistics.vue:16
+#: resources/assets/js/admin/components/statistics/Statistics.vue:7
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 #, fuzzy
 #~ msgid "Export"
