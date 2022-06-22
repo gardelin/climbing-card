@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import router from './router';
 import store from './store';
-import language from './language';
+import language from '../language';
 import App from './components/App';
 
 class Admin {

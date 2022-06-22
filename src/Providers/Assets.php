@@ -74,15 +74,16 @@ class Assets
     public function enqueueScripts()
     {
         wp_enqueue_style('climbingcard-frontend-css', plugins_url('public/assets/css/frontend.css', CLIMBING_CARD_FILE), [], CLIMBING_CARD_VERSION);
-        wp_enqueue_script('climbingcard-frontend-js', plugins_url('public/assets/js/frontend.js', CLIMBING_CARD_FILE), ['jquery'], CLIMBING_CARD_VERSION);
+        wp_enqueue_script('climbingcard-frontend-js', plugins_url('public/assets/js/frontend.js', CLIMBING_CARD_FILE), [], CLIMBING_CARD_VERSION, true);
 
         wp_localize_script(
             'climbingcard-frontend-js',
-            'climbingCardWordpressData',
+            'climbingcards',
             [
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'rest_url' => get_rest_url() . 'climbingcard/v1',
                 'nonce'    => wp_create_nonce('wp_rest'),
+                'page_language' => get_locale(),
             ]
         );
     }
