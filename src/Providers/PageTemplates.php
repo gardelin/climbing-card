@@ -20,19 +20,13 @@ class PageTemplates
      */
     public function init()
     {
-        $this->templates = array();
+        $this->templates = [];
 
-        add_filter('theme_page_templates', array($this, 'addNewTemplate'));
+        add_filter('theme_page_templates', [$this, 'addNewTemplate']);
+        add_filter('wp_insert_post_data', [$this, 'registerProjectTemplates']);
+        add_filter('template_include', [$this, 'viewProjectTemplate']);
 
-        // Add a filter to the save post to inject out template into the page cache
-        add_filter('wp_insert_post_data', array($this, 'registerProjectTemplates'));
-
-        // Add a filter to the template include to determine if the page has our 
-        // template assigned and return it's path
-        add_filter('template_include', array($this, 'viewProjectTemplate'));
-
-        // Add your templates to this array.
-        $this->templates = array('cards/index.php' => __('Climbing Cards', 'climbing-card'));
+        $this->templates = ['cards/index.php' => __('Climbing Cards', 'climbing-card')];
     }
 
     /**
@@ -48,9 +42,11 @@ class PageTemplates
 
     /**
      * Adds our template to the pages cache in order to trick WordPress
-     * into thinking the template file exists where it doesn't really exist.
+     * into thinking the template file exists.
+     * 
+     * @return array
      */
-    public function registerProjectTemplates($atts)
+    public function registerProjectTemplates($data)
     {
         // Create the key used for the themes cache
         $cache_key = 'page_templates-' . md5(get_theme_root() . '/' . get_stylesheet());
@@ -60,7 +56,7 @@ class PageTemplates
         $templates = wp_get_theme()->get_page_templates();
 
         if (empty($templates)) {
-            $templates = array();
+            $templates = [];
         }
 
         // New cache, therefore remove the old one
@@ -74,15 +70,16 @@ class PageTemplates
         // available templates
         wp_cache_add($cache_key, $templates, 'themes', 1800);
 
-        return $atts;
+        return $data;
     }
 
     /**
-     * Checks if the template is assigned to the page
+     * Checks if the our template is assigned to the page
+     * 
+     * @return string
      */
     public function viewProjectTemplate($template)
     {
-        // Get global post
         global $post;
 
         // Return template if post is empty
@@ -104,7 +101,6 @@ class PageTemplates
             echo $file;
         }
 
-        // Return template
         return $template;
     }
 }
