@@ -1,12 +1,12 @@
 import { createGettext } from 'vue3-gettext';
-import translations from '../../../../language/translations.json';
+import translations from '../../../language/translations.json';
 
 const language = createGettext({
     availableLanguages: {
         en: 'English',
         hr: 'Croatian',
     },
-    defaultLanguage: window.climbingcards.user_language,
+    defaultLanguage: window.climbingcards.user_language || window.climbingcards.page_language,
     translations: translations,
     setGlobalProperties: true,
     provideDirective: true,

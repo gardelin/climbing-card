@@ -2,11 +2,12 @@
 
 namespace ClimbingCard\Repositories;
 
+use ClimbingCard\Repositories\RepositoryAccess;
 use ClimbingCard\Helpers\DatabaseTables\CardsTable;
 use ClimbingCard\Model\Card;
 use ClimbingCard\Services\Collection;
 
-class Cards
+class Cards implements RepositoryAccess
 {
     /**
      * @var Cards
@@ -258,7 +259,7 @@ class Cards
     /**
      * Singleton
      *
-     * @return FileRepository
+     * @return Card
      */
     public static function getInstance()
     {

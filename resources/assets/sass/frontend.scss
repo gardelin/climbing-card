@@ -3,6 +3,7 @@
 @import 'colors';
 @import '~accordion-js/dist/accordion.css';
 @import 'vendors/accordion';
+@import 'flatpickr/dist/flatpickr.css';
 
 .dot {
     display: flex;
@@ -177,5 +178,105 @@
     a[href="https://vertikal.local/wp-login.php?action=logout"]
     {
         display: block;
+    }
+}
+
+.page-template-cards {
+    .table-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+
+        @include respond-to('small') {
+            flex-direction: column;
+
+            input {
+                width: 100% !important;
+                margin-bottom: 10px;
+            }
+        }
+    }
+
+    .date-container {
+        position: relative;
+
+
+        .lucide {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            color: var(--cc-gray-500);
+            cursor: pointer;
+        }
+
+        input {
+            border: 1px solid var(--cc-gray-300);
+            width: 300px;
+            padding: 10px 40px 10px 10px;
+            box-shadow: var(--cc-box-shadow-sx);
+            border-radius: var(--cc-border-radius);
+            font-weight: 300;
+        }
+    }
+
+    .search-container {
+        position: relative;
+
+        .lucide {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: var(--cc-gray-500);
+        }
+
+        input {
+            border: 1px solid var(--cc-gray-300);
+            width: 300px;
+            padding: 10px 10px 10px 40px;
+            box-shadow: var(--cc-box-shadow-sx);
+            border-radius: var(--cc-border-radius);
+            font-weight: 300;
+        }
+    }
+
+    table.cards {
+        thead th:hover {
+            cursor: pointer;
+        }
+
+        @include respond-to('small') {
+            display: flex;
+            flex-direction: column;
+            min-width: inherit;
+            border: 0;
+            box-shadow: none;
+
+            thead {
+                display: none;
+            }
+
+            .item {
+                display: flex;
+                flex-direction: column;
+                box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+                border: 1px solid var(--cc-gray-100);
+                margin-bottom: 20px;
+
+                td {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding-right: 10px;
+
+                    &:before {
+                        content: attr(data-name);
+                    }
+                }
+            }
+        }
     }
 }
