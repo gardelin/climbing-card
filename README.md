@@ -1,9 +1,10 @@
-# Climbing Journal Wordpress Plugin
+<img src="resources/assets/images/logo.png"  align="left" height="35" style="padding: 0 10px"/>
 
-Wordpress plugin for managing climbing crags, routes and crags
+# Climbing Cartboard Wordpress Plugin
+
+Wordpress plugin which let registered users create climbing card/logbook.
 
 ## Development
-
 -   Node ^14.0
 -   NPM ^6.0
 -   Node ^14.0

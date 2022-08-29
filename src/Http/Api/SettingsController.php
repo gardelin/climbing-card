@@ -2,7 +2,6 @@
 
 namespace ClimbingCard\Http\Api;
 
-use ClimbingCard\Repositories\Cards;
 use WP_REST_Request;
 
 class SettingsController extends ApiController
@@ -11,10 +10,8 @@ class SettingsController extends ApiController
     {
         $userId = $request->get_param('user_id');
 
-        if (!$userId) {
-            // @TODO return error message
-            return;
-        }
+        if (!$userId)
+            return self::apiErrorResponse(_e('Couldn\'t find user'));
 
         $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true) || 'true';
 
@@ -25,7 +22,7 @@ class SettingsController extends ApiController
 
     /**
      * Save settings. 
-     * user meta is_climbing_card_public 
+     * user meta key is_climbing_card_public 
      * 
      * @param WP_REST_Request $request
      * @return WP_REST_Response

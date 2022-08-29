@@ -2,8 +2,6 @@
 
 namespace ClimbingCard\Http;
 
-use OPDashboard\SL\SL;
-
 class Controller
 {
     /**

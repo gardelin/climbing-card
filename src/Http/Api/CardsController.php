@@ -7,14 +7,18 @@ use WP_REST_Request;
 
 class CardsController extends ApiController
 {
+    /**
+     * Get all user cards
+     * 
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
+     */
     public static function getUserCards(WP_REST_Request $request)
     {
         $userId = $request->get_param('user_id');
 
-        if (!$userId) {
-            // @TODO return error message
-            return;
-        }
+        if (!$userId)
+            return self::apiErrorResponse(_e('Couldn\'t find user'));
 
         $cards = Cards::getInstance()->getByUserId($userId);
 
@@ -22,7 +26,7 @@ class CardsController extends ApiController
     }
 
     /**
-     * Update DB entry.
+     * Create DB entry.
      * 
      * @param WP_REST_Request $request
      * @return WP_REST_Response

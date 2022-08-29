@@ -2,7 +2,6 @@
 
 namespace ClimbingCard\Http\Api;
 
-use function ClimbingCard\Services\array_get;
 use WP_REST_Response;
 
 class ApiController
@@ -68,22 +67,6 @@ class ApiController
         }
 
         set_transient($key, $payload, $cacheTtl);
-    }
-
-    /**
-     * Check if a given request has access to get items
-     *
-     * @param \WP_REST_Request $request - Full data about the request.
-     *
-     * @return bool
-     */
-    public static function isAdministrator($request)
-    {
-        if (current_user_can('administrator')) {
-            return true;
-        }
-
-        return false;
     }
 
     /**

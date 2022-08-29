@@ -1,5 +1,6 @@
 <template>
     <div>
+        <canvas id="chart"></canvas>
         <table class="cards">
             <thead>
                 <tr>
@@ -20,7 +21,6 @@
                 </tr>
             </tbody>
         </table>
-        <canvas id="chart"></canvas>
     </div>
 </template>
 

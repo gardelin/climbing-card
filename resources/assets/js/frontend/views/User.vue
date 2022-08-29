@@ -155,7 +155,7 @@
                 dateRange,
             }
         },
-        mounted() {
+        async mounted() {
             let canvas = document.getElementById('chart');
             let chart = Chart.getChart('chart')
 

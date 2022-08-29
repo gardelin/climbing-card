@@ -11,11 +11,8 @@ class StatsController extends ApiController
     {
         $userId = $request->get_param('user_id');
 
-        if (!$userId) {
-            // @TODO return error message
-            return;
-        }
-        sleep(1);
+        if (!$userId)
+            return self::apiErrorResponse(_e('Couldn\'t find user'));
 
         $stats = Cards::getInstance()->userStats($userId);
 
