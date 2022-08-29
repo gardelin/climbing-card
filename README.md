@@ -1,8 +1,8 @@
-<img src="resources/assets/images/logo.png" align="left" height="35" style="padding: 0 10px 0 0"/>
-
 # Climbing Cartboard Wordpress Plugin
 
 Wordpress plugin which let registered users create climbing card/logbook.
+
+<img src="resources/assets/images/logo.png" height="59" style="padding: 0 10px 0 0" />
 
 [Wiki](https://github.com/gardelin/climbing-card/wiki)
 
