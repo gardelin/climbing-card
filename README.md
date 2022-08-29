@@ -4,6 +4,8 @@
 
 Wordpress plugin which let registered users create climbing card/logbook.
 
+[Wiki](https://github.com/gardelin/climbing-card/wiki)
+
 ## Development
 -   Node ^14.0
 -   NPM ^6.0
