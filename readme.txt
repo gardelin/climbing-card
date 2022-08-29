@@ -1,6 +1,6 @@
 === Climbing Card ===
 Contributors: rlabrovi
-Donate link: https://contactform7.com/donate/
+Donate link: 
 Tags: rock climbing, logbook, stats
 Requires at least: 5.9
 Tested up to: 6.0
