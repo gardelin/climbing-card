@@ -1,6 +1,6 @@
 === Climbing Card ===
-Contributors: rlabrovi
-Donate link: 
+Contributors: gardelin
+Donate link: rlabrovi@gmail.com
 Tags: rock climbing, logbook, stats
 Requires at least: 5.9
 Tested up to: 6.0
@@ -43,4 +43,8 @@ For basic usage, have a look at the [Wiki](https://github.com/gardelin/climbing-
 
 1. screenshot-1.png
 
+== Frequently Asked Questions == 
+
 == Changelog ==
+
+ == Upgrade Notice ==
