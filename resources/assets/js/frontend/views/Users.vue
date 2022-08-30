@@ -4,6 +4,7 @@
         <div class="container">
             <div class="row">
                 <div class="col">
+                    <h1>{{ $gettext('Cards') }}</h1>
                     <Suspense>
                         <template #default>
                             <UsersTable />
