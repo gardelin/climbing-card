@@ -8,7 +8,9 @@ use function ClimbingCard\view;
 class CardsController extends Controller
 {
     /**
-     * Display the settings admin page
+     * Display the cards admin page
+     * 
+     * @return string
      */
     public static function index()
     {

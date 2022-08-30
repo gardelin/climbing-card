@@ -38,6 +38,8 @@ class Plugin
 
     /**
      * Load the plugin text domain for translation.
+     * 
+     * @return void
      */
     public function loadPluginTextDomain()
     {

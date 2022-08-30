@@ -32,6 +32,7 @@ class PageTemplates
     /**
      * Adds our template to the page dropdown for v4.7+
      *
+     * @return array
      */
     public function addNewTemplate($posts_templates)
     {

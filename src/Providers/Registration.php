@@ -9,6 +9,8 @@ class Registration
 {
     /**
      * Init changes on wordpress registration process
+     * 
+     * @return void
      */
     public static function init()
     {
@@ -65,7 +67,7 @@ class Registration
     /**
      * Save additional user data immediately after new user is created
      * 
-     * @param int $userIdA
+     * @param int $userId
      * @return void
      */
     public function save($userId)

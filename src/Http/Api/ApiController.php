@@ -82,7 +82,7 @@ class ApiController
     {
         $response = ['status' => $code];
 
-        // Add message?
+        // Add message
         if (is_array($payload) && isset($payload['message'])) {
             $response['message'] = $payload['message'];
         } elseif (is_object($payload) && isset($payload->message)) {
@@ -91,16 +91,6 @@ class ApiController
 
         // Add payload
         $response['data'] = $payload;
-
-        // Add meta data if needed
-        if (isset($options['meta'])) {
-            $response['meta'] = $options['meta'];
-        }
-
-        // Add link data if needed
-        if (isset($options['links'])) {
-            $response['links'] = $options['links'];
-        }
 
         return new WP_REST_Response($response, $code, $headers);
     }
@@ -122,11 +112,6 @@ class ApiController
             'message'  => $message,
             'data'     => array_merge(['status' => $status], $data),
         ];
-
-        // Add meta data if needed
-        if (isset($options['meta'])) {
-            $response['meta'] = $options['meta'];
-        }
 
         return new WP_REST_Response($response, $status);
     }

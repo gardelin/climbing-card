@@ -9,6 +9,8 @@ class SettingsController extends Controller
 {
     /**
      * Display the settings admin page
+     * 
+     * @return string
      */
     public static function index()
     {

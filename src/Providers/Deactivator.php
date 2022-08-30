@@ -22,7 +22,5 @@ class Deactivator
      * @param string  $plugin
      * @return void
      */
-    public static function afterDeactivate($plugin)
-    {
-    }
+    public static function afterDeactivate($plugin) {}
 }

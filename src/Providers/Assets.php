@@ -20,7 +20,7 @@ class Assets
     }
 
     /**
-     * Add specific class for op-protect admin pages
+     * Add specific class for to <body> for plugin admin pages
      * 
      * @param string $classes
      * @return string
@@ -38,7 +38,6 @@ class Assets
      * Enqueue admin scripts and styles
      *
      * @param string $page
-     *
      * @return void
      */
     public function enqueueAdminScripts($page)
@@ -68,7 +67,6 @@ class Assets
      * Enqueue frontend scripts and styles.
      *
      * @param string $page
-     *
      * @return void
      */
     public function enqueueScripts()

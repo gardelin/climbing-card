@@ -4,7 +4,10 @@ namespace ClimbingCard\Helpers\DatabaseTables;
 
 abstract class BaseTable
 {
+    const TABLE_NAME = '';
     const TABLE_NAME_PREFIX = '';
+    const SCHEMA_VERSION_OPTION_NAME = '';
+    const SCHEMA_VERSION = '';
 
     /**
      * Returns table name.
@@ -36,8 +39,7 @@ abstract class BaseTable
      */
     protected function schemaNeedsUpdating()
     {
-        return true;
-        // return version_compare(get_option(static::SCHEMA_VERSION_OPTION_NAME, '0'), static::SCHEMA_VERSION, '<');
+        return version_compare(get_option(static::SCHEMA_VERSION_OPTION_NAME, '0'), static::SCHEMA_VERSION, '<');
     }
 
     /**

@@ -24,7 +24,5 @@ class Activator
      * @param string $plugin
      * @return void
      */
-    public static function afterActivate($plugin)
-    {
-    }
+    public static function afterActivate($plugin) {}
 }
