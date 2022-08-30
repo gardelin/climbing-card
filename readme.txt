@@ -48,4 +48,10 @@ For basic usage, have a look at the [Wiki](https://github.com/gardelin/climbing-
 
 == Changelog ==
 
+= 1.0.5 - August 30 2022 =
+* fixed graph render on "Climbing Card" page template
+* Adding LICENCE.md
+* Adding readme.txt
+* Translation update
+
  == Upgrade Notice ==
