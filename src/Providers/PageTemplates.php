@@ -7,7 +7,7 @@ use function ClimbingCard\views_path;
 class PageTemplates
 {
     /**
-     * The array of templates that this plugin tracks.A
+     * The array of templates that this plugin tracks.
      * 
      * @type array
      */
