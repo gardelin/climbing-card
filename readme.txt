@@ -48,6 +48,14 @@ For basic usage, have a look at the [Wiki](https://github.com/gardelin/climbing-
 
 == Changelog ==
 
+= 1.0.6 - September 6 2022 =
+* Sanitize and validate first and last name fields in registration form
+* Allow only one page with template "Climbing Cards"
+* Adding svg log
+* Escaping echoed data in views
+* Adding link to user cartboard in top-users-by-number-of-climbed-routes shortcode
+
+
 = 1.0.5 - August 30 2022 =
 * fixed graph render on "Climbing Card" page template
 * Adding LICENCE.md
