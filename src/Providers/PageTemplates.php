@@ -13,6 +13,8 @@ class PageTemplates
      */
     protected $templates;
 
+    protected $templateName = 'cards/index.php';
+
     /**
      * Initialize registration of page templates.
      *
@@ -20,25 +22,54 @@ class PageTemplates
      */
     public function init()
     {
-        $this->templates = [];
 
-        add_filter('theme_page_templates', [$this, 'addNewTemplate']);
+        $this->templates = [$this->templateName => __('Climbing Cards', 'climbing-card')];
+
+        add_filter('theme_page_templates', [$this, 'addNewTemplate'], 10, 3);
         add_filter('wp_insert_post_data', [$this, 'registerProjectTemplates']);
         add_filter('template_include', [$this, 'viewProjectTemplate']);
-
-        $this->templates = ['cards/index.php' => __('Climbing Cards', 'climbing-card')];
     }
 
     /**
-     * Adds our template to the page dropdown for v4.7+
+     * Adds our template to the page template dropdown.
+     * Allow only one page to have this template active.
      *
      * @return array
      */
-    public function addNewTemplate($posts_templates)
+    public function addNewTemplate($templates, $theme, $post)
     {
-        $posts_templates = array_merge($posts_templates, $this->templates);
+        $templatePageId = $this->checkIfTemplateIsInUse($this->templateName);
 
-        return $posts_templates;
+        if (!$templatePageId || (!empty($post) && $templatePageId === $post->ID)) {
+            $templates = array_merge($templates, $this->templates);
+        }
+
+        return $templates;
+    }
+
+    /**
+     * Check if specific page template is in use (at last one page that is using it)
+     * 
+     * @param string $template
+     * @return null|int
+     */
+    private function checkIfTemplateIsInUse($template) 
+    {
+        $page_id = null;
+    
+        $pages = get_posts([
+            'post_type'         => 'page',
+            'posts_per_page'    => 1,
+            'fields'            => 'ids',
+            'meta_key'          => '_wp_page_template',
+            'meta_value'        => $template
+        ]);
+    
+        if ($pages) {
+            $page_id = $pages[0];
+        }
+ 
+        return $page_id;
     }
 
     /**
