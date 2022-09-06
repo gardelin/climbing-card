@@ -1,5 +1,5 @@
 === Climbing Card ===
-Current version: 1.0.5
+Current version: 1.0.6
 Contributors: gardelin
 Donate link: rlabrovi@gmail.com
 Tags: rock climbing, logbook, stats
