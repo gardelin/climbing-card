@@ -27,18 +27,18 @@ class Registration
     public function insertFieldsToRegistrationForm()
     {
 
-        $first_name = (!empty($_POST['first_name'])) ? trim($_POST['first_name']) : '';
-        $last_name = (!empty($_POST['last_name'])) ? trim($_POST['last_name']) : '';
+        $first_name = !empty($_POST['first_name']) ? sanitize_text_field($_POST['first_name']) : '';
+        $last_name = !empty($_POST['last_name']) ? sanitize_text_field($_POST['last_name']) : '';
 
 ?>
         <p>
             <label for="first_name"><?php _e('First Name', 'climbingcard') ?><br />
-                <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr(wp_unslash($first_name)); ?>" size="25" /></label>
+            <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr($first_name); ?>" size="25" pattern="[a-zA-Z]+" /></label>
         </p>
 
         <p>
             <label for="last_name"><?php _e('Last Name', 'climbingcard') ?><br />
-                <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr(wp_unslash($last_name)); ?>" size="25" /></label>
+            <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr($last_name); ?>" size="25" pattern="[a-zA-Z]+" /></label>
         </p>
 <?php
     }
@@ -53,12 +53,23 @@ class Registration
      */
     public function errors($errors, $sanitized_user_login, $user_email)
     {
-        if (empty($_POST['first_name']) || !empty($_POST['first_name']) && trim($_POST['first_name']) == '') {
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+
+        if (empty($first_name)) {
             $errors->add('first_name_error', __('<strong>ERROR</strong>: You must include a first name.', 'climbingcard'));
         }
 
-        if (empty($_POST['last_name']) || !empty($_POST['last_name']) && trim($_POST['last_name']) == '') {
+        if (empty($last_name)) {
             $errors->add('last_name_error', __('<strong>ERROR</strong>: You must include a last name.', 'climbingcard'));
+        }
+
+        if (!empty($first_name) && !preg_match("/^[a-zA-Z]+$/", $first_name)) {
+            $errors->add('first_name_error', __('<strong>ERROR</strong>: You must use letters only for first name.', 'climbingcard'));
+        }
+
+        if (!empty($last_name) && !preg_match("/^[a-zA-Z]+$/", $last_name)) {
+            $errors->add('last_name_error', __('<strong>ERROR</strong>: You must use letters only for last name.', 'climbingcard'));
         }
 
         return $errors;
@@ -72,12 +83,15 @@ class Registration
      */
     public function save($userId)
     {
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+
         if (!empty($_POST['first_name'])) {
-            update_user_meta($userId, 'first_name', trim($_POST['first_name']));
+            update_user_meta($userId, 'first_name', $first_name);
         }
 
         if (!empty($_POST['last_name'])) {
-            update_user_meta($userId, 'last_name', trim($_POST['last_name']));
+            update_user_meta($userId, 'last_name', $last_name);
         }
 
         update_user_meta($userId, 'is_climbing_card_public', 'true');
