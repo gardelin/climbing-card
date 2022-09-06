@@ -134,3 +134,28 @@ function is_admin()
 {
     return current_user_can('administrator');
 }
+
+/**
+ * Check if specific page template is in use (at last one page that is using it)
+ * 
+ * @param string $template
+ * @return null|int
+ */
+function check_if_template_is_in_use($template) 
+{
+    $page_id = null;
+
+    $pages = get_posts([
+        'post_type'         => 'page',
+        'posts_per_page'    => 1,
+        'fields'            => 'ids',
+        'meta_key'          => '_wp_page_template',
+        'meta_value'        => $template
+    ]);
+
+    if ($pages) {
+        $page_id = $pages[0];
+    }
+
+    return $page_id;
+}

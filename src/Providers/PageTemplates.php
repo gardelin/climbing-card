@@ -3,6 +3,7 @@
 namespace ClimbingCard\Providers;
 
 use function ClimbingCard\views_path;
+use function ClimbingCard\check_if_template_is_in_use;
 
 class PageTemplates
 {
@@ -38,38 +39,13 @@ class PageTemplates
      */
     public function addNewTemplate($templates, $theme, $post)
     {
-        $templatePageId = $this->checkIfTemplateIsInUse($this->templateName);
+        $templatePageId = check_if_template_is_in_use($this->templateName);
 
         if (!$templatePageId || (!empty($post) && $templatePageId === $post->ID)) {
             $templates = array_merge($templates, $this->templates);
         }
 
         return $templates;
-    }
-
-    /**
-     * Check if specific page template is in use (at last one page that is using it)
-     * 
-     * @param string $template
-     * @return null|int
-     */
-    private function checkIfTemplateIsInUse($template) 
-    {
-        $page_id = null;
-    
-        $pages = get_posts([
-            'post_type'         => 'page',
-            'posts_per_page'    => 1,
-            'fields'            => 'ids',
-            'meta_key'          => '_wp_page_template',
-            'meta_value'        => $template
-        ]);
-    
-        if ($pages) {
-            $page_id = $pages[0];
-        }
- 
-        return $page_id;
     }
 
     /**
