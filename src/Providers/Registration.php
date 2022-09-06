@@ -32,12 +32,12 @@ class Registration
 
 ?>
         <p>
-            <label for="first_name"><?php _e('First Name', 'climbingcard') ?><br />
+            <label for="first_name"><?php esc_html_e('First Name', 'climbingcard') ?><br />
             <input type="text" name="first_name" id="first_name" class="input" value="<?php echo esc_attr($first_name); ?>" size="25" pattern="[a-zA-Z]+" /></label>
         </p>
 
         <p>
-            <label for="last_name"><?php _e('Last Name', 'climbingcard') ?><br />
+            <label for="last_name"><?php esc_html_e('Last Name', 'climbingcard') ?><br />
             <input type="text" name="last_name" id="last_name" class="input" value="<?php echo esc_attr($last_name); ?>" size="25" pattern="[a-zA-Z]+" /></label>
         </p>
 <?php
