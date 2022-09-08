@@ -34,7 +34,7 @@ class ApiController
      */
     public static function abort($code)
     {
-        echo 'Error: ' . $code;
+        echo esc_html('Error: ' . $code);
         die();
     }
 

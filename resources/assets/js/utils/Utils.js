@@ -1,8 +1,7 @@
-import $ from 'jquery';
-
 export default class Utils {
     /**
      * Get full list of climbing grades.
+     *
      * @param {Boolean} slashGrades e.g. 6c+/7a
      * @returns {Array}
      */

@@ -28,10 +28,10 @@ foreach ($users as $user) {
                 <?php if (empty($user->user_firstname) || empty($user->user_lastname)) : ?>
                     <?php continue; ?>
                 <?php endif; ?>
-                <option value="<?php echo $user->ID; ?>"><?php echo $user->user_firstname . ' ' . $user->user_lastname; ?></option>';
+                <option value="<?php echo esc_attr($user->ID); ?>"><?php echo esc_html($user->user_firstname . ' ' . $user->user_lastname); ?></option>';
             <?php endforeach; ?>
         </select>
-        <input type="text" id="table-filter" placeholder="<?php _e('Search', 'climbing-card'); ?>" />
+        <input type="text" id="table-filter" placeholder="<?php esc_attr_e('Search', 'climbing-card'); ?>" />
     </div>
     <?php if (is_user_logged_in()) : ?>
         <a class="button" href="/wp-admin/admin.php?page=climbingcard">Administriraj svoj e-karton</a>
