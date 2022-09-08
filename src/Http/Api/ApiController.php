@@ -28,17 +28,6 @@ class ApiController
     protected static $repository;
 
     /**
-     * Abort execution
-     *
-     * @param $code
-     */
-    public static function abort($code)
-    {
-        echo esc_html('Error: ' . $code);
-        die();
-    }
-
-    /**
      * Fetch from transient API
      *
      * @param  string $key

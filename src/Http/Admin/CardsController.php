@@ -2,10 +2,9 @@
 
 namespace ClimbingCard\Http\Admin;
 
-use ClimbingCard\Http\Controller;
 use function ClimbingCard\view;
 
-class CardsController extends Controller
+class CardsController 
 {
     /**
      * Display the cards admin page

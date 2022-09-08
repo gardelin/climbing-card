@@ -2,10 +2,9 @@
 
 namespace ClimbingCard\Http\Admin;
 
-use ClimbingCard\Http\Controller;
 use function ClimbingCard\view;
 
-class SettingsController extends Controller
+class SettingsController 
 {
     /**
      * Display the settings admin page
