@@ -1,25 +1,34 @@
-=== Climbing Card ===
-Current version: 1.0.7
+=== Climbing Cardboard === 
+Plugin Name: Climbing Cardboard
+Plugin URI: https://github.com/gardelin/climbing-card 
+Tags: sport, climbing, routes, logbook, stats
+Author: Roko Labrovic
+Author URI: https://github.com/gardelin
 Contributors: gardelin
 Donate link: rlabrovi@gmail.com
-Tags: rock climbing, logbook, stats
+Current version: 1.0.7
+Stable tag: 1.0.7
 Requires at least: 5.9
+Requires PHP: 7.0
 Tested up to: 6.0
-Stable tag: 5.6.1
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 Wordpress plugin which let registered users create climbing card/logbook.
 
 == Description ==
-The ideal plugin for rock climbing lovers allows registered users to create and add climbed routes to own climbing card/logbook. Also, the plugin calculates statistics for every user individually but all users too.
+The ideal plugin for rock climbing lovers which allows registered users to create and add climbed routes to own climbing card/logbook. Also, the plugin calculates statistics for every user individually and all users too.
 
 = Wiki =
-
 You can find [Wiki](https://github.com/gardelin/climbing-card/wiki)
 
-= Privacy notices =
+= Shortcodes =
+[last_climbed_routes number="10" show-route-in-header="0|1" show-date-in-header="0|1"]
+[stats_counter]
+[top_users_by_number_of_climbed_routes number="10"]
+[stats]
 
+= Privacy notices =
 This plugin does not:
 
 * track users by stealth;
@@ -28,25 +37,38 @@ This plugin does not:
 * use cookies.
 
 = Translations =
-
 Currently only English and Croatian language are supported.
 
 == Installation ==
+Installing the plugin is easy. Just follow these steps:
 
-1. Upload the entire `climbing-card` folder to the `/wp-content/plugins/` directory.
-1. Activate the plugin through the **Plugins** screen (**Plugins > Installed Plugins**).
+1. From the dashboard of your site, navigate to Plugins –> Add New.
+2. Select the Upload option and hit “Choose File.”
+3. When the popup appears select the climbing-card.zip file from your computer. (For example: climbing-card-v1.0.7.zip).
+4. Follow the on-screen instructions and wait as the upload completes.
+5. When it’s finished, activate the plugin via the prompt. A message will show confirming activation was successful. And you will redirect to the Welcome page.
 
-You will find **Climbing Card** menu in your WordPress admin screen.
-
-For basic usage, have a look at the [Wiki](https://github.com/gardelin/climbing-card/wiki)
-
-== Screenshots ==
-
-1. screenshot-1.png
+Installation is complete! You will find **Climbing Card** menu in your WordPress admin screen.
 
 == Frequently Asked Questions == 
 
+= Does it work with any WordPress theme? =
+
+Yes, it will work with any standard WordPress theme.
+
+= Is this plugin for free? =
+
+This plugin is for free and licensed to GPL.
+It's open source following the GPL policy.
+
+== Screenshots ==
+
 == Changelog ==
+
+= 1.0.7 - September 8 2022 =
+* Removing Controller class (no need it for now) and abort method in ApiController class
+* Fixing echo left overs
+* Update README.md
 
 = 1.0.6 - September 6 2022 =
 * Sanitize and validate first and last name fields in registration form
@@ -54,7 +76,6 @@ For basic usage, have a look at the [Wiki](https://github.com/gardelin/climbing-
 * Adding svg log
 * Escaping echoed data in views
 * Adding link to user cartboard in top-users-by-number-of-climbed-routes shortcode
-
 
 = 1.0.5 - August 30 2022 =
 * fixed graph render on "Climbing Card" page template
