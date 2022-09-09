@@ -5,7 +5,6 @@ Tags: sport, climbing, routes, logbook, stats
 Author: Roko Labrovic
 Author URI: https://github.com/gardelin
 Contributors: gardelin
-Donate link: rlabrovi@gmail.com
 Current version: 1.0.7
 Stable tag: 1.0.7
 Requires at least: 5.9
@@ -58,8 +57,7 @@ Yes, it will work with any standard WordPress theme.
 
 = Is this plugin for free? =
 
-This plugin is for free and licensed to GPL.
-It's open source following the GPL policy.
+This plugin is for free and licensed to GPL. It's open source following the GPL policy.
 
 == Screenshots ==
 
