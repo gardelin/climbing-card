@@ -5,7 +5,7 @@
                 <div class="col">
                     <Header :title="$gettext('Climbing Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
-                        <div class="btn" v-if="cards.length" @click.prevent="exportToCsv()">
+                        <div class="btn" v-if="this.$store.getters.cards.length" @click.prevent="exportToCsv()">
                             <Download :size="16" />
                             {{ $gettext('Export CSV') }}
                         </div>
@@ -27,7 +27,7 @@
                             <Cards />
                         </template>
                         <template #fallback>
-                            <CardsSkeleton />
+                            <PulseLoader />
                         </template>
                     </Suspense>
                 </div>
@@ -40,20 +40,13 @@
     import { computed } from 'vue';
     import { useStore, mapActions } from 'vuex';
     import Cards from '../components/cards/Cards';
-    import CardsSkeleton from '../components/loading/CardsSkeleton';
+    import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
     import Header from '../components/partials/Header';
     import { Plus, Download } from 'lucide-vue-next';
 
     export default {
-        name: 'ClimbingCards',
-        components: { Cards, CardsSkeleton, Header, Plus, Download },
-        setup() {
-            const store = useStore();
-
-            return {
-                cards: computed(() => store.state.cards),
-            };
-        },
+        name: 'CardsPage',
+        components: { Cards, Header, Plus, Download, PulseLoader },
         methods: {
             newCardTemplate() {
                 return {
@@ -71,6 +64,7 @@
                         grade: null,
                         climbed_at: null,
                     },
+                    appendingNew: true,
                 };
             },
             ...mapActions({

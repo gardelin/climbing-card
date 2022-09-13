@@ -1,27 +1,27 @@
 import { createWebHashHistory, createRouter } from 'vue-router';
 
-import ClimbingCards from '../views/ClimbingCards';
-import Settings from '../views/Settings';
-import Stats from '../views/Stats';
+import CardsPage from '../pages/CardsPage';
+import SettingsPage from '../pages/SettingsPage';
+import StatisticsPage from '../pages/StatisticsPage';
 
 // Define all routes
 export const routes = [
     {
         name: 'climbing-cards',
         path: '/',
-        component: ClimbingCards,
+        component: CardsPage,
         meta: { title: 'Climbing Card' },
     },
     {
         name: 'settings',
         path: '/settings',
-        component: Settings,
+        component: SettingsPage,
         meta: { title: 'Climbing Card - Settings' },
     },
     {
         name: 'stats',
         path: '/stats',
-        component: Stats,
+        component: StatisticsPage,
         meta: { title: 'Climbing Card - Statistics' },
     },
 ];

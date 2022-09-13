@@ -13,7 +13,9 @@
             </thead>
             <tbody>
                 <tr class="item" v-for="stat in stats">
-                    <td data-name="{{ $gettext('Grade') }}"><strong>{{ stat.grade }}</strong></td>
+                    <td data-name="{{ $gettext('Grade') }}">
+                        <strong>{{ stat.grade }}</strong>
+                    </td>
                     <td data-name="{{ $gettext('Total') }}">{{ stat.total }}</td>
                     <td data-name="{{ $gettext('On Sight') }}">{{ stat.on_sight }}</td>
                     <td data-name="{{ $gettext('Flash') }}">{{ stat.flash }}</td>
@@ -32,22 +34,19 @@
     export default {
         name: 'Statistics',
         async setup() {
-            const stats = ref([]);
             const store = useStore();
 
-            const response = await fetch(`${window.climbingcards.rest_url}stats/${window.climbingcards.logged_user_id}`);
-            const json = await response.json();
-            stats.value = json.data.stats;
-
-            store.commit('setStats', (store.state.stats = stats));
+            if (!store.getters.stats.length) {
+                await store.dispatch('getStatistics');
+            }
 
             return {
-                stats: computed(() => store.state.stats),
+                stats: computed(() => store.getters.stats),
             };
         },
         mounted() {
             let canvas = document.getElementById('chart');
-            let chart = Chart.getChart('chart')
+            let chart = Chart.getChart('chart');
 
             if (chart && typeof chart.destroy === 'function') {
                 chart.destory();
@@ -56,23 +55,34 @@
             chart = new Chart(canvas, {
                 type: 'bar',
                 data: {
-                    labels: this.stats.map((item) => { return item.grade }),
+                    labels: this.stats.map(item => {
+                        return item.grade;
+                    }),
                     datasets: [
                         {
-                            label: "On Sight",
-                            data: this.stats.map((item) => { return parseInt(item.on_sight) }),
-                            backgroundColor: '#00a19a',
+                            label: 'On Sight',
+                            data: this.stats.map(item => {
+                                return parseInt(item.on_sight);
+                            }),
+                            backgroundColor: 'rgba(0,161,154, 0.3)',
+                            borderColor: 'rgba(0,161,154, 1)',
                         },
                         {
-                            label: "Flash",
-                            data: this.stats.map((item) => { return parseInt(item.flash) }),
-                            backgroundColor: '#f8b231',
+                            label: 'Flash',
+                            data: this.stats.map(item => {
+                                return parseInt(item.flash);
+                            }),
+                            backgroundColor: 'rgba(248,178,49, 0.3)',
+                            borderColor: 'rgba(248,178,49, 1)',
                         },
                         {
-                            label: "Red Point",
-                            data: this.stats.map((item) => { return parseInt(item.red_point) }),
-                            backgroundColor: '#d51c54',
-                        }
+                            label: 'Red Point',
+                            data: this.stats.map(item => {
+                                return parseInt(item.red_point);
+                            }),
+                            backgroundColor: 'rgba(213,28,84, 0.3)',
+                            borderColor: 'rgba(213,28,84, 1)',
+                        },
                     ],
                 },
                 options: {
@@ -83,18 +93,18 @@
                         y: {
                             stacked: true,
                             ticks: {
-                                callback: function(value) {
+                                callback: function (value) {
                                     if (value % 1 === 0) {
                                         return value;
                                     }
-                                }
-                            }
-                        }
+                                },
+                            },
+                        },
                     },
                     plugins: {
                         legend: {
                             position: 'bottom',
-                        }
+                        },
                     },
                     barThickness: 50,
                 },

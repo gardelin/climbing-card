@@ -1,17 +1,25 @@
 <template>
-    <nav>
-        <ul>
-            <li>
-                <router-link :to="{ name: 'climbing-cards', params: {} }">{{ $gettext('Climbing Cards') }}</router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: 'stats' }">{{ $gettext('Statistics') }}</router-link>
-            </li>
-            <li>
-                <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
-            </li>
-        </ul>
-    </nav>
+    <section class="border-bottom-gray-100">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav>
+                        <ul>
+                            <li>
+                                <router-link :to="{ name: 'climbing-cards', params: {} }">{{ $gettext('Climbing Cards') }}</router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'stats' }">{{ $gettext('Statistics') }}</router-link>
+                            </li>
+                            <li>
+                                <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>

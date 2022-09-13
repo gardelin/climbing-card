@@ -84,9 +84,9 @@
                         <span v-if="card.errors.climbed_at" class="error">{{ card.errors.climbed_at }}</span>
                     </td>
                     <td class="actions" :data-name="$gettext('Actions')">
-                        <Edit2 :size="18" v-if="!card.editmode" @click="_edit(card)" />
+                        <Edit2 :size="18" v-if="!card.editmode" @click="card.editmode = true" />
                         <Save :size="18" v-else @click="_save(card)" />
-                        <Trash2 :size="18" @click="_delete(card)" />
+                        <Trash2 :size="18" @click="this.$store.dispatch('deleteCard', card)" />
                     </td>
                 </tr>
             </tbody>
@@ -98,7 +98,7 @@
 <script>
     import Utils from '../../../utils/Utils';
     import { ref, computed } from 'vue';
-    import { useStore } from 'vuex';
+    import { useStore, mapActions } from 'vuex';
     import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
     import language from '../../../language';
     import flatPickr from 'vue-flatpickr-component';
@@ -107,15 +107,15 @@
 
     export default {
         name: 'Cards',
-        components: { 
-            Edit2, 
-            Trash2, 
-            Save, 
-            ChevronDown, 
-            ChevronUp, 
-            Search, 
-            X, 
-            flatPickr 
+        components: {
+            Edit2,
+            Trash2,
+            Save,
+            ChevronDown,
+            ChevronUp,
+            Search,
+            X,
+            flatPickr,
         },
         data() {
             return {
@@ -132,29 +132,16 @@
             };
         },
         async setup() {
-            const cards = ref([]);
             const searchQuery = ref('');
             const dateRange = ref('');
-
             const store = useStore();
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`);
-            const json = await response.json();
 
-            cards.value = json.data.cards.map(card => {
-                card.errors = {
-                    route: null,
-                    crag: null,
-                    grade: null,
-                    climbed_at: null,
-                };
-
-                return card;
-            });
-
-            store.commit('setCards', (store.state.cards = cards));
+            if (!store.getters.cards.length) {
+                await store.dispatch('getCards');
+            }
 
             const filteredCards = computed(() => {
-                let data = store.state.cards;
+                let data = store.getters.cards;
                 const term = searchQuery.value.toLowerCase();
                 const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
 
@@ -173,31 +160,21 @@
 
                 // Filter by searched term
                 data = data.filter(card => {
-                    return false 
-                        || card.route.toLowerCase().indexOf(term) != -1 
-                        || card.crag.toLowerCase().indexOf(term) != -1 
-                        || card.grade.toLowerCase().indexOf(term) != -1;
+                    return false || card.route.toLowerCase().indexOf(term) != -1 || card.crag.toLowerCase().indexOf(term) != -1 || card.grade.toLowerCase().indexOf(term) != -1;
                 });
 
                 return data;
             });
 
             return {
-                cards: computed(() => store.state.cards),
+                cards: computed(() => store.getters.cards),
                 filteredCards,
                 searchQuery,
                 dateRange,
             };
         },
         methods: {
-            /**
-             * Set edit mode so user can edit card.
-             *
-             * @return {Void}
-             */
-            _edit(card) {
-                card.editmode = true;
-            },
+            ...mapActions(['sortCards', 'saveCard', 'updateCard']),
 
             /**
              * Store new card to database
@@ -205,55 +182,13 @@
              * @return {Void}
              */
             _save(card) {
-                if (!this._isValid(card)) {
-                    return;
+                if (this._isValid(card)) {
+                    if (card.id) {
+                        this.updateCard(card);
+                    } else {
+                        this.saveCard(card);
+                    }
                 }
-
-                let update = card.id ? true : false;
-
-                fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                    method: update ? 'PUT' : 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        'X-WP-Nonce': window.climbingcards.nonce,
-                    },
-                    body: JSON.stringify(card),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.data.updated) {
-                            card.editmode = false;
-                        } else if (data.data.created) {
-                            card.id = data.data.card.id;
-                            card.editmode = false;
-                        }
-                    })
-                    .catch(error => console.log(error));
-            },
-
-            /**
-             * Delete card entry.
-             *
-             * @return {Void}
-             */
-            _delete(card) {
-                let index = this.$store.state.cards.indexOf(card);
-
-                if (!card.id) return this.$store.state.cards.splice(index, 1);
-
-                fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        'X-WP-Nonce': window.climbingcards.nonce,
-                    },
-                    body: JSON.stringify(card),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.data.deleted) this.$store.state.cards.splice(index, 1);
-                    })
-                    .catch(error => console.log(error));
             },
 
             /**
@@ -311,7 +246,7 @@
                 this.sortBy = prop;
                 const asc = this.asc;
 
-                this.$store.commit('sortCards', { prop, asc });
+                this.sortCards({ prop, asc });
             },
         },
     };
