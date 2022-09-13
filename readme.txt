@@ -60,6 +60,10 @@ Yes, it will work with any standard WordPress theme.
 This plugin is for free and licensed to GPL. It's open source following the GPL policy.
 
 == Screenshots ==
+1. Plugin "Climbing Cardboard" page template
+2. Plugin dashboard screen
+3. Plugin statistics screen
+4. Plugin settings screen
 
 == Changelog ==
 
