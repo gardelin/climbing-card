@@ -10,19 +10,22 @@ class SettingsController extends ApiController
     {
         $userId = $request->get_param('user_id');
 
-        if (!$userId)
+        if (!$userId) {
             return self::apiErrorResponse(_e('Couldn\'t find user'));
+        }
 
-        $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true) || 'true';
+        $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true);
+
+        // For users that don't have _is_climbing_card_public metadata force true
+        $isClimbingCardPublic = $isClimbingCardPublic == '' ? 'true' : $isClimbingCardPublic;
 
         return self::apiResponse([
-            'is_climbing_card_public' => $isClimbingCardPublic == 'true' ? 'true' : 'false',
+            'is_climbing_card_public' => $isClimbingCardPublic,
         ]);
     }
 
     /**
      * Save settings. 
-     * user meta key is_climbing_card_public 
      * 
      * @param WP_REST_Request $request
      * @return WP_REST_Response
