@@ -26,8 +26,10 @@ export default {
                     });
                 }
 
+                const query = searchQuery.value.toLowerCase();
+
                 cards = cards.filter(card => {
-                    return false || card.route.toLowerCase().includes(searchQuery.value) || card.crag.toLowerCase().includes(searchQuery.value) || card.grade.toLowerCase().includes(searchQuery.value);
+                    return false || card.route.toLowerCase().includes(query) || card.crag.toLowerCase().includes(query) || card.grade.toLowerCase().includes(query);
                 });
 
                 return cards;
