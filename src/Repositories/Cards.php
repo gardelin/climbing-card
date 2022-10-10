@@ -156,7 +156,7 @@ class Cards implements RepositoryAccess
         global $wpdb;
 
         $results = new Collection;
-        $query = "SELECT * FROM " . CardsTable::getTableName() . " ORDER BY `id` DESC";
+        $query = "SELECT * FROM " . CardsTable::getTableName() . " ORDER BY `climbed_at` DESC";
 
         if (isset($filters['limit']))
             $query = $query . " LIMIT " . esc_sql($filters['limit']);
