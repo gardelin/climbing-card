@@ -42,6 +42,7 @@ export function getSiblings(element) {
 /**
  * Convert mysql datetime so it's readable for human.
  *
+ * @param {String} datetime
  * @return {String}
  */
 export function datetimeToHuman(datetime) {
