@@ -26,13 +26,8 @@
     </section>
 </template>
 
-<script>
-    import Settings from '../components/settings/Settings.vue';
+<script setup>
+    import Settings from '../components/Settings.vue';
     import Header from '../components/partials/Header';
     import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-
-    export default {
-        name: 'SettingsPage',
-        components: { Header, Settings, PulseLoader },
-    };
 </script>

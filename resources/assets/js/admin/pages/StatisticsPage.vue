@@ -28,26 +28,8 @@
     </div>
 </template>
 
-<script>
-    import { computed } from 'vue';
-    import { useStore } from 'vuex';
+<script setup>
     import Header from '../components/partials/Header';
-    import Statistics from '../components/statistics/Statistics';
+    import Statistics from '../components/Statistics';
     import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
-
-    export default {
-        name: 'StatisticsPage',
-        components: {
-            Header,
-            Statistics,
-            PulseLoader,
-        },
-        setup() {
-            const store = useStore();
-
-            return {
-                stats: computed(() => store.state.stats),
-            };
-        },
-    };
 </script>

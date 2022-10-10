@@ -20,8 +20,8 @@
 <script>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
-    import Toggle from '../../components/Toggle';
-    import Header from '../../components/partials/Header';
+    import Toggle from './Toggle';
+    import Header from './partials/Header';
 
     export default {
         name: 'Settings',

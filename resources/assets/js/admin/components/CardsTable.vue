@@ -7,7 +7,7 @@
             </div>
             <div class="date-container">
                 <div class="input-group">
-                    <flat-pickr v-model="dateRange" :config="config" :placeholder="$gettext('Select Dates')"> </flat-pickr>
+                    <flat-pickr v-model="dateRange" :config="flatPickrRangeConfig" :placeholder="$gettext('Select Dates')"> </flat-pickr>
                     <X :size="18" v-if="dateRange" @click="dateRange = null" />
                 </div>
             </div>
@@ -79,8 +79,10 @@
                         <span v-else>{{ card.comment }}</span>
                     </td>
                     <td class="climbed_at" :data-name="$gettext('Date')">
-                        <input v-if="card.editmode" type="date" v-model="card.climbed_at" />
-                        <span v-else>{{ card.climbed_at }}</span>
+                        <span v-if="card.editmode">
+                            <flat-pickr v-model="card.climbed_at" :config="flatPickrDateConfig" :placeholder="$gettext('Select Date')" />
+                        </span>
+                        <span v-else>{{ datetimeToHuman(card.climbed_at) }}</span>
                         <span v-if="card.errors.climbed_at" class="error">{{ card.errors.climbed_at }}</span>
                     </td>
                     <td class="actions" :data-name="$gettext('Actions')">
@@ -96,12 +98,12 @@
 </template>
 
 <script>
-    import { grades } from '../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore, mapActions } from 'vuex';
     import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
     import language from '../../language';
     import flatPickr from 'vue-flatpickr-component';
+    import { grades, datetimeToHuman } from '../../utils/Utils';
 
     const { $gettext } = language;
 
@@ -122,12 +124,15 @@
                 grades: grades(true),
                 asc: false,
                 sortBy: null,
-                config: {
-                    altFormat: 'Y-m-d',
+                flatPickrRangeConfig: {
+                    altFormat: 'd/m/Y',
                     altInput: true,
-                    dateFormat: 'Y-m-d',
                     mode: 'range',
                     locale: { rangeSeparator: ' - ' },
+                },
+                flatPickrDateConfig: {
+                    altFormat: 'd/m/Y',
+                    altInput: true,
                 },
             };
         },
@@ -145,6 +150,7 @@
                 filteredCards: computed(() => store.getters.filterCards({ searchQuery, dateRange })),
                 searchQuery,
                 dateRange,
+                datetimeToHuman,
             };
         },
         methods: {
