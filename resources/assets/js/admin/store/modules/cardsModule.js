@@ -6,6 +6,32 @@ export default {
         cards(state) {
             return state.cards;
         },
+        filterCards:
+            state =>
+            ({ searchQuery, dateRange }) => {
+                let cards = state.cards;
+                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
+
+                if (dates?.[0] && !dates?.[1]) {
+                    dates[1] = dates[0];
+                }
+
+                if (dates?.[0] && dates?.[1]) {
+                    const from = new Date(dates[0]);
+                    const to = new Date(dates[1]);
+
+                    cards = state.cards.filter(card => {
+                        const check = new Date(card.climbed_at);
+                        return check >= from && check <= to;
+                    });
+                }
+
+                cards = cards.filter(card => {
+                    return false || card.route.toLowerCase().includes(searchQuery.value) || card.crag.toLowerCase().includes(searchQuery.value) || card.grade.toLowerCase().includes(searchQuery.value);
+                });
+
+                return cards;
+            },
     },
     mutations: {
         SET_CARD(state, item) {
@@ -14,7 +40,7 @@ export default {
             if (index !== -1) {
                 state.cards[index] = item;
             } else {
-                state.cards.unshift(card);
+                state.cards.unshift(item);
             }
         },
         SET_CARDS(state, value) {
@@ -56,6 +82,9 @@ export default {
         sortCards({ commit }, { prop, asc }) {
             commit('SORT_CARDS', { prop, asc });
         },
+        filterCards({ commit }, { searchQuery, dateRange }) {
+            commit('FILTER_CARDS', { searchQuery, dateRange });
+        },
         appendCard({ state }, card) {
             state.cards.unshift(card);
         },
@@ -71,8 +100,9 @@ export default {
 
             const { data } = await response.json();
 
-            card.editmode = false;
-            commit('SET_CARD', data.card);
+            if (data.created) {
+                card.editmode = false;
+            }
         },
         async updateCard({ state }, card) {
             const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {

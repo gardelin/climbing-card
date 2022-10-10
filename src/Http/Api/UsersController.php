@@ -3,6 +3,7 @@
 namespace ClimbingCard\Http\Api;
 
 use ClimbingCard\Repositories\Users;
+use ClimbingCard\Repositories\Cards;
 
 class UsersController extends ApiController
 {
@@ -17,7 +18,7 @@ class UsersController extends ApiController
             if (!$hasClimbingCard) {
                 continue;
             }
-        
+
             $isClimbingCardPublic = get_user_meta($user->ID, 'is_climbing_card_public', true);
 
             // User don't have meta key saved in database
@@ -34,10 +35,11 @@ class UsersController extends ApiController
                     'firstname' => $user->user_firstname,
                     'lastname' => $user->user_lastname,
                     'display_name' => $user->data->display_name,
+                    'cardsCount' => Cards::getInstance()->userCardsCount($user->ID),
                 ]);
         }
 
-        usort($usersThatHavePublicClimbingCard, function($a, $b) {
+        usort($usersThatHavePublicClimbingCard, function ($a, $b) {
             return strtolower($a['lastname']) > strtolower($b['lastname']);
         });
 

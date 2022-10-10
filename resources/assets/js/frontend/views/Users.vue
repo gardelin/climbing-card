@@ -1,4 +1,3 @@
-
 <template>
     <section>
         <div class="container">
@@ -10,7 +9,7 @@
                             <UsersTable />
                         </template>
                         <template #fallback>
-                            <UsersTableSkeleton />
+                            <PulseLoader />
                         </template>
                     </Suspense>
                 </div>
@@ -19,12 +18,7 @@
     </section>
 </template>
 
-<script>
+<script setup>
     import UsersTable from '../components/UsersTable';
-    import UsersTableSkeleton from '../components/loading/UsersTableSkeleton';
-
-    export default {
-        name: 'Users',
-        components: { UsersTable, UsersTableSkeleton },
-    };
+    import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 </script>

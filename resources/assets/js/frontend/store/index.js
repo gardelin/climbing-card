@@ -8,27 +8,60 @@ const store = createStore({
         users(state) {
             return state.users;
         },
-        user: (state) => (id) => {
+        user: state => id => {
             let index = state.users.findIndex(user => user.id == id);
 
-            if (state.users[index])
-                return state.users[index];
+            if (state.users[index]) return state.users[index];
 
             return null;
         },
-        cards: (state) => (id) => {
+        cards: state => id => {
             let index = state.users.findIndex(user => user.id == id);
 
-            if (state.users[index] && state.users[index].cards)
-                return state.users[index].cards;
+            if (state.users[index] && state.users[index].cards) return state.users[index].cards;
 
             return null;
         },
-        stats: (state) => (id) => {
+        filterCards:
+            state =>
+            ({ id, searchQuery, dateRange }) => {
+                let index = state.users.findIndex(user => user.id == id);
+
+                let cards = null;
+                if (state.users[index] && state.users[index].cards) {
+                    cards = state.users[index].cards;
+                }
+
+                if (!cards) {
+                    return [];
+                }
+
+                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
+
+                if (dates?.[0] && !dates?.[1]) {
+                    dates[1] = dates[0];
+                }
+
+                if (dates?.[0] && dates?.[1]) {
+                    const from = new Date(dates[0]);
+                    const to = new Date(dates[1]);
+
+                    cards = cards.filter(card => {
+                        const check = new Date(card.climbed_at);
+                        return check >= from && check <= to;
+                    });
+                }
+
+                cards = cards.filter(card => {
+                    return false || card.route.toLowerCase().includes(searchQuery.value) || card.crag.toLowerCase().includes(searchQuery.value) || card.grade.toLowerCase().includes(searchQuery.value);
+                });
+
+                return cards;
+            },
+        stats: state => id => {
             let index = state.users.findIndex(user => user.id == id);
 
-            if (state.users[index] && state.users[index].stats)
-                return state.users[index].stats;
+            if (state.users[index] && state.users[index].stats) return state.users[index].stats;
 
             return null;
         },
@@ -37,17 +70,17 @@ const store = createStore({
         SET_USERS(state, value) {
             state.users = value;
         },
-        SET_CARDS(state, {id, value}) {
+        SET_CARDS(state, { id, value }) {
             let index = state.users.findIndex(user => user.id == id);
 
             state.users[index].cards = value;
         },
-        SET_STATS(state, {id, value}) {
+        SET_STATS(state, { id, value }) {
             let index = state.users.findIndex(user => user.id == id);
 
             state.users[index].stats = value;
         },
-        SORT_CARDS(state, {id, prop, asc}) {
+        SORT_CARDS(state, { id, prop, asc }) {
             let index = state.users.findIndex(user => user.id == id);
 
             state.users[index].cards.sort((a, b) => {
@@ -64,19 +97,22 @@ const store = createStore({
             const response = await fetch(`${window.climbingcards.rest_url}/users`);
             const json = await response.json();
 
-            commit('SET_USERS', json.data.users)
+            console.log('SET_USERS');
+            commit('SET_USERS', json.data.users);
         },
         async getUserCards({ commit }, userId) {
             const response = await fetch(`${window.climbingcards.rest_url}/cards/${userId}`);
             const json = await response.json();
 
-            commit('SET_CARDS', {id: userId, value: json.data.cards})
+            console.log('SET_CARDS');
+            commit('SET_CARDS', { id: userId, value: json.data.cards });
         },
         async getUserStats({ commit }, userId) {
             const response = await fetch(`${window.climbingcards.rest_url}/stats/${userId}`);
             const json = await response.json();
 
-            commit('SET_STATS', {id: userId, value: json.data.stats})
+            console.log('SET_STATS');
+            commit('SET_STATS', { id: userId, value: json.data.stats });
         },
     },
 });

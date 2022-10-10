@@ -96,17 +96,17 @@
 </template>
 
 <script>
-    import Utils from '../../../utils/Utils';
+    import { grades } from '../../utils/Utils';
     import { ref, computed } from 'vue';
     import { useStore, mapActions } from 'vuex';
     import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
-    import language from '../../../language';
+    import language from '../../language';
     import flatPickr from 'vue-flatpickr-component';
 
     const { $gettext } = language;
 
     export default {
-        name: 'Cards',
+        name: 'CardsTable',
         components: {
             Edit2,
             Trash2,
@@ -119,7 +119,7 @@
         },
         data() {
             return {
-                grades: Utils.grades(true),
+                grades: grades(true),
                 asc: false,
                 sortBy: null,
                 config: {
@@ -132,49 +132,23 @@
             };
         },
         async setup() {
-            const searchQuery = ref('');
-            const dateRange = ref('');
             const store = useStore();
+            const dateRange = ref('');
+            const searchQuery = ref('');
 
             if (!store.getters.cards.length) {
                 await store.dispatch('getCards');
             }
 
-            const filteredCards = computed(() => {
-                let data = store.getters.cards;
-                const term = searchQuery.value.toLowerCase();
-                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
-
-                if (dates?.[0] && !dates?.[1]) dates[1] = dates[0];
-
-                // Filter by date
-                if (dates?.[0] && dates?.[1]) {
-                    const from = new Date(dates[0]);
-                    const to = new Date(dates[1]);
-
-                    data = data.filter(card => {
-                        const check = new Date(card.climbed_at);
-                        return check >= from && check <= to;
-                    });
-                }
-
-                // Filter by searched term
-                data = data.filter(card => {
-                    return false || card.route.toLowerCase().indexOf(term) != -1 || card.crag.toLowerCase().indexOf(term) != -1 || card.grade.toLowerCase().indexOf(term) != -1;
-                });
-
-                return data;
-            });
-
             return {
                 cards: computed(() => store.getters.cards),
-                filteredCards,
+                filteredCards: computed(() => store.getters.filterCards({ searchQuery, dateRange })),
                 searchQuery,
                 dateRange,
             };
         },
         methods: {
-            ...mapActions(['sortCards', 'saveCard', 'updateCard']),
+            ...mapActions(['sortCards', 'saveCard', 'updateCard', 'filterCards']),
 
             /**
              * Store new card to database
@@ -189,25 +163,6 @@
                         this.saveCard(card);
                     }
                 }
-            },
-
-            /**
-             * Convert mysql datetime so it's readable for human.
-             *
-             * @return {String}
-             */
-            _datetimeToHuman(datetime) {
-                const options = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                };
-                const parsed = Date.parse(datetime);
-                const date = new Date(parsed);
-                const localized = date.toLocalizedDateString('hr-HR', options);
-
-                return localized;
             },
 
             /**

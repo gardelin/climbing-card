@@ -36,6 +36,8 @@ class CardsTable extends BaseTable implements CreatableDbTable
 
             dbDelta($sql);
 
+            // $index = "ALTER TABLE `". static::getTableName() ."` ADD INDEX `wp_climbing_cards_id` (`id`)"
+
             // Save schema version to options table to prevent this to run on every request
             $this->saveSchemaVersion();
         }

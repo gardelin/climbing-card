@@ -43,6 +43,22 @@ class Cards implements RepositoryAccess
         return $count;
     }
 
+
+    /**
+     * Get number of DB entries for specific user.
+     * 
+     * @return int
+     */
+    public function userCardsCount($user_id)
+    {
+        global $wpdb;
+
+        $count = $wpdb->get_var("SELECT COUNT(*) FROM " . CardsTable::getTableName() . " WHERE user_id = " . esc_sql($user_id));
+
+        return $count;
+    }
+
+
     /*
     * Insert DB entry.
     * 

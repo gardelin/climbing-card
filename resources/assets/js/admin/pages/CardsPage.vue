@@ -24,7 +24,7 @@
                 <div class="col">
                     <Suspense>
                         <template #default>
-                            <Cards />
+                            <CardsTable />
                         </template>
                         <template #fallback>
                             <PulseLoader />
@@ -37,16 +37,15 @@
 </template>
 
 <script>
-    import { computed } from 'vue';
-    import { useStore, mapActions } from 'vuex';
-    import Cards from '../components/cards/Cards';
+    import { mapActions } from 'vuex';
+    import CardsTable from '../components/CardsTable';
     import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
     import Header from '../components/partials/Header';
     import { Plus, Download } from 'lucide-vue-next';
 
     export default {
         name: 'CardsPage',
-        components: { Cards, Header, Plus, Download, PulseLoader },
+        components: { CardsTable, Header, Plus, Download, PulseLoader },
         methods: {
             newCardTemplate() {
                 return {
