@@ -105,8 +105,8 @@ export default {
             }
         },
         async updateCard({ state }, card) {
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                method: 'PUT',
+            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/update`, {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=UTF-8',
                     'X-WP-Nonce': window.climbingcards.nonce,
@@ -122,7 +122,7 @@ export default {
         },
         async deleteCard({ state, commit }, card) {
             if (!!card.id) {
-                const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
+                const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/delete`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json;charset=UTF-8',
