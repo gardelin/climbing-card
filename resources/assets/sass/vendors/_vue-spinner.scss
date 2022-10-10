@@ -1,0 +1,10 @@
+.v-spinner {
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.v-pulse {
+    background-color: var(--cc-red) !important;
+}
