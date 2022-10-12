@@ -1,10 +1,27 @@
 export default {
+    namespaced: true,
     state: {
+        user: null,
         cards: [],
+        currentPage: null,
+        total: null,
+        perPage: null,
     },
     getters: {
+        user(state) {
+            return state.user;
+        },
         cards(state) {
             return state.cards;
+        },
+        currentPage(state) {
+            return state.currentPage;
+        },
+        total(state) {
+            return state.total;
+        },
+        perPage(state) {
+            return state.perPage;
         },
         filterCards:
             state =>
@@ -43,6 +60,7 @@ export default {
                 state.cards[index] = item;
             } else {
                 state.cards.unshift(item);
+                state.total = state.total + 1;
             }
         },
         SET_CARDS(state, value) {
@@ -50,6 +68,7 @@ export default {
         },
         DELETE_CARD(state, index) {
             state.cards.splice(index, 1);
+            state.total = state.total - 1;
         },
         SORT_CARDS(state, { prop, asc }) {
             state.cards.sort((a, b) => {
@@ -60,14 +79,33 @@ export default {
                 }
             });
         },
+        SET_USER(state, value) {
+            state.user = value;
+        },
+        SET_CURRENT_PAGE(state, value) {
+            state.currentPage = value;
+        },
+        SET_TOTAL(state, value) {
+            state.total = value;
+        },
+        SET_PER_PAGE(state, value) {
+            state.perPage = value;
+        },
     },
     actions: {
-        async getCards({ commit }) {
-            let response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}`);
+        async getCards({ commit }, params) {
+            let queryString = new URLSearchParams(params).toString();
+            let url = `${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}?${queryString}`;
+            let response = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'X-WP-Nonce': window.climbingcards.nonce,
+                },
+            });
             let { data } = await response.json();
 
-            if (data.cards) {
-                data.cards = data.cards.map(card => {
+            if (data.data) {
+                data.data = data.data.map(card => {
                     card.errors = {
                         route: null,
                         crag: null,
@@ -78,7 +116,10 @@ export default {
                     return card;
                 });
 
-                commit('SET_CARDS', data.cards);
+                commit('SET_CARDS', data.data);
+                commit('SET_CURRENT_PAGE', data.current_page);
+                commit('SET_TOTAL', data.total);
+                commit('SET_PER_PAGE', data.per_page);
             }
         },
         sortCards({ commit }, { prop, asc }) {
@@ -158,6 +199,18 @@ export default {
             link.setAttribute('href', data);
             link.setAttribute('download', 'export.csv');
             link.click();
+        },
+        async getUser({ commit }) {
+            let response = await fetch(`${window.climbingcards.rest_url}users/me`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'X-WP-Nonce': window.climbingcards.nonce,
+                },
+            });
+            let { data } = await response.json();
+
+            commit('SET_USER', data);
         },
     },
 };

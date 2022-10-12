@@ -1,42 +1,35 @@
 <template>
     <div v-if="cards.length">
-        <div class="table-header">
-            <div class="search-container">
-                <Search :size="18" />
-                <input class="search" type="text" :placeholder="$gettext('Search Cards')" v-model="searchQuery" />
-            </div>
-            <div class="date-container">
-                <div class="input-group">
-                    <flat-pickr v-model="dateRange" :config="flatPickrRangeConfig" :placeholder="$gettext('Select Dates')"> </flat-pickr>
-                    <X :size="18" v-if="dateRange" @click="dateRange = null" />
-                </div>
-            </div>
-        </div>
-        <table class="cards">
+        <table class="cards" :class="classes">
             <thead>
                 <tr>
-                    <th class="route" @click="_sort('route')">
+                    <th v-if="shouldShowEmail" class="email">
+                        {{ $gettext('Email') }}
+                        <ChevronUp :size="15" v-if="this.sortBy === 'email' && !this.asc" />
+                        <ChevronDown :size="15" v-if="this.sortBy === 'email' && this.asc" />
+                    </th>
+                    <th class="route" @click="sort('route')">
                         {{ $gettext('Route') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'route' && !this.asc" />
                         <ChevronDown :size="15" v-if="this.sortBy === 'route' && this.asc" />
                     </th>
-                    <th class="crag" @click="_sort('crag')">
+                    <th class="crag" @click="sort('crag')">
                         {{ $gettext('Crag') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'crag' && !this.asc" />
                         <ChevronDown :size="15" v-if="this.sortBy === 'crag' && this.asc" />
                     </th>
-                    <th class="grade" @click="_sort('grade')">
+                    <th class="grade" @click="sort('grade')">
                         {{ $gettext('Grade') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'grade' && !this.asc" />
                         <ChevronDown :size="15" v-if="this.sortBy === 'grade' && this.asc" />
                     </th>
-                    <th class="style" @click="_sort('style')">
+                    <th class="style" @click="sort('style')">
                         {{ $gettext('Style') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'style' && !this.asc" />
                         <ChevronDown :size="15" v-if="this.sortBy === 'style' && this.asc" />
                     </th>
                     <th class="comment">{{ $gettext('Comment') }}</th>
-                    <th class="climbed_at" @click="_sort('climbed_at')">
+                    <th class="climbed_at" @click="sort('climbed_at')">
                         {{ $gettext('Date') }}
                         <ChevronUp :size="15" v-if="this.sortBy === 'climbed_at' && !this.asc" />
                         <ChevronDown :size="15" v-if="this.sortBy === 'climbed_at' && this.asc" />
@@ -45,7 +38,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="item" :class="{ edit: card.editmode === true }" v-for="card in filteredCards" :key="card.id">
+                <tr class="item" :class="{ edit: card.editmode === true }" v-for="card in cards" :key="card.id">
+                    <td v-if="shouldShowEmail" class="email" :data-name="$gettext('Email')">
+                        <span>{{ card.email }}</span>
+                    </td>
                     <td class="route" :data-name="$gettext('Route')">
                         <input v-if="card.editmode" v-model="card.route" :placeholder="$gettext('Route Name')" />
                         <span v-else>{{ card.route }}</span>
@@ -59,7 +55,7 @@
                     <td class="grade" :data-name="$gettext('Grade')">
                         <select v-if="card.editmode" v-model="card.grade">
                             <option value="" disabled selected>{{ $gettext('Select Grade') }}</option>
-                            <option v-for="grade in grades" :key="grade">
+                            <option v-for="grade in grades(true)" :key="grade">
                                 {{ grade }}
                             </option>
                         </select>
@@ -87,8 +83,8 @@
                     </td>
                     <td class="actions" :data-name="$gettext('Actions')">
                         <Edit2 :size="18" v-if="!card.editmode" @click="card.editmode = true" />
-                        <Save :size="18" v-else @click="_save(card)" />
-                        <Trash2 :size="18" @click="this.$store.dispatch('deleteCard', card)" />
+                        <Save :size="18" v-else @click="save(card)" />
+                        <Trash2 :size="18" @click="store.dispatch(`${props.storeNamespace}/deleteCard`, card)" />
                     </td>
                 </tr>
             </tbody>
@@ -97,120 +93,79 @@
     <p v-else>{{ $gettext('No routes found in your cartboard. You can add it using "Add" button above.') }}</p>
 </template>
 
-<script>
-    import { ref, computed } from 'vue';
-    import { useStore, mapActions } from 'vuex';
+<script setup>
+    import { computed } from 'vue';
+    import { useStore } from 'vuex';
     import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
     import language from '../../language';
     import flatPickr from 'vue-flatpickr-component';
     import { grades, datetimeToHuman } from '../../utils/Utils';
 
+    const store = useStore();
+    const asc = false;
+    const sortBy = null;
     const { $gettext } = language;
-
-    export default {
-        name: 'CardsTable',
-        components: {
-            Edit2,
-            Trash2,
-            Save,
-            ChevronDown,
-            ChevronUp,
-            Search,
-            X,
-            flatPickr,
-        },
-        data() {
-            return {
-                grades: grades(true),
-                asc: false,
-                sortBy: null,
-                flatPickrRangeConfig: {
-                    altFormat: 'd/m/Y',
-                    altInput: true,
-                    mode: 'range',
-                    locale: { rangeSeparator: ' - ' },
-                },
-                flatPickrDateConfig: {
-                    altFormat: 'd/m/Y',
-                    altInput: true,
-                },
-            };
-        },
-        async setup() {
-            const store = useStore();
-            const dateRange = ref('');
-            const searchQuery = ref('');
-
-            if (!store.getters.cards.length) {
-                await store.dispatch('getCards');
-            }
-
-            return {
-                cards: computed(() => store.getters.cards),
-                filteredCards: computed(() => store.getters.filterCards({ searchQuery, dateRange })),
-                searchQuery,
-                dateRange,
-                datetimeToHuman,
-            };
-        },
-        methods: {
-            ...mapActions(['sortCards', 'saveCard', 'updateCard', 'filterCards']),
-
-            /**
-             * Store new card to database
-             *
-             * @return {Void}
-             */
-            _save(card) {
-                if (this._isValid(card)) {
-                    if (card.id) {
-                        this.updateCard(card);
-                    } else {
-                        this.saveCard(card);
-                    }
-                }
-            },
-
-            /**
-             * Validate card inputs.
-             *
-             * @return {Void}
-             */
-            _isValid(card) {
-                card.errors = {
-                    route: null,
-                    crag: null,
-                    grade: null,
-                    climbed_at: null,
-                };
-
-                if (!card.route) card.errors.route = $gettext('Route required!');
-                if (!card.crag) card.errors.crag = $gettext('Crag required!');
-                if (!card.grade) card.errors.grade = $gettext('Grade required!');
-                if (!card.climbed_at) card.errors.climbed_at = $gettext('Date required!');
-
-                for (let error in card.errors) {
-                    if (card.errors[error]) return false;
-                }
-
-                return true;
-            },
-
-            /**
-             * Sort table column
-             *
-             * @param {String} prop
-             * @return {Void}
-             */
-            _sort(prop) {
-                this.asc = !this.asc;
-                this.sortBy = prop;
-                const asc = this.asc;
-
-                this.sortCards({ prop, asc });
-            },
-        },
+    const flatPickrDateConfig = {
+        altFormat: 'd/m/Y',
+        altInput: true,
     };
+
+    const props = defineProps({
+        cards: {
+            type: Array,
+            required: true,
+        },
+        storeNamespace: {
+            type: String,
+            required: true,
+        },
+        classes: {
+            type: Array,
+            required: false,
+        },
+    });
+
+    const save = card => {
+        if (isValid(card)) {
+            if (card.id) {
+                store.dispatch(`${props.storeNamespace}/updateCard`, card);
+            } else {
+                store.dispatch(`${props.storeNamespace}/saveCard`, card);
+            }
+        }
+    };
+
+    const isValid = card => {
+        card.errors = {
+            route: null,
+            crag: null,
+            grade: null,
+            climbed_at: null,
+        };
+
+        if (!card.route) card.errors.route = $gettext('Route required!');
+        if (!card.crag) card.errors.crag = $gettext('Crag required!');
+        if (!card.grade) card.errors.grade = $gettext('Grade required!');
+        if (!card.climbed_at) card.errors.climbed_at = $gettext('Date required!');
+
+        for (let error in card.errors) {
+            if (card.errors[error]) return false;
+        }
+
+        return true;
+    };
+
+    const sort = prop => {
+        this.asc = !this.asc;
+        this.sortBy = prop;
+        const asc = this.asc;
+
+        this.sortCards({ prop, asc });
+    };
+
+    const shouldShowEmail = computed(() => {
+        return props.storeNamespace === 'admin' ? true : false;
+    });
 </script>
 
 <style lang="scss">

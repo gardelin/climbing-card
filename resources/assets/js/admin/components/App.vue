@@ -1,15 +1,20 @@
 <template>
     <div id="climbing-card">
-        <Navigation />
-        <router-view />
+        <Suspense>
+            <template #default>
+                <div>
+                    <Navigation />
+                    <router-view />
+                </div>
+            </template>
+            <template #fallback>
+                <PulseLoader />
+            </template>
+        </Suspense>
     </div>
 </template>
 
-<script>
+<script setup>
     import Navigation from './partials/Navigation.vue';
-
-    export default {
-        name: 'App',
-        components: { Navigation },
-    };
+    import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 </script>

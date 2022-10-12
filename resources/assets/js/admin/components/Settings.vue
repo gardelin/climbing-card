@@ -29,14 +29,14 @@
         async setup() {
             const store = useStore();
 
-            if (store.getters.isUserCardboardPublic === null) {
-                await store.dispatch('isUserCardboardPublic');
+            if (store.getters['user/isUserCardboardPublic'] === null) {
+                await store.dispatch('user/isUserCardboardPublic');
             }
 
             return {
-                isUserCardboardPublic: computed(() => store.getters.isUserCardboardPublic),
+                isUserCardboardPublic: computed(() => store.getters['user/isUserCardboardPublic']),
                 handleChange: e => {
-                    store.dispatch('setUserClimbingCardStatus', e.target.checked);
+                    store.dispatch('user/setUserClimbingCardStatus', e.target.checked);
                 },
             };
         },

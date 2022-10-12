@@ -8,6 +8,34 @@ use WP_REST_Request;
 class CardsController extends ApiController
 {
     /**
+     * Get all DB entries
+     * 
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
+     */
+    public static function all(WP_REST_Request $request)
+    {
+        $currentPage = (int)(isset($_GET['pg']) ? (intval($_GET['pg'])) : 1);
+        $perPage = (int)(isset($_GET['per_pg']) ? (intval($_GET['per_pg'])) : 10);
+        $startDate = (isset($_GET['start_date'])) ? sanitize_text_field($_GET['start_date']) : null;
+        $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
+
+        $cards = Cards::getInstance()->getPaginatedFilteredData(
+            [
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+            ],
+            $currentPage,
+            $perPage
+        );
+
+        $cards->setPageName('pg');
+        $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
+
+        return self::apiResponse($cards);
+    }
+
+    /**
      * Get all user cards
      * 
      * @param WP_REST_Request $request
@@ -15,14 +43,27 @@ class CardsController extends ApiController
      */
     public static function getUserCards(WP_REST_Request $request)
     {
+
         $userId = $request->get_param('user_id');
+        $currentPage = (int)(isset($_GET['pg']) ? (intval($_GET['pg'])) : 1);
+        $perPage = (int)(isset($_GET['per_pg']) ? (intval($_GET['per_pg'])) : 10);
+        $startDate = (isset($_GET['start_date'])) ? sanitize_text_field($_GET['start_date']) : null;
+        $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
 
-        if (!$userId)
-            return self::apiErrorResponse(_e('Couldn\'t find user'));
+        $cards = Cards::getInstance()->getPaginatedFilteredData(
+            [
+                'userId' => $userId,
+                'startDate' => $startDate,
+                'endDate' => $endDate,
+            ],
+            $currentPage,
+            $perPage
+        );
 
-        $cards = Cards::getInstance()->getByUserId($userId);
+        $cards->setPageName('pg');
+        $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
-        return self::apiResponse(['cards' => $cards]);
+        return self::apiResponse($cards);
     }
 
     /**

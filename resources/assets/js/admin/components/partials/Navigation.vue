@@ -14,6 +14,9 @@
                             <li>
                                 <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
                             </li>
+                            <li v-if="isAdministrator">
+                                <router-link :to="{ name: 'admin' }">{{ $gettext('Admin') }}</router-link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
@@ -22,10 +25,20 @@
     </section>
 </template>
 
-<script>
-    export default {
-        name: 'Navigation',
-    };
+<script setup>
+    import { computed } from 'vue';
+    import { useStore } from 'vuex';
+    console.log('Navigation');
+
+    const store = useStore();
+
+    if (!store.getters['user/user']) {
+        await store.dispatch('user/getUser');
+    }
+
+    const isAdministrator = computed(() => {
+        return store.getters['user/user'].roles.includes('administrator') ? true : false;
+    });
 </script>
 
 <style scoped lang="scss">
