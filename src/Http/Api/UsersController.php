@@ -45,4 +45,21 @@ class UsersController extends ApiController
 
         return self::apiResponse(['users' => $usersThatHavePublicClimbingCard]);
     }
+
+    /**
+     * Return current user data
+     * 
+     * @return WP_REST_Response
+     */
+    public static function me()
+    {
+        $roles = [];
+
+        if (is_user_logged_in()) {
+            $user = wp_get_current_user();
+            $roles = (array) $user->roles;
+        }
+
+        return self::apiResponse(['roles' => $roles]);
+    }
 }
