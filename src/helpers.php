@@ -126,6 +126,16 @@ function can_access_card()
 }
 
 /**
+ * Check if user administrator role 
+ * 
+ * @return bool
+ */
+function is_administrator()
+{
+    return current_user_can('administrator');
+}
+
+/**
  * Check if user is admin. 
  * 
  * @return bool
@@ -141,7 +151,7 @@ function is_admin()
  * @param string $template
  * @return null|int
  */
-function check_if_template_is_in_use($template) 
+function check_if_template_is_in_use($template)
 {
     $page_id = null;
 
