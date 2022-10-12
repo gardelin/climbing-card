@@ -6,6 +6,7 @@ use ClimbingCard\Repositories\RepositoryAccess;
 use ClimbingCard\Helpers\DatabaseTables\CardsTable;
 use ClimbingCard\Model\Card;
 use ClimbingCard\Services\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class Cards implements RepositoryAccess
 {
@@ -147,11 +148,12 @@ class Cards implements RepositoryAccess
     }
 
     /**
-     * Get all crags
+     * Get all crags.
      *
-     * @return Collection
+     * @param array $filters
+     * @return Collection 
      */
-    public function all($filters = []): Collection
+    public function all(array $filters)
     {
         global $wpdb;
 
@@ -169,6 +171,74 @@ class Cards implements RepositoryAccess
         }
 
         return $results;
+    }
+
+    /**
+     * Get paginated cragd DB entries.
+     *
+     * @param array $filter
+     * @param int $currentPage
+     * @param int $perPage
+     * @return LengthAwarePaginator 
+     */
+    public function getPaginatedFilteredData(array $filters, $currentPage = 1, $perPage = 10): LengthAwarePaginator
+    {
+        global $wpdb;
+
+        $cardsTableName = CardsTable::getTableName();
+        $usersTableName = $wpdb->prefix . 'users';
+
+        $select = "SELECT `t`.*, `{$usersTableName}`.`user_email` AS email";
+        $selectCount = "SELECT COUNT(`t`.`id`)";
+        $from = "FROM `" . $cardsTableName . "` AS `t` ";
+        $joins = ["INNER JOIN `{$usersTableName}` ON `t`.`user_id` = `{$usersTableName}`.`ID`"];
+        $whereClauses = ["1 = 1"]; // Dummy clause to prevent issues when no filters are set
+
+        // Filters
+        $userId = $filters['userId'] ?? null;
+        $endDate = $filters['endDate'] ?? null;
+        $startDate = $filters['startDate'] ?? null;
+
+        // Filter by user_id
+        if ($userId) {
+            $whereClauses[] = sprintf("`t`.`user_id` = '%s'", esc_sql($userId));
+        }
+
+        // Date filtering
+        if ($startDate) {
+            $whereClauses[] = sprintf("DATE_FORMAT(`t`.`created_at`, '%%Y-%%m-%%d') >= '%s'", esc_sql($startDate));
+        }
+
+        if ($endDate) {
+            $whereClauses[] = sprintf("DATE_FORMAT(`t`.`created_at`, '%%Y-%%m-%%d') <= '%s'", esc_sql($endDate));
+        }
+        // Count query
+        $query = $selectCount . " " .
+            $from . " " .
+            (count($joins) > 0 ? implode(" ", $joins) : "") . " " .
+            "WHERE " . implode(" AND ", $whereClauses);
+
+        $count = (int) $wpdb->get_var($query);
+
+        // If there are no rows we don't need to run the second query
+        if ($count === 0) {
+            return new LengthAwarePaginator([], $count, $perPage, $currentPage, ['query' => $_GET]);
+        }
+
+        // Page offset
+        $offset = ($currentPage - 1) * $perPage;
+
+        // Data query
+        $query = $select . " " .
+            $from . " " .
+            (count($joins) > 0 ? implode(" ", $joins) : "") . " " .
+            "WHERE " . implode(" AND ", $whereClauses) . " " .
+            "ORDER BY `t`.`id` DESC " .
+            "LIMIT $offset, $perPage";
+
+        $rows = $wpdb->get_results($query, ARRAY_A);
+
+        return new LengthAwarePaginator($rows, $count, $perPage, $currentPage, ['query' => $_GET]);
     }
 
     /**
