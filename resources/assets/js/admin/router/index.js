@@ -3,6 +3,7 @@ import { createWebHashHistory, createRouter } from 'vue-router';
 import CardsPage from '../pages/CardsPage';
 import SettingsPage from '../pages/SettingsPage';
 import StatisticsPage from '../pages/StatisticsPage';
+import NotAllowedPage from '../pages/NotAllowedPage';
 
 // Define all routes
 export const routes = [
@@ -23,6 +24,12 @@ export const routes = [
         path: '/stats',
         component: StatisticsPage,
         meta: { title: 'Climbing Card - Statistics' },
+    },
+    {
+        name: 'not-allowed',
+        path: '/not-allowed',
+        component: NotAllowedPage,
+        meta: { title: 'Climbing Card - Not Allowed' },
     },
 ];
 
