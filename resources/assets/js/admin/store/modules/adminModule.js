@@ -60,6 +60,7 @@ export default {
         },
         SET_CARDS(state, value) {
             state.cards = value;
+            state.total = state.total + 1;
         },
         DELETE_CARD(state, index) {
             state.cards.splice(index, 1);

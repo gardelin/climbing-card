@@ -58,9 +58,9 @@ export default {
 
             if (index !== -1) {
                 state.cards[index] = item;
+                state.total = state.total + 1;
             } else {
                 state.cards.unshift(item);
-                state.total = state.total + 1;
             }
         },
         SET_CARDS(state, value) {
@@ -145,6 +145,7 @@ export default {
 
             if (data.created) {
                 card.editmode = false;
+                commit('SET_CARD', card);
             }
         },
         async updateCard({ state }, card) {
@@ -179,8 +180,17 @@ export default {
 
             commit('DELETE_CARD', index);
         },
-        exportToCsv({ state }) {
-            const filtered = state.cards.map(card => {
+        async exportToCsv({ state }) {
+            let response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}/export`, {
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8',
+                    'X-WP-Nonce': window.climbingcards.nonce,
+                },
+            });
+
+            let { data } = await response.json();
+
+            const filtered = data.cards.map(card => {
                 return {
                     route: card.route,
                     crag: card.crag,
@@ -194,9 +204,9 @@ export default {
             let csvContent = 'data:text/csv;charset=utf-8,';
             csvContent += [Object.keys(filtered[0]).join(';'), ...filtered.map(item => Object.values(item).join(';'))].join('\n').replace(/(^\[)|(\]$)/gm, '');
 
-            const data = encodeURI(csvContent);
+            const csv = encodeURI(csvContent);
             const link = document.createElement('a');
-            link.setAttribute('href', data);
+            link.setAttribute('href', csv);
             link.setAttribute('download', 'export.csv');
             link.click();
         },
