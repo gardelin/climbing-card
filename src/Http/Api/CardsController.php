@@ -10,10 +10,9 @@ class CardsController extends ApiController
     /**
      * Get all DB entries
      * 
-     * @param WP_REST_Request $request
      * @return WP_REST_Response
      */
-    public static function all(WP_REST_Request $request)
+    public static function all()
     {
         $currentPage = (int)(isset($_GET['pg']) ? (intval($_GET['pg'])) : 1);
         $perPage = (int)(isset($_GET['per_pg']) ? (intval($_GET['per_pg'])) : 10);
@@ -43,7 +42,6 @@ class CardsController extends ApiController
      */
     public static function getUserCards(WP_REST_Request $request)
     {
-
         $userId = $request->get_param('user_id');
         $currentPage = (int)(isset($_GET['pg']) ? (intval($_GET['pg'])) : 1);
         $perPage = (int)(isset($_GET['per_pg']) ? (intval($_GET['per_pg'])) : 10);
@@ -64,6 +62,25 @@ class CardsController extends ApiController
         $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
         return self::apiResponse($cards);
+    }
+
+    /**
+     * Get all users climbed routes in order to export it to csv file.
+     * 
+     * @param WP_REST_Request $request
+     * @return WP_REST_Response
+     */
+    public static function export(WP_REST_Request $request)
+    {
+        $userId = $request->get_param('user_id');
+
+        if (!$userId) {
+            return self::apiErrorResponse(_e('Please provide user id!'));
+        }
+
+        $cards = Cards::getInstance()->getByUserId($userId);
+
+        return self::apiResponse(['cards' => $cards]);
     }
 
     /**
@@ -114,7 +131,7 @@ class CardsController extends ApiController
      */
     public static function delete(WP_REST_Request $request)
     {
-        $id = $request->get_param('id');
+        $id = $request->get_param('user_id');
         $deleted = Cards::getInstance()->delete($id);
 
         if (!$deleted)
