@@ -5,7 +5,7 @@
                 <div class="col">
                     <Header :title="$gettext('Climbing Cards')" :description="$gettext('Manage your climbed routes.')" />
                     <div style="display: flex">
-                        <div class="btn" v-if="store.getters['user/cards'].length" @click.prevent="store.dispatch('exportToCsv')">
+                        <div class="btn" v-if="store.getters['user/cards'].length" @click.prevent="store.dispatch('user/exportToCsv')">
                             <Download :size="16" />
                             {{ $gettext('Export CSV') }}
                         </div>
