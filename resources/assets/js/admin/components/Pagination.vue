@@ -106,7 +106,7 @@
     };
 </script>
 
-<style>
+<style scoped lang="scss">
     .pagination-wrapper {
         width: 100%;
         display: flex;
@@ -115,6 +115,11 @@
 
     .pagination {
         display: flex;
+        gap: 10px;
+
+        .btn {
+            margin: 0;
+        }
     }
 
     .pagination-per-page {
