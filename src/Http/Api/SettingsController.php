@@ -11,7 +11,7 @@ class SettingsController extends ApiController
         $userId = $request->get_param('user_id');
 
         if (!$userId) {
-            return self::apiErrorResponse(_e('Couldn\'t find user'));
+            return ['message' => _e('Couldn\'t find user')];
         }
 
         $isClimbingCardPublic = get_user_meta($userId, 'is_climbing_card_public', true);
@@ -19,9 +19,9 @@ class SettingsController extends ApiController
         // For users that don't have _is_climbing_card_public metadata force true
         $isClimbingCardPublic = $isClimbingCardPublic == '' ? 'true' : $isClimbingCardPublic;
 
-        return self::apiResponse([
+        return [
             'is_climbing_card_public' => $isClimbingCardPublic,
-        ]);
+        ];
     }
 
     /**
@@ -37,9 +37,9 @@ class SettingsController extends ApiController
 
         $updated = update_user_meta($userId, 'is_climbing_card_public', $isClimbingCardPublic ? 'true' : 'false');
 
-        return self::apiResponse([
+        return [
             'updated' => $updated,
             'is_climbing_card_public' => $isClimbingCardPublic,
-        ]);
+        ];
     }
 }

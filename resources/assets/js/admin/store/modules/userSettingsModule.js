@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     state: {
         isUserCardboardPublic: null,
@@ -14,32 +16,18 @@ export default {
     },
     actions: {
         async isUserCardboardPublic({ commit }) {
-            const response = await fetch(`${window.climbingcards.rest_url}settings?user_id=${window.climbingcards.logged_user_id}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-            });
-
-            const { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}settings?user_id=${window.climbingcards.logged_user_id}`;
+            const { data } = await axios.get(url);
 
             commit('IS_USER_CARDBOARD_PUBLIC', JSON.parse(data.is_climbing_card_public));
         },
         async setUserClimbingCardStatus({ commit }, value) {
-            const response = await fetch(`${window.climbingcards.rest_url}settings`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-                body: JSON.stringify({
-                    is_climbing_card_public: value,
-                    user_id: window.climbingcards.logged_user_id,
-                }),
-            });
-
-            const { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}settings`;
+            const settings = {
+                is_climbing_card_public: value,
+                user_id: window.climbingcards.logged_user_id,
+            };
+            const { data } = await axios.post(url, settings);
 
             commit('IS_USER_CARDBOARD_PUBLIC', !!data.is_climbing_card_public);
         },

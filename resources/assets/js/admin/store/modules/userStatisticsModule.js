@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     state: {
         stats: [],
@@ -14,8 +16,8 @@ export default {
     },
     actions: {
         async getStatistics({ commit }) {
-            const response = await fetch(`${window.climbingcards.rest_url}stats/${window.climbingcards.logged_user_id}`);
-            const { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}stats/${window.climbingcards.logged_user_id}`;
+            const { data } = await axios.get(url);
 
             commit('SET_STATS', data.stats);
         },

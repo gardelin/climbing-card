@@ -11,11 +11,12 @@ class StatsController extends ApiController
     {
         $userId = $request->get_param('user_id');
 
-        if (!$userId)
-            return self::apiErrorResponse(_e('Couldn\'t find user'));
+        if (!$userId) {
+            return ['message' => _e('Couldn\'t find user')];
+        }
 
         $stats = Cards::getInstance()->userStats($userId);
 
-        return self::apiResponse(['stats' => $stats]);
+        return ['stats' => $stats];
     }
 }
