@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default {
     namespaced: true,
     state: {
@@ -19,34 +21,6 @@ export default {
         cards(state) {
             return state.cards;
         },
-        filterCards:
-            state =>
-            ({ searchQuery, dateRange }) => {
-                let cards = state.cards;
-                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
-
-                if (dates?.[0] && !dates?.[1]) {
-                    dates[1] = dates[0];
-                }
-
-                if (dates?.[0] && dates?.[1]) {
-                    const from = new Date(dates[0]);
-                    const to = new Date(dates[1]);
-
-                    cards = state.cards.filter(card => {
-                        const check = new Date(card.climbed_at);
-                        return check >= from && check <= to;
-                    });
-                }
-
-                const query = searchQuery.value.toLowerCase();
-
-                cards = cards.filter(card => {
-                    return false || card.route.toLowerCase().includes(query) || card.crag.toLowerCase().includes(query) || card.grade.toLowerCase().includes(query);
-                });
-
-                return cards;
-            },
     },
     mutations: {
         SET_CARD(state, item) {
@@ -89,13 +63,7 @@ export default {
         async getCards({ commit }, params) {
             let queryString = new URLSearchParams(params).toString();
             let url = `${window.climbingcards.rest_url}cards?${queryString}`;
-            let response = await fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-            });
-            let { data } = await response.json();
+            let { data } = await axios.get(url);
 
             if (data.data) {
                 data.data = data.data.map(card => {
@@ -115,56 +83,8 @@ export default {
                 commit('SET_PER_PAGE', data.per_page);
             }
         },
-        filterCards({ commit }, { searchQuery, dateRange }) {
-            commit('FILTER_CARDS', { searchQuery, dateRange });
-        },
-        async saveCard({ commit }, card) {
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-                body: JSON.stringify(card),
-            });
-
-            const { data } = await response.json();
-
-            if (data.created) {
-                card.editmode = false;
-            }
-        },
-        async updateCard({ state }, card) {
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/update`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-                body: JSON.stringify(card),
-            });
-
-            const { data } = await response.json();
-
-            if (data.updated) {
-                card.editmode = false;
-            }
-        },
-        async deleteCard({ state, commit }, card) {
-            if (!!card.id) {
-                const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/delete`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        'X-WP-Nonce': window.climbingcards.nonce,
-                    },
-                    body: JSON.stringify(card),
-                });
-            }
-
-            let index = state.cards.indexOf(card);
-
-            commit('DELETE_CARD', index);
+        sortCards({ commit }, { prop, asc }) {
+            commit('SORT_CARDS', { prop, asc });
         },
     },
 };

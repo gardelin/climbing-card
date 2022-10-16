@@ -93,9 +93,6 @@ export default {
         sortCards({ commit }, { prop, asc }) {
             commit('SORT_CARDS', { prop, asc });
         },
-        filterCards({ commit }, { searchQuery, dateRange }) {
-            commit('FILTER_CARDS', { searchQuery, dateRange });
-        },
         appendCard({ state }, card) {
             state.cards.unshift(card);
         },

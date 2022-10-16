@@ -5,34 +5,34 @@
                 <tr>
                     <th v-if="shouldShowEmail" class="email">
                         {{ $gettext('Email') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'email' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'email' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'email' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'email' && asc" />
                     </th>
                     <th class="route" @click="sort('route')">
                         {{ $gettext('Route') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'route' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'route' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'route' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'route' && asc" />
                     </th>
                     <th class="crag" @click="sort('crag')">
                         {{ $gettext('Crag') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'crag' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'crag' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'crag' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'crag' && asc" />
                     </th>
                     <th class="grade" @click="sort('grade')">
                         {{ $gettext('Grade') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'grade' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'grade' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'grade' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'grade' && asc" />
                     </th>
                     <th class="style" @click="sort('style')">
                         {{ $gettext('Style') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'style' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'style' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'style' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'style' && asc" />
                     </th>
                     <th class="comment">{{ $gettext('Comment') }}</th>
                     <th class="climbed_at" @click="sort('climbed_at')">
                         {{ $gettext('Date') }}
-                        <ChevronUp :size="15" v-if="this.sortBy === 'climbed_at' && !this.asc" />
-                        <ChevronDown :size="15" v-if="this.sortBy === 'climbed_at' && this.asc" />
+                        <ChevronUp :size="15" v-if="sortBy === 'climbed_at' && !asc" />
+                        <ChevronDown :size="15" v-if="sortBy === 'climbed_at' && asc" />
                     </th>
                     <th class="actions"></th>
                 </tr>
@@ -84,7 +84,7 @@
                     <td class="actions" :data-name="$gettext('Actions')">
                         <Edit2 :size="18" v-if="!card.editmode" @click="card.editmode = true" />
                         <Save :size="18" v-else @click="save(card)" />
-                        <Trash2 :size="18" @click="store.dispatch(`${props.storeNamespace}/deleteCard`, card)" />
+                        <Trash2 :size="18" @click="store.dispatch(`user/deleteCard`, card)" />
                     </td>
                 </tr>
             </tbody>
@@ -94,16 +94,16 @@
 </template>
 
 <script setup>
-    import { computed } from 'vue';
+    import { computed, ref } from 'vue';
     import { useStore } from 'vuex';
-    import { Edit2, Trash2, Save, ChevronDown, ChevronUp, Search, X } from 'lucide-vue-next';
+    import { Edit2, Trash2, Save, ChevronDown, ChevronUp } from 'lucide-vue-next';
     import language from '../../language';
     import flatPickr from 'vue-flatpickr-component';
     import { grades, datetimeToHuman } from '../../utils/Utils';
 
     const store = useStore();
-    const asc = false;
-    const sortBy = null;
+    let asc = ref(false);
+    let sortBy = ref(null);
     const { $gettext } = language;
     const flatPickrDateConfig = {
         altFormat: 'd/m/Y',
@@ -128,9 +128,9 @@
     const save = card => {
         if (isValid(card)) {
             if (card.id) {
-                store.dispatch(`${props.storeNamespace}/updateCard`, card);
+                store.dispatch(`user/updateCard`, card);
             } else {
-                store.dispatch(`${props.storeNamespace}/saveCard`, card);
+                store.dispatch(`user/saveCard`, card);
             }
         }
     };
@@ -156,11 +156,10 @@
     };
 
     const sort = prop => {
-        this.asc = !this.asc;
-        this.sortBy = prop;
-        const asc = this.asc;
+        store.dispatch(`${props.storeNamespace}/sortCards`, { prop, asc: asc.value });
 
-        this.sortCards({ prop, asc });
+        asc.value = !asc.value;
+        sortBy.value = prop;
     };
 
     const shouldShowEmail = computed(() => {
