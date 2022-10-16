@@ -59,4 +59,26 @@ export function datetimeToHuman(datetime) {
     return localized;
 }
 
-export default { grades, getSiblings, datetimeToHuman };
+/**
+ * Get start and end date from date range.
+ * (17-10-2022 - 22-10-2022)
+ *
+ * @param {String} date
+ * @return {Array}
+ */
+export function getStartAndEndFromDateRange(range) {
+    const dates = range ? range.split(' - ') : [];
+    let start = dates?.[0] ? dates[0] : '';
+    let end = dates?.[1] ? dates[1] : '';
+
+    if (start && !end) {
+        end = start;
+    }
+
+    return {
+        start,
+        end,
+    };
+}
+
+export default { grades, getSiblings, datetimeToHuman, getStartAndEndFromDateRange };

@@ -198,10 +198,16 @@ class Cards implements RepositoryAccess
         $userId = $filters['userId'] ?? null;
         $endDate = $filters['endDate'] ?? null;
         $startDate = $filters['startDate'] ?? null;
+        $search = $filters['search'] ?? null;
 
         // Filter by user_id
         if ($userId) {
             $whereClauses[] = sprintf("`t`.`user_id` = '%s'", esc_sql($userId));
+        }
+
+        // Filter by search (check crag, route, grade and style)
+        if ($search) {
+            $whereClauses[] = sprintf("(`t`.`crag` LIKE '%%%s%%' OR `t`.`route` LIKE '%%%s%%' OR `t`.`grade` = '%s')", esc_sql($search), esc_sql($search), esc_sql($search));
         }
 
         // Date filtering
@@ -212,11 +218,14 @@ class Cards implements RepositoryAccess
         if ($endDate) {
             $whereClauses[] = sprintf("DATE_FORMAT(`t`.`created_at`, '%%Y-%%m-%%d') <= '%s'", esc_sql($endDate));
         }
+
         // Count query
         $query = $selectCount . " " .
             $from . " " .
             (count($joins) > 0 ? implode(" ", $joins) : "") . " " .
             "WHERE " . implode(" AND ", $whereClauses);
+
+        error_log($query);
 
         $count = (int) $wpdb->get_var($query);
 

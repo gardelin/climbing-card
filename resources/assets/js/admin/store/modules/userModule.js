@@ -25,34 +25,6 @@ export default {
         perPage(state) {
             return state.perPage;
         },
-        filterCards:
-            state =>
-            ({ searchQuery, dateRange }) => {
-                let cards = state.cards;
-                const dates = dateRange && dateRange.value ? dateRange.value.split(' - ') : false;
-
-                if (dates?.[0] && !dates?.[1]) {
-                    dates[1] = dates[0];
-                }
-
-                if (dates?.[0] && dates?.[1]) {
-                    const from = new Date(dates[0]);
-                    const to = new Date(dates[1]);
-
-                    cards = state.cards.filter(card => {
-                        const check = new Date(card.climbed_at);
-                        return check >= from && check <= to;
-                    });
-                }
-
-                const query = searchQuery.value.toLowerCase();
-
-                cards = cards.filter(card => {
-                    return false || card.route.toLowerCase().includes(query) || card.crag.toLowerCase().includes(query) || card.grade.toLowerCase().includes(query);
-                });
-
-                return cards;
-            },
     },
     mutations: {
         SET_CARD(state, item) {
