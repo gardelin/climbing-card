@@ -32,12 +32,12 @@
 
     const store = useStore();
 
-    if (!store.getters['user/user']) {
-        await store.dispatch('user/getUser');
+    if (!store.getters['user/roles']) {
+        await store.dispatch('user/getRoles');
     }
 
     const isAdministrator = computed(() => {
-        return store.getters['user/user'].roles.includes('administrator') ? true : false;
+        return store.getters['user/roles'].includes('administrator') ? true : false;
     });
 </script>
 

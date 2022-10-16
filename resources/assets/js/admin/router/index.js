@@ -52,12 +52,12 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    if (!store.getters['user/user']) {
-        await store.dispatch('user/getUser');
+    if (!store.getters['user/roles']) {
+        await store.dispatch('user/getRoles');
     }
 
-    const user = store.getters['user/user'];
-    const hasAccess = to.meta?.roles?.some(r => user.roles.includes(r));
+    const roles = store.getters['user/roles'];
+    const hasAccess = to.meta?.roles?.some(r => roles.includes(r));
 
     if (to.meta.requiredAuthorization && !hasAccess) {
         return next('/not-allowed');

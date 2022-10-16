@@ -60,6 +60,6 @@ class UsersController extends ApiController
             $roles = (array) $user->roles;
         }
 
-        return self::apiResponse(['roles' => $roles]);
+        return ['roles' => $roles];
     }
 }

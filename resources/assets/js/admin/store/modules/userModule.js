@@ -1,15 +1,17 @@
+import axios from 'axios';
+
 export default {
     namespaced: true,
     state: {
-        user: null,
+        roles: null,
         cards: [],
         currentPage: null,
         total: null,
         perPage: null,
     },
     getters: {
-        user(state) {
-            return state.user;
+        roles(state) {
+            return state.roles;
         },
         cards(state) {
             return state.cards;
@@ -79,8 +81,8 @@ export default {
                 }
             });
         },
-        SET_USER(state, value) {
-            state.user = value;
+        SET_ROLES(state, value) {
+            state.roles = value;
         },
         SET_CURRENT_PAGE(state, value) {
             state.currentPage = value;
@@ -96,13 +98,7 @@ export default {
         async getCards({ commit }, params) {
             let queryString = new URLSearchParams(params).toString();
             let url = `${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}?${queryString}`;
-            let response = await fetch(url, {
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-            });
-            let { data } = await response.json();
+            let { data } = await axios.get(url);
 
             if (data.data) {
                 data.data = data.data.map(card => {
@@ -115,12 +111,12 @@ export default {
 
                     return card;
                 });
-
-                commit('SET_CARDS', data.data);
-                commit('SET_CURRENT_PAGE', data.current_page);
-                commit('SET_TOTAL', data.total);
-                commit('SET_PER_PAGE', data.per_page);
             }
+
+            commit('SET_CARDS', data.data);
+            commit('SET_CURRENT_PAGE', data.current_page);
+            commit('SET_TOTAL', data.total);
+            commit('SET_PER_PAGE', data.per_page);
         },
         sortCards({ commit }, { prop, asc }) {
             commit('SORT_CARDS', { prop, asc });
@@ -132,16 +128,8 @@ export default {
             state.cards.unshift(card);
         },
         async saveCard({ commit }, card) {
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-                body: JSON.stringify(card),
-            });
-
-            const { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}cards/${card.id}`;
+            const { data } = await axios.post(url, card);
 
             if (data.created) {
                 card.editmode = false;
@@ -149,16 +137,8 @@ export default {
             }
         },
         async updateCard({ state }, card) {
-            const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/update`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-                body: JSON.stringify(card),
-            });
-
-            const { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}cards/${card.id}/update`;
+            const { data } = await axios.post(url, card);
 
             if (data.updated) {
                 card.editmode = false;
@@ -166,14 +146,8 @@ export default {
         },
         async deleteCard({ state, commit }, card) {
             if (!!card.id) {
-                const response = await fetch(`${window.climbingcards.rest_url}cards/${card.id}/delete`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json;charset=UTF-8',
-                        'X-WP-Nonce': window.climbingcards.nonce,
-                    },
-                    body: JSON.stringify(card),
-                });
+                const url = `${window.climbingcards.rest_url}cards/${card.id}/delete`;
+                const { data } = await axios.post(url);
             }
 
             let index = state.cards.indexOf(card);
@@ -181,14 +155,8 @@ export default {
             commit('DELETE_CARD', index);
         },
         async exportToCsv({ state }) {
-            let response = await fetch(`${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}/export`, {
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-            });
-
-            let { data } = await response.json();
+            const url = `${window.climbingcards.rest_url}cards/${window.climbingcards.logged_user_id}/export`;
+            const { data } = await axios.get(url);
 
             const filtered = data.cards.map(card => {
                 return {
@@ -210,17 +178,11 @@ export default {
             link.setAttribute('download', 'export.csv');
             link.click();
         },
-        async getUser({ commit }) {
-            let response = await fetch(`${window.climbingcards.rest_url}users/me`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8',
-                    'X-WP-Nonce': window.climbingcards.nonce,
-                },
-            });
-            let { data } = await response.json();
+        async getRoles({ commit }) {
+            const url = `${window.climbingcards.rest_url}users/me`;
+            const { data } = await axios.get(url);
 
-            commit('SET_USER', data);
+            commit('SET_ROLES', data.roles);
         },
     },
 };

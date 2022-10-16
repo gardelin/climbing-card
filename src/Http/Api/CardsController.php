@@ -31,7 +31,7 @@ class CardsController extends ApiController
         $cards->setPageName('pg');
         $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
-        return self::apiResponse($cards);
+        return $cards;
     }
 
     /**
@@ -61,7 +61,7 @@ class CardsController extends ApiController
         $cards->setPageName('pg');
         $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
-        return self::apiResponse($cards);
+        return $cards;
     }
 
     /**
@@ -80,7 +80,7 @@ class CardsController extends ApiController
 
         $cards = Cards::getInstance()->getByUserId($userId);
 
-        return self::apiResponse(['cards' => $cards]);
+        return ['cards' => $cards];
     }
 
     /**
@@ -97,10 +97,10 @@ class CardsController extends ApiController
         if (!$card)
             return self::apiErrorResponse(_e('Couldn\'t create card'));
 
-        return self::apiResponse([
+        return [
             'created' => true,
             'card' => $card->toArray(),
-        ]);
+        ];
     }
 
     /**
@@ -117,10 +117,10 @@ class CardsController extends ApiController
         if (!$card)
             return self::apiErrorResponse(_e('Couldn\'t find card'));
 
-        return self::apiResponse([
+        return [
             'updated' => true,
             'card' => $card->toArray(),
-        ]);
+        ];
     }
 
     /**
@@ -135,10 +135,12 @@ class CardsController extends ApiController
         $deleted = Cards::getInstance()->delete($id);
 
         if (!$deleted)
-            return self::apiErrorResponse(_e('Couldn\'t delete card'));
+            return [
+                'message' => _e('Couldn\'t delete card')
+            ];
 
-        return self::apiResponse([
+        return  [
             'deleted' => true,
-        ]);
+        ];
     }
 }
