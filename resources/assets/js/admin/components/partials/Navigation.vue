@@ -28,7 +28,6 @@
 <script setup>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
-    console.log('Navigation');
 
     const store = useStore();
 
