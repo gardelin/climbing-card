@@ -29,18 +29,36 @@
         currentPage: {
             type: Number,
             required: true,
+            default: 1,
         },
         total: {
             type: Number,
             required: true,
+            default: 100,
         },
         perPage: {
             type: Number,
             required: true,
+            default: 10,
         },
         storeNamespace: {
             type: String,
             required: true,
+        },
+        search: {
+            type: String,
+            required: false,
+            default: '',
+        },
+        startDate: {
+            type: String,
+            required: false,
+            default: '',
+        },
+        endDate: {
+            type: String,
+            required: false,
+            default: '',
         },
     });
 
@@ -48,6 +66,9 @@
         store.dispatch(`${props.storeNamespace}/getCards`, {
             pg: e.target.value,
             per_pg: props.perPage,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 
@@ -55,6 +76,9 @@
         store.dispatch(`${props.storeNamespace}/getCards`, {
             pg: props.currentPage + 1,
             per_pg: props.perPage,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 
@@ -62,6 +86,9 @@
         store.dispatch(`${props.storeNamespace}/getCards`, {
             pg: props.currentPage - 1,
             per_pg: props.perPage,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 
@@ -69,6 +96,9 @@
         store.dispatch(`${props.storeNamespace}/getCards`, {
             pg: 1,
             per_pg: props.perPage,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 
@@ -76,12 +106,19 @@
         store.dispatch(`${props.storeNamespace}/getCards`, {
             pg: pages(),
             per_pg: props.perPage,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 
     const handlePerPageClick = e => {
         store.dispatch(`${props.storeNamespace}/getCards`, {
+            pg: 1,
             per_pg: e.target.value,
+            search: props.search,
+            end_date: props.endDate,
+            start_date: props.startDate,
         });
     };
 

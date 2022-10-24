@@ -10,6 +10,10 @@ class CardsController extends ApiController
     /**
      * Get all DB entries
      * 
+     * @TODO merge with getUserCards
+     * If it's possible then api route is exposed to public, 
+     * vuex admin/getCards is surplus
+     * 
      * @return WP_REST_Response
      */
     public static function all()
@@ -18,11 +22,13 @@ class CardsController extends ApiController
         $perPage = (int)(isset($_GET['per_pg']) ? (intval($_GET['per_pg'])) : 10);
         $startDate = (isset($_GET['start_date'])) ? sanitize_text_field($_GET['start_date']) : null;
         $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
+        $search = (isset($_GET['search'])) ? sanitize_text_field($_GET['search']) : null;
 
         $cards = Cards::getInstance()->getPaginatedFilteredData(
             [
                 'startDate' => $startDate,
                 'endDate' => $endDate,
+                'search' => $search,
             ],
             $currentPage,
             $perPage
