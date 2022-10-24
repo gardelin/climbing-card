@@ -225,8 +225,6 @@ class Cards implements RepositoryAccess
             (count($joins) > 0 ? implode(" ", $joins) : "") . " " .
             "WHERE " . implode(" AND ", $whereClauses);
 
-        error_log($query);
-
         $count = (int) $wpdb->get_var($query);
 
         // If there are no rows we don't need to run the second query
