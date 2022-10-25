@@ -99,22 +99,19 @@ const store = createStore({
             const response = await fetch(`${window.climbingcards.rest_url}/users`);
             const json = await response.json();
 
-            console.log('SET_USERS');
             commit('SET_USERS', json.data.users);
         },
         async getUserCards({ commit }, userId) {
-            const response = await fetch(`${window.climbingcards.rest_url}/cards/${userId}`);
+            const response = await fetch(`${window.climbingcards.rest_url}/cards/${userId}?per_pg=100000`);
             const json = await response.json();
 
-            console.log('SET_CARDS');
-            commit('SET_CARDS', { id: userId, value: json.data.cards });
+            commit('SET_CARDS', { id: userId, value: json.data });
         },
         async getUserStats({ commit }, userId) {
             const response = await fetch(`${window.climbingcards.rest_url}/stats/${userId}`);
             const json = await response.json();
 
-            console.log('SET_STATS');
-            commit('SET_STATS', { id: userId, value: json.data.stats });
+            commit('SET_STATS', { id: userId, value: json.stats });
         },
     },
 });

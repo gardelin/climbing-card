@@ -53,6 +53,8 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
     if (!store.getters['user/roles']) {
+        // @TODO fix this dispatch because it's triggering twice
+        // one here one in Navigation.vue
         await store.dispatch('user/getRoles');
     }
 
