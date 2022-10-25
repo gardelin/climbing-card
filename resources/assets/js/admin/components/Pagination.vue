@@ -2,7 +2,7 @@
     <div class="pagination-wrapper">
         <div class="pagination-per-page">
             <p style="margin: 0">
-                Per page:
+                {{ $gettext('Per page') }}:
                 <select class="select" @change="handlePerPageClick">
                     <option value="10">10</option>
                     <option value="25">25</option>
@@ -11,11 +11,11 @@
             </p>
         </div>
         <div class="pagination">
-            <div class="btn btn-sm" v-if="!isFirstPage" @click="handleFirstPageClick">First</div>
-            <div class="btn btn-sm" v-if="hasPrevPage" @click="handlePrevPageClick">Prev</div>
-            <p style="margin: 0">Page <input class="input" type="number" :value="props.currentPage" @change="handlePageNumberChange" min="1" :max="pages()" style="width: 64px" /> of {{ pages() }}</p>
-            <div class="btn btn-sm" v-if="hasNextPage" @click="handleNextPageClick">Next</div>
-            <div class="btn btn-sm" v-if="!isLastPage" @click="handleLastPageClick">Last</div>
+            <div class="btn btn-sm" v-if="!isFirstPage" @click="handleFirstPageClick">{{ $gettext('First') }}</div>
+            <div class="btn btn-sm" v-if="hasPrevPage" @click="handlePrevPageClick">{{ $gettext('Prev') }}</div>
+            <p style="margin: 0">{{ $gettext('Page') }} <input class="input" type="number" :value="props.currentPage" @change="handlePageNumberChange" min="1" :max="pages()" style="width: 64px" /> {{ $gettext('of') }} {{ pages() }}</p>
+            <div class="btn btn-sm" v-if="hasNextPage" @click="handleNextPageClick">{{ $gettext('Next') }}</div>
+            <div class="btn btn-sm" v-if="!isLastPage" @click="handleLastPageClick">{{ $gettext('Last') }}</div>
         </div>
     </div>
 </template>

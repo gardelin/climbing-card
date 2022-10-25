@@ -9,15 +9,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:12
-msgid "Action"
-msgstr "Action"
-
-#: resources/assets/js/admin/views/ClimbingCards.vue:14
+#: resources/assets/js/admin/pages/CardsPage.vue:14
 msgid "Add"
 msgstr "Add"
 
-#: resources/assets/js/admin/views/Settings.vue:27
+#: resources/assets/js/admin/components/partials/Navigation.vue:18
+#: resources/assets/js/admin/pages/AdminPage.vue:6
+msgid "Admin"
+msgstr ""
+
+#: resources/assets/js/admin/components/Admin.vue:5
+#, fuzzy
+msgid "All climbed routes"
+msgstr "Manage your climbed routes."
+
+#: resources/assets/js/admin/components/Settings.vue:12
 msgid ""
 "By turning this option your climbing card data will be visible to all "
 "visitors"
@@ -25,7 +31,7 @@ msgstr ""
 "By turning this option your climbing card data will be visible to all "
 "visitors"
 
-#: resources/assets/js/frontend/views/User.vue:3
+#: resources/assets/js/frontend/views/User.vue:6
 msgid "Card"
 msgstr "Card"
 
@@ -34,176 +40,222 @@ msgstr "Card"
 msgid "Cards"
 msgstr "Cards"
 
-#: resources/assets/js/admin/views/Stats.vue:7
+#: resources/assets/js/admin/pages/StatisticsPage.vue:7
 msgid "Check your climbing statistics"
 msgstr "Check your climbing statistics"
 
-#: resources/assets/js/admin/components/partials/Navigation.vue:5
-#: resources/assets/js/admin/views/ClimbingCards.vue:6
+#: resources/assets/js/admin/components/partials/Navigation.vue:9
+#: resources/assets/js/admin/pages/CardsPage.vue:6
 msgid "Climbing Cards"
 msgstr "Climbing Cards"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:38
-#: resources/assets/js/admin/components/cards/Cards.vue:77
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:10
-#: resources/assets/js/frontend/views/User.vue:42
-#: resources/assets/js/frontend/views/User.vue:58
+#: resources/assets/js/admin/components/CardsTable.vue:31
+#: resources/assets/js/admin/components/CardsTable.vue:73
+#: resources/assets/js/frontend/components/UserTable.vue:37
+#: resources/assets/js/frontend/components/UserTable.vue:53
 msgid "Comment"
 msgstr "Comment"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:23
-#: resources/assets/js/admin/components/cards/Cards.vue:24
-#: resources/assets/js/admin/components/cards/Cards.vue:54
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:7
-#: resources/assets/js/frontend/views/User.vue:27
-#: resources/assets/js/frontend/views/User.vue:28
-#: resources/assets/js/frontend/views/User.vue:53
+#: resources/assets/js/admin/components/CardsTable.vue:16
+#: resources/assets/js/admin/components/CardsTable.vue:17
+#: resources/assets/js/admin/components/CardsTable.vue:50
+#: resources/assets/js/frontend/components/UserTable.vue:22
+#: resources/assets/js/frontend/components/UserTable.vue:23
+#: resources/assets/js/frontend/components/UserTable.vue:48
 msgid "Crag"
 msgstr "Crag"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:55
+#: resources/assets/js/admin/components/CardsTable.vue:51
 msgid "Crag - Sector"
 msgstr "Crag - Sector"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:292
+#: resources/assets/js/admin/components/CardsTable.vue:147
 msgid "Crag required!"
 msgstr "Crag required!"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:39
-#: resources/assets/js/admin/components/cards/Cards.vue:40
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:11
-#: resources/assets/js/frontend/views/User.vue:43
-#: resources/assets/js/frontend/views/User.vue:44
-#: resources/assets/js/frontend/views/User.vue:59
+#: resources/assets/js/admin/components/CardsTable.vue:32
+#: resources/assets/js/admin/components/CardsTable.vue:33
+#: resources/assets/js/frontend/components/UserTable.vue:38
+#: resources/assets/js/frontend/components/UserTable.vue:39
+#: resources/assets/js/frontend/components/UserTable.vue:54
 msgid "Date"
 msgstr "Date"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:294
+#: resources/assets/js/admin/components/CardsTable.vue:149
 msgid "Date required!"
 msgstr "Date required!"
 
-#: resources/assets/js/admin/views/ClimbingCards.vue:10
+#: resources/assets/js/admin/components/CardsTable.vue:42
+#: resources/assets/js/admin/components/CardsTable.vue:7
+msgid "Email"
+msgstr ""
+
+#: resources/assets/js/admin/pages/CardsPage.vue:10
 msgid "Export CSV"
 msgstr "Export CSV"
 
-#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:8
-#: resources/assets/js/admin/components/statistics/Statistics.vue:10
-#: resources/assets/js/admin/components/statistics/Statistics.vue:19
+#: resources/assets/js/admin/components/Pagination.vue:14
+msgid "First"
+msgstr ""
+
+#: resources/assets/js/admin/components/Statistics.vue:10
+#: resources/assets/js/admin/components/Statistics.vue:21
 msgid "Flash"
 msgstr "Flash"
 
-#: resources/assets/js/admin/views/Settings.vue:20
+#: resources/assets/js/admin/components/Settings.vue:5
 msgid "General"
 msgstr "General"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:28
-#: resources/assets/js/admin/components/cards/Cards.vue:29
-#: resources/assets/js/admin/components/cards/Cards.vue:59
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:8
-#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:5
-#: resources/assets/js/admin/components/statistics/Statistics.vue:16
-#: resources/assets/js/admin/components/statistics/Statistics.vue:7
-#: resources/assets/js/frontend/views/User.vue:37
-#: resources/assets/js/frontend/views/User.vue:38
-#: resources/assets/js/frontend/views/User.vue:57
+#: resources/assets/js/admin/components/CardsTable.vue:21
+#: resources/assets/js/admin/components/CardsTable.vue:22
+#: resources/assets/js/admin/components/CardsTable.vue:55
+#: resources/assets/js/admin/components/Statistics.vue:16
+#: resources/assets/js/admin/components/Statistics.vue:7
+#: resources/assets/js/frontend/components/UserTable.vue:32
+#: resources/assets/js/frontend/components/UserTable.vue:33
+#: resources/assets/js/frontend/components/UserTable.vue:52
 msgid "Grade"
 msgstr "Grade"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:293
+#: resources/assets/js/admin/components/CardsTable.vue:148
 msgid "Grade required!"
 msgstr "Grade required!"
 
-#: resources/assets/js/admin/views/Settings.vue:24
+#: resources/assets/js/admin/components/Pagination.vue:17
+#: resources/assets/js/admin/components/Pagination.vue:18
+msgid "Last"
+msgstr ""
+
+#: resources/assets/js/admin/components/Settings.vue:9
 msgid "Make my card public"
 msgstr "Make my card public"
 
-#: resources/assets/js/admin/views/ClimbingCards.vue:6
+#: resources/assets/js/admin/pages/AdminPage.vue:6
+msgid "Manage all cards"
+msgstr ""
+
+#: resources/assets/js/admin/pages/CardsPage.vue:6
 msgid "Manage your climbed routes."
 msgstr "Manage your climbed routes."
 
-#: resources/assets/js/admin/views/Settings.vue:6
+#: resources/assets/js/admin/pages/NotAllowedPage.vue:6
+#: resources/assets/js/admin/pages/SettingsPage.vue:6
 msgid "Manage your climbing card settings"
 msgstr "Manage your climbing card settings"
 
-#: resources/assets/js/frontend/views/User.vue:4
+#: resources/assets/js/admin/components/Cards.vue:5
+#, fuzzy
+msgid "My climbed routes"
+msgstr "Manage your climbed routes."
+
+#: resources/assets/js/admin/components/Pagination.vue:16
+#: resources/assets/js/admin/components/Pagination.vue:17
+msgid "Next"
+msgstr ""
+
+#: resources/assets/js/frontend/components/UserChart.vue:2
 msgid "Number of climbed routes per grade"
 msgstr "Number of climbed routes per grade"
 
-#: resources/assets/js/admin/views/Settings.vue:26
+#: resources/assets/js/admin/components/Pagination.vue:16
+msgid "of"
+msgstr ""
+
+#: resources/assets/js/admin/components/Settings.vue:11
 msgid "Off"
 msgstr "Off"
 
-#: resources/assets/js/admin/views/Settings.vue:26
+#: resources/assets/js/admin/components/Settings.vue:11
 msgid "On"
 msgstr "On"
 
-#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:7
-#: resources/assets/js/admin/components/statistics/Statistics.vue:18
-#: resources/assets/js/admin/components/statistics/Statistics.vue:9
+#: resources/assets/js/admin/components/Statistics.vue:20
+#: resources/assets/js/admin/components/Statistics.vue:9
 msgid "On Sight"
 msgstr "On Sight"
 
-#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:9
-#: resources/assets/js/admin/components/statistics/Statistics.vue:11
-#: resources/assets/js/admin/components/statistics/Statistics.vue:20
+#: resources/assets/js/admin/components/Pagination.vue:16
+msgid "Page"
+msgstr ""
+
+#: resources/assets/js/admin/components/Pagination.vue:5
+msgid "Per page"
+msgstr ""
+
+#: resources/assets/js/admin/components/Pagination.vue:14
+#: resources/assets/js/admin/components/Pagination.vue:15
+msgid "Prev"
+msgstr ""
+
+#: resources/assets/js/admin/components/Admin.vue:7
+#: resources/assets/js/admin/components/Cards.vue:7
+msgid "records"
+msgstr ""
+
+#: resources/assets/js/admin/components/Statistics.vue:11
+#: resources/assets/js/admin/components/Statistics.vue:22
 msgid "Red Point"
 msgstr "Red Point"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:19
-#: resources/assets/js/admin/components/cards/Cards.vue:49
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:6
-#: resources/assets/js/frontend/views/User.vue:23
-#: resources/assets/js/frontend/views/User.vue:52
+#: resources/assets/js/admin/components/CardsTable.vue:12
+#: resources/assets/js/admin/components/CardsTable.vue:45
+#: resources/assets/js/frontend/components/UserTable.vue:18
+#: resources/assets/js/frontend/components/UserTable.vue:47
 msgid "Route"
 msgstr "Route"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:50
+#: resources/assets/js/admin/components/CardsTable.vue:46
 msgid "Route Name"
 msgstr "Route Name"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:291
+#: resources/assets/js/admin/components/CardsTable.vue:146
 msgid "Route required!"
 msgstr "Route required!"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:6
-#: resources/assets/js/frontend/views/User.vue:10
+#: resources/assets/js/admin/components/Admin.vue:15
+#: resources/assets/js/admin/components/Cards.vue:15
+#: resources/assets/js/frontend/components/UserTable.vue:5
 msgid "Search Cards"
 msgstr "Search Cards"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:10
-#: resources/assets/js/frontend/views/User.vue:14
+#: resources/assets/js/admin/components/Admin.vue:19
+#: resources/assets/js/admin/components/Cards.vue:19
+#: resources/assets/js/frontend/components/UserTable.vue:9
 msgid "Select Dates"
 msgstr "Select Dates"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:61
+#: resources/assets/js/admin/components/CardsTable.vue:57
 msgid "Select Grade"
 msgstr "Select Grade"
 
-#: resources/assets/js/admin/components/partials/Navigation.vue:11
-#: resources/assets/js/admin/views/Settings.vue:6
+#: resources/assets/js/admin/components/partials/Navigation.vue:15
+#: resources/assets/js/admin/pages/NotAllowedPage.vue:6
+#: resources/assets/js/admin/pages/SettingsPage.vue:6
 msgid "Settings"
 msgstr "Settings"
 
-#: resources/assets/js/admin/components/partials/Navigation.vue:8
-#: resources/assets/js/admin/views/Stats.vue:7
+#: resources/assets/js/admin/components/partials/Navigation.vue:12
+#: resources/assets/js/admin/pages/StatisticsPage.vue:7
 msgid "Statistics"
 msgstr "Statistics"
 
-#: resources/assets/js/admin/components/cards/Cards.vue:33
-#: resources/assets/js/admin/components/cards/Cards.vue:34
-#: resources/assets/js/admin/components/cards/Cards.vue:69
-#: resources/assets/js/admin/components/loading/CardsSkeleton.vue:9
-#: resources/assets/js/frontend/views/User.vue:32
-#: resources/assets/js/frontend/views/User.vue:33
-#: resources/assets/js/frontend/views/User.vue:54
+#: resources/assets/js/admin/components/CardsTable.vue:26
+#: resources/assets/js/admin/components/CardsTable.vue:27
+#: resources/assets/js/admin/components/CardsTable.vue:65
+#: resources/assets/js/frontend/components/UserTable.vue:27
+#: resources/assets/js/frontend/components/UserTable.vue:28
+#: resources/assets/js/frontend/components/UserTable.vue:49
 msgid "Style"
 msgstr "Style"
 
-#: resources/assets/js/admin/components/loading/StatisticsSkeleton.vue:6
-#: resources/assets/js/admin/components/statistics/Statistics.vue:17
-#: resources/assets/js/admin/components/statistics/Statistics.vue:8
+#: resources/assets/js/admin/components/Statistics.vue:19
+#: resources/assets/js/admin/components/Statistics.vue:8
 msgid "Total"
 msgstr "Total"
+
+#~ msgid "Action"
+#~ msgstr "Action"
 
 #~ msgid "Export"
 #~ msgstr "Export"

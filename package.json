@@ -35,7 +35,7 @@
         "vue-flatpickr-component": "^9.0.5",
         "vue-router": "^4.0.12",
         "vue-spinner": "^1.0.4",
-        "vue3-gettext": "^2.0.0-beta.2",
+        "vue3-gettext": "^2.3.3",
         "vuex": "^4.0.2"
     },
     "private": true,

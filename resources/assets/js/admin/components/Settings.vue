@@ -8,7 +8,7 @@
                 <div class="item">
                     <div class="item-label">{{ $gettext('Make my card public') }}</div>
                     <div class="item-content">
-                        <Toggle :name="'is_climbing_card_public'" v-model="isUserCardboardPublic" Label="$gettext('Off')" :onLabel="$gettext('On')" style="width: 90px" @change="handleChange" />
+                        <Toggle :name="'is_climbing_card_public'" v-model="isUserCardboardPublic" :offLabel="$gettext('Off')" :onLabel="$gettext('On')" style="width: 90px" @change="handleChange" />
                         <p class="item-description">{{ $gettext('By turning this option your climbing card data will be visible to all visitors') }}</p>
                     </div>
                 </div>

@@ -2,9 +2,9 @@
     <div class="table-header" style="padding: 2rem 1rem">
         <div>
             <div style="display: flex; gap: 10px">
-                <h3>My climbed routes</h3>
+                <h3>{{ $gettext('My climbed routes') }}</h3>
                 <span class="style">
-                    <span class="redpoint">{{ total }} records</span>
+                    <span class="redpoint">{{ total }} {{ $gettext('records') }}</span>
                 </span>
             </div>
         </div>
