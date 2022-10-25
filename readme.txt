@@ -67,6 +67,21 @@ This plugin is for free and licensed to GPL. It's open source following the GPL 
 
 == Changelog ==
 
+= 1.0.8 - November 25 2022 =
+* Creating Admin screen to manage all DB entries in wp_climbing_cards table, data pagination
+* Creating api route /users/me to get data about current user (to get roles)
+* Adding getPaginatedFilteredData so it can be used to paginate api requests
+* Adding is_administrator helper function
+* Adding not allowed page for some routes
+* Installing illuminate/paginator:8.0.0 to paginate cards api responses
+* Cards search improvement
+* Changing DELETE and UPDATE to POST because of web hosting disable DELETE and PUT
+* Fixing boolean value for user metadata
+* Removing local skeletons and using vue-spinner for loading animation.
+* Renaming views folder to pages.
+* Moving all api calls to vuex
+* Breaking store into modules
+
 = 1.0.7 - September 8 2022 =
 * Removing Controller class (no need it for now) and abort method in ApiController class
 * Fixing echo left overs
