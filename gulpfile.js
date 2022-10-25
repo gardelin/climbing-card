@@ -36,7 +36,7 @@ gulp.task('version', function () {
                     .pipe(replace(/\"version\": \".+\",/g, '"version": "' + res.version + '",'))
                     // readme.txt
                     .pipe(replace(/Current\sversion:\s.+/g, 'Current version: ' + res.version))
-                    .pipe(replace(/\sStable\stag:\s.+/g, 'Stable tag: ' + res.version))
+                    .pipe(replace(/Stable\stag:\s.+/g, 'Stable tag: ' + res.version))
                     // activation.php
                     .pipe(replace(/define\(\'CLIMBING_CARD_VERSION\'\,\s\'.+\'\)\;/g, "define('CLIMBING_CARD_VERSION', '" + res.version + "');"))
                     .pipe(replace(/Version:\s.+/g, 'Version: ' + res.version))
