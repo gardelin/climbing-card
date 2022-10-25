@@ -17,28 +17,20 @@
     </div>
 </template>
 
-<script>
+<script setup>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
     import Toggle from './Toggle';
-    import Header from './partials/Header';
 
-    export default {
-        name: 'Settings',
-        components: { Header, Toggle },
-        async setup() {
-            const store = useStore();
+    const store = useStore();
 
-            if (store.getters['isUserCardboardPublic'] === null) {
-                await store.dispatch('isUserCardboardPublic');
-            }
+    if (store.getters['isUserCardboardPublic'] === null) {
+        await store.dispatch('isUserCardboardPublic');
+    }
 
-            return {
-                isUserCardboardPublic: computed(() => store.getters['isUserCardboardPublic']),
-                handleChange: e => {
-                    store.dispatch('setUserClimbingCardStatus', e.target.checked);
-                },
-            };
-        },
+    const isUserCardboardPublic = computed(() => store.getters['isUserCardboardPublic']);
+
+    const handleChange = e => {
+        store.dispatch('setUserClimbingCardStatus', e.target.checked);
     };
 </script>
