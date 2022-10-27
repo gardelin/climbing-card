@@ -259,3 +259,7 @@ msgstr "Akcije"
 #: resources/assets/js/admin/components/CardsTable.vue:79
 msgid "Select Date"
 msgstr "Odaberi Datum"
+
+#: resources/assets/js/admin/pages/StatisticsPage.vue:7
+msgid "Check your climbing statistics"
+msgstr "Pogledaj svoju statistiku"
