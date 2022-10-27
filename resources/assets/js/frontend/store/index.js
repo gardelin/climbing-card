@@ -102,7 +102,7 @@ const store = createStore({
             commit('SET_USERS', json.data.users);
         },
         async getUserCards({ commit }, userId) {
-            const response = await fetch(`${window.climbingcards.rest_url}/cards/${userId}?per_pg=100000`);
+            const response = await fetch(`${window.climbingcards.rest_url}/cards/${userId}?per_pg=2000`);
             const json = await response.json();
 
             commit('SET_CARDS', { id: userId, value: json.data });
