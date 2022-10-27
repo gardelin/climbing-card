@@ -88,6 +88,10 @@
                 }
 
                 @include respond-to('small') {
+                    svg {
+                        margin: 0;
+                    }
+
                     span {
                         display: none;
                     }
