@@ -4,6 +4,7 @@ import store from './store';
 import language from '../language';
 import App from './components/App';
 import axios from 'axios';
+import SvgVue from 'svg-vue3';
 const { $gettext } = language;
 
 class Admin {
@@ -16,6 +17,7 @@ class Admin {
         this.app.use(router);
         this.app.use(store);
         this.app.use(language);
+        this.app.use(SvgVue);
 
         axios.defaults.headers.common['X-WP-Nonce'] = window.climbingcards.nonce;
 

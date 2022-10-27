@@ -7,7 +7,7 @@
                         <ul>
                             <li>
                                 <router-link :to="{ name: 'climbing-cards', params: {} }">
-                                    <Mountain size="20" />
+                                    <svg-vue icon="logo" height="20" />
                                     <span>{{ $gettext('Climbing Cards') }}</span>
                                 </router-link>
                             </li>
@@ -40,7 +40,7 @@
 <script setup>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
-    import { Mountain, BarChart2, Settings, Lock } from 'lucide-vue-next';
+    import { BarChart2, Settings, Lock } from 'lucide-vue-next';
 
     const store = useStore();
 
@@ -108,10 +108,6 @@
                 background-color: var(--cc-red);
                 transition: width 200ms ease-in-out;
             }
-        }
-
-        li:first-child a {
-            padding-left: 0;
         }
 
         li:hover a {
