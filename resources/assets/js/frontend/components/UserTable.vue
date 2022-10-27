@@ -14,31 +14,31 @@
     <table class="cards" id="cards-table">
         <thead>
             <tr>
-                <th class="route" @click="_sort('route')">
+                <th class="route" @click="sort('route')">
                     {{ $gettext('Route') }}
-                    <ChevronUp :size="15" v-if="this.sortBy === 'route' && !this.asc" />
-                    <ChevronDown :size="15" v-if="this.sortBy === 'route' && this.asc" />
+                    <ChevronUp :size="15" v-if="sortBy === 'route' && !asc" />
+                    <ChevronDown :size="15" v-if="sortBy === 'route' && asc" />
                 </th>
-                <th class="crag" @click="_sort('crag')">
+                <th class="crag" @click="sort('crag')">
                     {{ $gettext('Crag') }}
-                    <ChevronUp :size="15" v-if="this.sortBy === 'crag' && !this.asc" />
-                    <ChevronDown :size="15" v-if="this.sortBy === 'crag' && this.asc" />
+                    <ChevronUp :size="15" v-if="sortBy === 'crag' && !asc" />
+                    <ChevronDown :size="15" v-if="sortBy === 'crag' && asc" />
                 </th>
-                <th class="style" @click="_sort('style')">
+                <th class="style" @click="sort('style')">
                     {{ $gettext('Style') }}
-                    <ChevronUp :size="15" v-if="this.sortBy === 'style' && !this.asc" />
-                    <ChevronDown :size="15" v-if="this.sortBy === 'style' && this.asc" />
+                    <ChevronUp :size="15" v-if="sortBy === 'style' && !asc" />
+                    <ChevronDown :size="15" v-if="sortBy === 'style' && asc" />
                 </th>
-                <th class="grade" @click="_sort('grade')">
+                <th class="grade" @click="sort('grade')">
                     {{ $gettext('Grade') }}
-                    <ChevronUp :size="15" v-if="this.sortBy === 'grade' && !this.asc" />
-                    <ChevronDown :size="15" v-if="this.sortBy === 'grade' && this.asc" />
+                    <ChevronUp :size="15" v-if="sortBy === 'grade' && !asc" />
+                    <ChevronDown :size="15" v-if="sortBy === 'grade' && asc" />
                 </th>
                 <th class="comment">{{ $gettext('Comment') }}</th>
-                <th class="climbed_at" @click="_sort('climbed_at')">
+                <th class="climbed_at" @click="sort('climbed_at')">
                     {{ $gettext('Date') }}
-                    <ChevronUp :size="15" v-if="this.sortBy === 'climbed_at' && !this.asc" />
-                    <ChevronDown :size="15" v-if="this.sortBy === 'climbed_at' && this.asc" />
+                    <ChevronUp :size="15" v-if="sortBy === 'climbed_at' && !asc" />
+                    <ChevronDown :size="15" v-if="sortBy === 'climbed_at' && asc" />
                 </th>
             </tr>
         </thead>
@@ -91,7 +91,7 @@
 
     const filteredCards = computed(() => store.getters.filterCards({ id, searchQuery, dateRange }));
 
-    const _sort = prop => {
+    const sort = prop => {
         sortBy.value = prop;
         asc.value = !asc.value;
         store.commit('SORT_CARDS', { id: route.params.id, prop, asc: asc.value });
