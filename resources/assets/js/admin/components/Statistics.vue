@@ -13,13 +13,13 @@
             </thead>
             <tbody>
                 <tr class="item" v-for="stat in stats">
-                    <td data-name="{{ $gettext('Grade') }}">
+                    <td :data-name="$gettext('Grade')">
                         <strong>{{ stat.grade }}</strong>
                     </td>
-                    <td data-name="{{ $gettext('Total') }}">{{ stat.total }}</td>
-                    <td data-name="{{ $gettext('On Sight') }}">{{ stat.on_sight }}</td>
-                    <td data-name="{{ $gettext('Flash') }}">{{ stat.flash }}</td>
-                    <td data-name="{{ $gettext('Red Point') }}">{{ stat.red_point }}</td>
+                    <td :data-name="$gettext('Total')">{{ stat.total }}</td>
+                    <td :data-name="$gettext('On Sight')">{{ stat.on_sight }}</td>
+                    <td :data-name="$gettext('Flash')">{{ stat.flash }}</td>
+                    <td :data-name="$gettext('Red Point')">{{ stat.red_point }}</td>
                 </tr>
             </tbody>
         </table>
