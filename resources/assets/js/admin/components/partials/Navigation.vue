@@ -6,16 +6,28 @@
                     <nav>
                         <ul>
                             <li>
-                                <router-link :to="{ name: 'climbing-cards', params: {} }">{{ $gettext('Climbing Cards') }}</router-link>
+                                <router-link :to="{ name: 'climbing-cards', params: {} }">
+                                    <Mountain size="20" />
+                                    <span>{{ $gettext('Climbing Cards') }}</span>
+                                </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'stats' }">{{ $gettext('Statistics') }}</router-link>
+                                <router-link :to="{ name: 'stats' }">
+                                    <BarChart2 size="20" />
+                                    <span>{{ $gettext('Statistics') }}</span>
+                                </router-link>
                             </li>
                             <li>
-                                <router-link :to="{ name: 'settings' }">{{ $gettext('Settings') }}</router-link>
+                                <router-link :to="{ name: 'settings' }">
+                                    <Settings size="20" />
+                                    <span>{{ $gettext('Settings') }}</span>
+                                </router-link>
                             </li>
                             <li v-if="isAdministrator">
-                                <router-link :to="{ name: 'admin' }">{{ $gettext('Admin') }}</router-link>
+                                <router-link :to="{ name: 'admin' }">
+                                    <Lock size="20" />
+                                    <span>{{ $gettext('Admin') }}</span>
+                                </router-link>
                             </li>
                         </ul>
                     </nav>
@@ -28,6 +40,7 @@
 <script setup>
     import { computed } from 'vue';
     import { useStore } from 'vuex';
+    import { Mountain, BarChart2, Settings, Lock } from 'lucide-vue-next';
 
     const store = useStore();
 
@@ -41,6 +54,14 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../sass/mixins';
+
+    $breakpoints: (
+        'small': 767px,
+        'medium': 992px,
+        'large': 1200px,
+    ) !default;
+
     ul {
         display: flex;
         margin: 0;
@@ -50,6 +71,9 @@
             margin: 0;
 
             a {
+                display: flex;
+                align-content: center;
+                justify-content: center;
                 box-shadow: none;
                 outline: none;
                 position: relative;
@@ -58,6 +82,16 @@
                 transition: color 500ms ease-in-out;
                 color: var(--cc-gray-500);
                 font-weight: 400;
+
+                svg {
+                    margin-right: 10px;
+                }
+
+                @include respond-to('small') {
+                    span {
+                        display: none;
+                    }
+                }
             }
 
             a::after {
