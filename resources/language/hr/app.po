@@ -21,7 +21,7 @@ msgstr "Admin"
 
 #: resources/assets/js/admin/components/Admin.vue:5
 msgid "All climbed routes"
-msgstr "Ažuriraj svoje popete smjerove"
+msgstr "Svi kartonski upisi"
 
 #: resources/assets/js/admin/components/Settings.vue:12
 msgid ""
@@ -142,10 +142,6 @@ msgstr "Ažuriraj svoje popete smjerove"
 #: resources/assets/js/admin/pages/SettingsPage.vue:6
 msgid "Manage your climbing card settings"
 msgstr "Postavke penjačkog kartona"
-
-#: resources/assets/js/admin/components/Cards.vue:5
-msgid "My climbed routes"
-msgstr "Ažuriraj svoje popete smjerove"
 
 #: resources/assets/js/admin/components/Pagination.vue:16
 #: resources/assets/js/admin/components/Pagination.vue:17
