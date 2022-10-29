@@ -71,7 +71,7 @@
                         <span v-else :class="card.style.replace(' ', '')">{{ card.style }}</span>
                     </td>
                     <td class="comment" :data-name="$gettext('Comment')">
-                        <textarea v-if="card.editmode" v-model="card.comment" />
+                        <textarea v-if="card.editmode" v-model="card.comment" :placeholder="$gettext('Comment')" />
                         <span v-else>{{ card.comment }}</span>
                     </td>
                     <td class="climbed_at" :data-name="$gettext('Date')">
