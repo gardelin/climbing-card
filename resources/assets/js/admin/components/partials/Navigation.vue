@@ -7,7 +7,7 @@
                         <ul>
                             <li>
                                 <router-link :to="{ name: 'climbing-cards', params: {} }">
-                                    <svg-vue icon="logo" height="20" />
+                                    <svg-vue icon="carabiner" height="20" />
                                     <span>{{ $gettext('Climbing Cards') }}</span>
                                 </router-link>
                             </li>

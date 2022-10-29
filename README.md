@@ -2,7 +2,7 @@
 
 Wordpress plugin which let registered users create climbing card/logbook.
 
-<img src="resources/assets/images/logo.png" height="59" style="padding: 0 10px 0 0" />
+<img src="resources/assets/svgs/logo.svg" height="59" style="padding: 0 10px 0 0" />
 
 ## Getting started
 
