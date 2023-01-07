@@ -1,9 +1,9 @@
 === Climbing Cardboard === 
 Plugin Name: Climbing Cardboard
-Plugin URI: https://github.com/gardelin/climbing-card 
+Plugin URI: https://github.com/rlabrovi/climbing-card 
 Tags: sport, climbing, routes, logbook, stats
 Author: Roko Labrovic
-Author URI: https://github.com/gardelin
+Author URI: https://github.com/rlabrovi
 Contributors: gardelin
 Current version: 1.0.8
 Stable tag: 1.0.8
@@ -19,7 +19,7 @@ Wordpress plugin which let registered users create climbing card/logbook.
 The ideal plugin for rock climbing lovers which allows registered users to create and add climbed routes to own climbing card/logbook. Also, the plugin calculates statistics for every user individually and all users too.
 
 = Wiki =
-You can find [Wiki](https://github.com/gardelin/climbing-card/wiki)
+You can find [Wiki](https://github.com/rlabrovi/climbing-card/wiki)
 
 = Shortcodes =
 [last_climbed_routes number="10" show-route-in-header="0|1" show-date-in-header="0|1"]

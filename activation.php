@@ -5,10 +5,10 @@
  *
  * Plugin Name: Climbing Cartboard
  * Description: Wordpress plugin for managing climbed rock climbing routes
- * Plugin URI: https://github.com/gardelin/climbingcard 
+ * Plugin URI: https://github.com/rlabrovi/climbing-card
  * Author: Roko Labrovic
  * Version: 1.0.8
- * Author URI: https://github.com/gardelin
+ * Author URI: https://github.com/rlabrovi
  * Text Domain: climbingcards
  * Domain Path: /resources/lang
  */

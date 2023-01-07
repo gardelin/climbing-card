@@ -8,12 +8,12 @@
     ],
     "license": "MIT",
     "type": "wordpress-plugin",
-    "homepage": "https://github.com/gardelin/climbingcard",
+    "homepage": "https://github.com/rlabrovi/climbing-card",
     "authors": [
         {
             "name": "Roko Labrovic",
             "email": "roko.labrovic@gmail.com",
-            "homepage": "https://github.com/gardelin",
+            "homepage": "https://github.com/rlabrovi",
             "role": "Developer"
         }
     ],
