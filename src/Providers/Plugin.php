@@ -20,9 +20,6 @@ class Plugin
         // Register routes
         add_action('init', [new Routes, 'register']);
 
-        // Load translations
-        add_action('init', [$this, 'loadPluginTextDomain']);
-
         // Add assets
         add_action('init', [new Assets, 'init']);
 
@@ -34,19 +31,5 @@ class Plugin
 
         // Set changes to wordpress registration form
         add_action('init', [new Registration, 'init']);
-    }
-
-    /**
-     * Load the plugin text domain for translation.
-     * 
-     * @return void
-     */
-    public function loadPluginTextDomain()
-    {
-        $domain = 'opp';
-        $locale = apply_filters('plugin_locale', get_locale(), $domain);
-
-        load_textdomain($domain, WP_LANG_DIR . '/' . $domain . '/' . $domain . '-' . $locale . '.mo');
-        load_plugin_textdomain($domain, FALSE, CLIMBING_CARD_PATH . '/lang/');
     }
 }
