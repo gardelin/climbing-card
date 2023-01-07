@@ -13,7 +13,7 @@ gulp.task('dist', function () {
 });
 
 /**
- * Changes the version of the theme based
+ * Changes the version of the plugin based
  * on user input in various files
  */
 gulp.task('version', function () {
