@@ -81,4 +81,21 @@ export function getStartAndEndFromDateRange(range) {
     };
 }
 
+/**
+ * Generate random rgba color
+ *
+ * @returns {String}
+ */
+export function randomRgba(alpha = 0.5) {
+    const randomInteger = (max = 255) => {
+        return Math.floor(Math.random() * (max + 1));
+    };
+
+    let r = randomInteger();
+    let b = randomInteger();
+    let a = randomInteger();
+
+    return `rgba(${r}, ${b}, ${a}, ${alpha})`;
+}
+
 export default { grades, getSiblings, datetimeToHuman, getStartAndEndFromDateRange };
