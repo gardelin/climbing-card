@@ -19,6 +19,9 @@ Install php packages with `composer install`
 
 Build assets with `npm install && npm run dev`
 
+Visit `localhost:8000`
+
+Adminer available on `localhost:8080` (username: `wordpress`, password: `wordpress`)
 
 ## Wiki
 
