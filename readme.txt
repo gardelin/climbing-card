@@ -5,8 +5,8 @@ Tags: sport, climbing, routes, logbook, stats
 Author: Roko Labrovic
 Author URI: https://github.com/rlabrovi
 Contributors: gardelin
-Current version: 1.0.8
-Stable tag: 1.0.8
+Current version: 1.0.9
+Stable tag: 1.0.9
 Requires at least: 6.1
 Requires PHP: 7.0
 Tested up to: 6.3
@@ -66,6 +66,15 @@ This plugin is for free and licensed to GPL. It's open source following the GPL 
 4. Plugin settings screen
 
 == Changelog ==
+
+= 1.0.8 - November 25 2022 =
+* Removing users that have 'is_climbing_card_public' set to false from shortcodes calculations
+* Fixing bug with not able to more than one route without reloading page
+* Adding adminer in docker-compose
+* Readme update
+* Dockerization
+* Adding Pie chart to Admin > Statistics screen
+* Requires at least wordpress 6.1
 
 = 1.0.8 - November 25 2022 =
 * Creating Admin screen to manage all DB entries in wp_climbing_cards table, data pagination

@@ -7,7 +7,7 @@
  * Description: Wordpress plugin for managing climbed rock climbing routes
  * Plugin URI: https://github.com/rlabrovi/climbing-card
  * Author: Roko Labrovic
- * Version: 1.0.8
+ * Version: 1.0.9
  * Author URI: https://github.com/rlabrovi
  * Text Domain: climbingcards
  * Domain Path: /resources/lang
@@ -18,7 +18,7 @@ global $wpdb;
 // Add autoloader
 require_once __DIR__ . '/vendor/autoload.php';
 
-define('CLIMBING_CARD_VERSION', '1.0.8');
+define('CLIMBING_CARD_VERSION', '1.0.9');
 define('CLIMBING_CARD_PLUGIN_SLUG', plugin_basename(__FILE__));
 define('CLIMBING_CARD_FILE', __FILE__);
 define('CLIMBING_CARD_PATH', __DIR__);

@@ -2,14 +2,22 @@ const gulp = require('gulp');
 const zip = require('gulp-zip');
 var prompt = require('gulp-prompt');
 var replace = require('gulp-replace');
-var pjson = require('./package.json');
+var run = require('gulp-run');
+var fs = require('fs');
+const { series } = require('gulp');
 
 const path = {
     dist: 'dist/',
 };
 
-gulp.task('dist', function () {
-    return gulp.src(['**/*', '!**/.*', '!{dist,dist/**}', '!{node_modules,node_modules/**}', '!{resources/assets,resources/assets/**}', '!composer.json', '!composer.lock', '!prettierignore.lock', '!prettierrc.json', '!gulpfile.js', '!package.json', '!webpack.mix.js', '!package-lock.json', '!.gitignore', '!todo.txt'], { base: '../' }).pipe(zip('climbing-card.zip')).pipe(gulp.dest(path.dist));
+gulp.task('zip', function () {
+    var json = JSON.parse(fs.readFileSync('./package.json'));
+    const version = json.version;
+    const zipName = `climbing-card-v${version}.zip`;
+
+    console.info('Generating /dist/' + zipName);
+
+    return gulp.src(['**/*', '!**/.*', '!{dist,dist/**}', '!{node_modules,node_modules/**}', '!{resources/assets,resources/assets/**}', '!composer.json', '!composer.lock', '!prettierignore.lock', '!prettierrc.json', '!gulpfile.js', '!package.json', '!webpack.mix.js', '!package-lock.json', '!.gitignore', '!todo.txt'], { base: '../' }).pipe(zip(zipName)).pipe(gulp.dest(path.dist));
 });
 
 /**
@@ -17,6 +25,8 @@ gulp.task('dist', function () {
  * on user input in various files
  */
 gulp.task('version', function () {
+    var pjson = require('./package.json');
+
     return gulp.src(['package.json']).pipe(
         prompt.prompt(
             {
@@ -47,3 +57,9 @@ gulp.task('version', function () {
         ),
     );
 });
+
+gulp.task('prod', function () {
+    return run('npm run prod').exec();
+});
+
+gulp.task('release', series('version', 'prod', 'zip'));

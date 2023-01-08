@@ -201,6 +201,7 @@ class Cards implements RepositoryAccess
         $endDate = $filters['endDate'] ?? null;
         $startDate = $filters['startDate'] ?? null;
         $search = $filters['search'] ?? null;
+        $orderBy = $filters['orderBy'] ?? 'id';
 
         // Filter by user_id
         if ($userId) {
@@ -247,7 +248,7 @@ class Cards implements RepositoryAccess
             $from . " " .
             (count($joins) > 0 ? implode(" ", $joins) : "") . " " .
             "WHERE " . implode(" AND ", $whereClauses) . " " .
-            "ORDER BY `t`.`id` DESC " .
+            "ORDER BY `t`.`{$orderBy}` DESC " .
             "LIMIT $offset, $perPage";
 
         $rows = $wpdb->get_results($query, ARRAY_A);
