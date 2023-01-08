@@ -46,6 +46,14 @@ https://github.com/rlabrovi/climbing-card
 - [ ] Autocomplete Crags when inserting new route
 - [ ] Tests 
 
+## Release
+1. Update changelog in `readme.txt`
+2. Add release tag to git (e.g. `v1.0.9`)
+3. Run `gulp release`. Enter new version `1.0.9`
+4. On github add new [release](https://github.com/rlabrovi/climbing-card/releases)
+5. Extract `/dist/climbing-card-v1.0.9` and copy content to `/svn/climbing-cardboard/trunk` and `/svn/climbing-cardboard/tags/1.0.9`
+6. Push it to svn
+
 ## License
 
 This plugin is released under the GNU General Public License Version 3 (GPLv3). For details, For details, see [license.txt](license.txt).
