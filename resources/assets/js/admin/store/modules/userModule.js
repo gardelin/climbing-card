@@ -37,6 +37,14 @@ export default {
                 state.cards.unshift(item);
             }
         },
+        UPDATE_CARD(state, { id, item }) {
+            let index = state.cards.findIndex(card => card.id === id);
+
+            if (index !== -1) {
+                state.cards[index] = item;
+                state.total = state.total + 1;
+            }
+        },
         SET_CARDS(state, value) {
             state.cards = value;
         },
@@ -97,12 +105,19 @@ export default {
             state.cards.unshift(card);
         },
         async saveCard({ commit }, card) {
-            const url = `${window.climbingcards.rest_url}cards/${card.id}`;
+            const url = `${window.climbingcards.rest_url}cards`;
             const { data } = await axios.post(url, card);
 
             if (data.created) {
                 card.editmode = false;
-                commit('SET_CARD', card);
+                data.card.errors = {
+                    route: null,
+                    crag: null,
+                    grade: null,
+                    climbed_at: null,
+                };
+
+                commit('UPDATE_CARD', { id: null, item: data.card });
             }
         },
         async updateCard({ state }, card) {
@@ -116,7 +131,7 @@ export default {
         async deleteCard({ state, commit }, card) {
             if (!!card.id) {
                 const url = `${window.climbingcards.rest_url}cards/${card.id}/delete`;
-                const { data } = await axios.post(url);
+                await axios.post(url);
             }
 
             let index = state.cards.indexOf(card);

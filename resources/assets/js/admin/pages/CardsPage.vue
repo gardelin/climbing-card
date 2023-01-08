@@ -48,7 +48,7 @@
     const cards = computed(() => store.getters['user/cards']);
     const newCardTemplate = () => {
         return {
-            id: '',
+            id: null,
             route: '',
             crag: '',
             grade: '',
@@ -75,7 +75,7 @@
      */
     const addNewCard = () => {
         let found = cards.value.find(item => {
-            return item.id === '';
+            return item.id === null;
         });
 
         if (!found) {
