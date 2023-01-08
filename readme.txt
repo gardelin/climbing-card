@@ -67,7 +67,7 @@ This plugin is for free and licensed to GPL. It's open source following the GPL 
 
 == Changelog ==
 
-= 1.0.8 - November 25 2022 =
+= 1.0.9 - November 25 2022 =
 * Removing users that have 'is_climbing_card_public' set to false from shortcodes calculations
 * Fixing bug with not able to more than one route without reloading page
 * Adding adminer in docker-compose
