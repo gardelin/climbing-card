@@ -24,7 +24,7 @@ class CardsController extends ApiController
         $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
         $search = (isset($_GET['search'])) ? sanitize_text_field($_GET['search']) : null;
 
-        $cards = Cards::getInstance()->getPaginatedFilteredData(
+        $paginatedCards = Cards::getInstance()->getPaginatedFilteredData(
             [
                 'startDate' => $startDate,
                 'endDate' => $endDate,
@@ -34,10 +34,18 @@ class CardsController extends ApiController
             $perPage
         );
 
-        $cards->setPageName('pg');
-        $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
+        $paginatedCards->setPageName('pg');
+        $paginatedCards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
-        return $cards;
+        $response = $paginatedCards->toArray();
+        $data = [];
+        foreach ($response['data'] as $card) {
+            $data[] = $card->toArray();
+        }
+
+        $response['data'] = $data;
+
+        return $response;
     }
 
     /**
@@ -55,7 +63,7 @@ class CardsController extends ApiController
         $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
         $search = (isset($_GET['search'])) ? sanitize_text_field($_GET['search']) : null;
 
-        $cards = Cards::getInstance()->getPaginatedFilteredData(
+        $paginatedCards = Cards::getInstance()->getPaginatedFilteredData(
             [
                 'userId' => $userId,
                 'startDate' => $startDate,
@@ -66,10 +74,18 @@ class CardsController extends ApiController
             $perPage
         );
 
-        $cards->setPageName('pg');
-        $cards->setPath(get_rest_url() . 'climbingcard/v1/cards');
+        $paginatedCards->setPageName('pg');
+        $paginatedCards->setPath(get_rest_url() . 'climbingcard/v1/cards');
 
-        return $cards;
+        $response = $paginatedCards->toArray();
+        $data = [];
+        foreach ($response['data'] as $card) {
+            $data[] = $card->toArray();
+        }
+
+        $response['data'] = $data;
+
+        return $response;
     }
 
     /**

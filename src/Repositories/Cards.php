@@ -187,6 +187,7 @@ class Cards implements RepositoryAccess
 
         $cardsTableName = CardsTable::getTableName();
         $usersTableName = $wpdb->prefix . 'users';
+        $userMetaTableName = $wpdb->prefix . 'usermeta';
 
         $select = "SELECT `t`.*, `{$usersTableName}`.`user_email` AS email";
         $selectCount = "SELECT COUNT(`t`.`id`)";
@@ -196,6 +197,7 @@ class Cards implements RepositoryAccess
 
         // Filters
         $userId = $filters['userId'] ?? null;
+        $publicCardboard = $filters['publicCardboard'] ?? null;
         $endDate = $filters['endDate'] ?? null;
         $startDate = $filters['startDate'] ?? null;
         $search = $filters['search'] ?? null;
@@ -217,6 +219,11 @@ class Cards implements RepositoryAccess
 
         if ($endDate) {
             $whereClauses[] = sprintf("DATE_FORMAT(`t`.`created_at`, '%%Y-%%m-%%d') <= '%s'", esc_sql($endDate));
+        }
+
+        // Filter by is_climbing_card_public usermeta
+        if ($publicCardboard) {
+            $whereClauses[] = sprintf("NOT EXISTS (SELECT * FROM {$userMetaTableName} WHERE meta_key = 'is_climbing_card_public' AND `meta_value` != '%s' AND {$userMetaTableName}.user_id = {$usersTableName}.ID)", esc_sql($publicCardboard));
         }
 
         // Count query
@@ -245,7 +252,16 @@ class Cards implements RepositoryAccess
 
         $rows = $wpdb->get_results($query, ARRAY_A);
 
-        return new LengthAwarePaginator($rows, $count, $perPage, $currentPage, ['query' => $_GET]);
+        $cardsData = [];
+        if ($rows !== null) {
+            // Hydrate stats data
+            $cardsData = array_map(function ($row) {
+                return new Card($row);
+            }, $rows);
+        }
+
+
+        return new LengthAwarePaginator($cardsData, $count, $perPage, $currentPage, ['query' => $_GET]);
     }
 
     /**
@@ -337,11 +353,13 @@ class Cards implements RepositoryAccess
         global $wpdb;
 
         $tableName = CardsTable::getTableName();
+        $userMetaTableName = $wpdb->prefix . 'usermeta';
         $sql = "
         SELECT 
             COUNT(*) AS `total`, 
             `user_id` 
-        FROM " . $tableName . " 
+        FROM " . $tableName . "
+        WHERE NOT EXISTS (SELECT * FROM wp_usermeta WHERE meta_key = 'is_climbing_card_public' AND `meta_value` != 'true' AND {$userMetaTableName}.user_id = {$tableName}.user_id)
         GROUP BY `user_id` 
         ORDER BY `total` DESC LIMIT " . esc_sql($limit);
         $result = $wpdb->get_results($sql, ARRAY_A);

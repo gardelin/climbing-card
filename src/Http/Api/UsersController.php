@@ -21,7 +21,7 @@ class UsersController extends ApiController
 
             $isClimbingCardPublic = get_user_meta($user->ID, 'is_climbing_card_public', true);
 
-            // User don't have meta key saved in database
+            // User don't have meta key saved in database.
             // In this scenario we will assume that user's
             // climbing card is public
             if ($isClimbingCardPublic == '')
