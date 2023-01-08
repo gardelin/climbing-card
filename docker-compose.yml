@@ -12,6 +12,14 @@ services:
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
 
+   adminer:
+    depends_on:
+      - db
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
    wordpress:
      depends_on:
        - db
