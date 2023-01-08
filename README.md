@@ -30,6 +30,19 @@ https://wordpress.org/support/plugin/climbing-cartboard/
 
 https://github.com/rlabrovi/climbing-card
 
+## Shortcodes
+```
+[last_climbed_routes number="10" show-route-in-header="0|1" show-date-in-header="0|1"]
+[stats_counter]
+[top_users_by_number_of_climbed_routes number="10"]
+[stats]
+```
+
+## Todo
+- [x] Remove users data from shortcodes if isClimbingCardPublic is false set for user
+- [ ] Autocomplete Crags when inserting new route
+- [ ] Tests 
+
 ## License
 
 This plugin is released under the GNU General Public License Version 3 (GPLv3). For details, For details, see [license.txt](license.txt).
