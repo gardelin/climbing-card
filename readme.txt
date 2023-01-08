@@ -7,9 +7,9 @@ Author URI: https://github.com/rlabrovi
 Contributors: gardelin
 Current version: 1.0.9
 Stable tag: 1.0.9
-Requires at least: 6.1
+Requires at least: 6.1.1
+Tested up to: 6.1.1
 Requires PHP: 7.0
-Tested up to: 6.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
