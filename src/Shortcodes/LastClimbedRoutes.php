@@ -19,7 +19,7 @@ class LastClimbedRoutes
     public static function render($attributes = [], $content = null): string
     {
         $number = isset($attributes['number']) ? (int) $attributes['number'] : 10;
-        $cards = Cards::getInstance()->getPaginatedFilteredData(['publicCardboard' => 'true'], 1, $number);
+        $cards = Cards::getInstance()->getPaginatedFilteredData(['publicCardboard' => 'true', 'orderBy' => 'climbed_at'], 1, $number);
         $data = [];
 
         foreach ($cards->all() as $card) {
