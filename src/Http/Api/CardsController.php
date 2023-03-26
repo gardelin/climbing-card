@@ -62,6 +62,7 @@ class CardsController extends ApiController
         $startDate = (isset($_GET['start_date'])) ? sanitize_text_field($_GET['start_date']) : null;
         $endDate = (isset($_GET['end_date'])) ? sanitize_text_field($_GET['end_date']) : null;
         $search = (isset($_GET['search'])) ? sanitize_text_field($_GET['search']) : null;
+        $orderBy = (isset($_GET['order_by'])) ? sanitize_text_field($_GET['order_by']) : null;
 
         $paginatedCards = Cards::getInstance()->getPaginatedFilteredData(
             [
@@ -69,6 +70,7 @@ class CardsController extends ApiController
                 'startDate' => $startDate,
                 'endDate' => $endDate,
                 'search' => $search,
+                'orderBy' => $orderBy,
             ],
             $currentPage,
             $perPage

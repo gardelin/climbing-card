@@ -201,7 +201,7 @@ class Cards implements RepositoryAccess
         $endDate = $filters['endDate'] ?? null;
         $startDate = $filters['startDate'] ?? null;
         $search = $filters['search'] ?? null;
-        $orderBy = $filters['orderBy'] ?? 'id';
+        $orderBy = $filters['orderBy'] ?? 'climbed_at';
 
         // Filter by user_id
         if ($userId) {
