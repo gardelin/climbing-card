@@ -32,6 +32,9 @@ class Card extends DataObject implements RepositoryAccess
     protected $casts = [
         'id' => 'int',
         'user_id' => 'int',
+        'route' => 'string',
+        'grade' => 'string',
+        'style' => 'string',
     ];
 
     /**
@@ -46,6 +49,7 @@ class Card extends DataObject implements RepositoryAccess
             'grade',
             'crag',
             'style',
+            'comment',
             'climbed_at',
             'updated_at',
         ];
